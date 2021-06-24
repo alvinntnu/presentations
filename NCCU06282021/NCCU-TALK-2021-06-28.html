@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>語言中的語意網絡</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="NCCU-TALK-2021-06-28_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="NCCU-TALK-2021-06-28_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="_static/revealstyle.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="NCCU-TALK-2021-06-28_files/header-attrs-2.8.6/header-attrs.js"></script>
+    <link href="NCCU-TALK-2021-06-28_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="NCCU-TALK-2021-06-28_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <script src="NCCU-TALK-2021-06-28_files/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+    <script src="NCCU-TALK-2021-06-28_files/viz-1.8.2/viz.js"></script>
+    <link href="NCCU-TALK-2021-06-28_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="NCCU-TALK-2021-06-28_files/grViz-binding-1.0.6.1/grViz.js"></script>
+    <script src="NCCU-TALK-2021-06-28_files/kePrint-0.0.1/kePrint.js"></script>
+    <link href="NCCU-TALK-2021-06-28_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">語言中的語意網絡</h1>
+    <h2 class="author"><div class="line-block"><br />
+陳正賢 (Alvin Chen)<br />
+<br />
+<small>國立台灣師範大學英語系</small></div></h2>
+    <h3 class="date"><small>2021年06月28日</small></h3>
+</section>
+
+<section>
+<section id="背景" class="title-slide slide level2" data-background-color="lightyellow">
+<h2 data-background-color="lightyellow">背景</h2>
+
+</section>
+<section id="詞彙語意表達" class="title-slide slide level3">
+<h3>詞彙語意表達</h3>
+<ul>
+<li class="fragment"><p>一個詞彙的語意，該怎如何定義和表徵 (Representation)？</p>
+<ul>
+<li class="fragment">指涉(Meaning by <strong>reference</strong>)</li>
+<li class="fragment">比較(Meaning by <strong>contrast</strong>)</li>
+<li class="fragment">使用(Meaning by <strong>uses</strong>)</li>
+</ul></li>
+</ul>
+</section>
+
+<section id="語言單位間的共現性co-occurrence" class="title-slide slide level3">
+<h3>語言單位間的共現性(Co-occurrence)</h3>
+<ul>
+<li class="fragment"><p>不同語言單位之間的<strong>共現</strong>，一直是語言學家關心的議題。</p>
+<ul>
+<li class="fragment">詞彙間的搭配關係(Collocation)</li>
+<li class="fragment">詞彙與句構間的搭配關係(Colligation, Collostruction)</li>
+</ul></li>
+<li class="fragment"><p>隨著語料庫方法發展成熟，字串間的相連性(sequentiality)，成為詞彙語意(lexical semantics)研究的重要基礎。</p></li>
+<li class="fragment"><p>透過大量語料中的<strong>共現關係</strong>(Co-occurrence patterns)，分析詞彙語意，定義其語意表徵(Semantic Representation)。</p></li>
+<li class="fragment"><p>透過語境所取得的詞彙<strong>分散式語意表徵</strong>(Distributed Semantic Representation)，成為近年來語意分析研究的重要議題。(如：顯著搭配詞、詞向量[Word Embeddings])。</p></li>
+</ul>
+</section>
+
+<section id="分散式語意表徵-distributional-hypothesis" class="title-slide slide level3">
+<h3>分散式語意表徵 (Distributional Hypothesis)</h3>
+<ul>
+<li class="fragment">語言單位之間的共現關係(Co-occurrence patterns)成為<strong>分散式語意表徵</strong>(Distributed Semantic Representation)學習的重要基礎。</li>
+</ul>
+<blockquote>
+<p>You shall know a word by the comany it keeps. (Firth, 1957, p.11)</p>
+</blockquote>
+<blockquote>
+<p>[D]ifference of meaning correlates with difference of distribution. (Harris, 1970, p.785)</p>
+</blockquote>
+</section>
+
+<section id="句構有語意嗎" class="title-slide slide level3">
+<h3>句構有語意嗎？</h3>
+<blockquote>
+<p>John baked me a cake.</p>
+</blockquote>
+<ul>
+<li class="fragment">「Transfer」的語意從何來呢？</li>
+</ul>
+</section>
+
+<section id="句構如同詞彙" class="title-slide slide level3">
+<h3>句構如同詞彙</h3>
+<p>一個句構亦帶有其特殊語意成分。</p>
+<blockquote>
+<p>[G]rammatical knowledge represents a continuum on two dimensions, from the substantive to the schematic and from the atomic to the complex. This continuum is widely referred to as the <strong>syntax-lexicon</strong> continuum. (Croft &amp; Cruse, 2004, p.255-6)</p>
+</blockquote>
+</section>
+
+<section id="或許我們語法知識中儲存句構就像儲存一般詞彙一樣" class="title-slide slide level3">
+<h3>或許我們語法知識中儲存句構，就像儲存一般詞彙一樣。</h3>
+
+</section>
+
+<section id="做一個-x-的動作" class="title-slide slide level3" data-transition="fade">
+<h3 data-transition="fade">「做一個 X 的動作」</h3>
+<p><img src="images/make-1.jpeg" width="60%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="報復性-x" class="title-slide slide level3" data-transition="fade">
+<h3 data-transition="fade">「報復性 X 」</h3>
+<p><img src="images/revenge-1.jpeg" width="60%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="被-textverb_intransitive" class="title-slide slide level3" data-transition="fade">
+<h3 data-transition="fade">「被 + <span class="math inline">\(\text{Verb}_{intransitive}\)</span>」</h3>
+<p><img src="images/bei-1.jpeg" width="30%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="被-__-耽誤了的-__" class="title-slide slide level3" data-transition="fade">
+<h3 data-transition="fade">「被 __ 耽誤了的 __ 」</h3>
+<p><img src="images/bei-danwu-1.jpeg" width="50%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="恐-x" class="title-slide slide level3" data-transition="fade">
+<h3 data-transition="fade">「恐 + X 」</h3>
+<p><img src="images/modal-1.png" width="60%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="動作動詞" class="title-slide slide level3" data-transition="fade">
+<h3 data-transition="fade">「動作動詞」</h3>
+<ul>
+<li class="fragment">傻眼、直搖頭、一探究竟、坦言、直呼</li>
+</ul>
+<p><img src="images/report-1.png" width="60%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="報導動詞" class="title-slide slide level3" data-transition="fade">
+<h3 data-transition="fade">「報導動詞」</h3>
+<ul>
+<li class="fragment">網友笑稱、網友直呼、網稱、網譏、網酸、網友怒嗆、網友飆罵、網友反酸</li>
+</ul>
+<p><img src="images/ptt-1.png" width="60%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+<!-- -   演唱會 ---\> 如癡如醉 -->
+<!-- -   車禍 ---\> 可見撞擊力道有多大 -->
+<!-- -   ... + 後果不堪設想 -->
+</section>
+
+<section id="怎麼表達句構語意呢" class="title-slide slide level3">
+<h3>怎麼表達句構語意呢？</h3>
+<ul>
+<li class="fragment">完整的語法網絡知識，除了詞彙的語意表徵以外，應該也必須包含「句構(construction)」語意。</li>
+<li class="fragment">但，該如何表徵一個抽象（或是半抽象）的<strong>句構</strong>語意？</li>
+</ul>
+<!-- > 「只要是女生都是正妹。只要是男生都是宅男。麻豆SG都是宅男女神。酒後肇事都是富商。車禍被撞都是孝子。從事科技都是新貴。百萬以上都是超跑。改裝車的都是飆仔。女人假掰都是名媛。整形美容都是名醫。東區大安都是豪宅。網路影片都稱爆紅。涉案嫌疑人都叫犯人。借網路新聞都稱獨家。政治立場都是中立。檳榔攤裡都是辣妹。沾上邊的都是台灣之光。小孩和寵物都超萌卡哇伊。爸媽有點錢都是靠爸靠母。美食和店家都是百年老店。」 (PTT網路鄉民) -->
+</section>
+
+<section id="詞彙和句構相互連結" class="title-slide slide level3">
+<h3>詞彙和句構相互連結</h3>
+<p><img src="images/network.png" width="70%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="語意就在語法網絡裡" class="title-slide slide level3">
+<h3>語意就在語法網絡裡</h3>
+<ul>
+<li class="fragment">語言即<strong>詞彙</strong>與<strong>句構</strong>的排列組合</li>
+<li class="fragment">每一個<strong>詞彙</strong>或<strong>句構</strong>，隨著語言使用習慣，都擁有各自喜好一同使用詞彙或句構。</li>
+<li class="fragment">而這些一同出現的語言情境，也成了這些<strong>詞彙</strong>或<strong>句構</strong>的語意痕跡。</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="空間構式" class="title-slide slide level2" data-background-color="lightyellow">
+<h2 data-background-color="lightyellow">空間構式</h2>
+
+</section>
+<section id="以中文空間句構為例" class="title-slide slide level3">
+<h3>以中文「空間句構」為例</h3>
+<ul>
+<li class="fragment">中文表達空間概念時，經常使用以下句構：</li>
+</ul>
+<blockquote>
+<p>「在 + 參考物體 + 空間方位詞」</p>
+</blockquote>
+<ul>
+<li class="fragment">在…<span class="mystrong1">期限</span><strong>內</strong></li>
+<li class="fragment">在…<span class="mystrong1">條件</span><strong>下</strong></li>
+<li class="fragment">在…<span class="mystrong1">比賽</span><strong>中</strong></li>
+<li class="fragment">在…<span class="mystrong1">情感</span><strong>上</strong></li>
+</ul>
+</section>
+
+<section id="空間句構語意表徵的關鍵" class="title-slide slide level3">
+<h3>空間句構語意表徵的關鍵？</h3>
+<ul>
+<li class="fragment"><p>一個抽象句構大概更難直接說出它「意義」為何。</p></li>
+<li class="fragment"><p>但，句構的語意，可從<strong>句構</strong>與<span class="mystrong1">其他語言單位</span>之間的共現性，一窺端倪(Distributed Semantic Representation)：</p>
+<ul>
+<li class="fragment"><strong>句構</strong>與<span class="mystrong1">詞彙</span>間的連結：哪些詞彙經常與特定空間句構共同使用？</li>
+<li class="fragment"><span class="mystrong1">詞彙</span>與<span class="mystrong1">詞彙</span>間的連結：出現在空間句構中的詞彙裡，哪些詞彙語意較為相近？哪些詞彙語意距離較遠？</li>
+<li class="fragment"><strong>句構</strong>與<strong>句構</strong>間的連結：哪些空間句構語意相似？哪些空間句構語意距離較遠？（如：「在 ＋… + 內」、「在 ＋… + 下」、「在 ＋… + 後」）</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section>
+<section id="語料庫學習" class="title-slide slide level2" data-background-color="lightyellow">
+<h2 data-background-color="lightyellow">語料庫學習</h2>
+
+</section>
+<section id="語料庫成為語言共現的寶藏盒" class="title-slide slide level3">
+<h3>語料庫成為語言共現的寶藏盒</h3>
+<ul>
+<li class="fragment">以上三種連結，是構成我們語法知識網絡的重要基礎，透過大量語料庫資料，我們可以利用量化方法學習並模擬這三種連結，重現一個句構的語意網絡(Semantic Network)。</li>
+<li class="fragment">我們可利用「<span class="note"><strong>網絡分析</strong>方法</span>(network science)」，進一步以圖像方式呈現句構與其他詞彙間的互動關係，即<span class="note">語法知識網絡</span>(Grammatical Network)。</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li class="fragment">Barabási, Albert-László. (2016). <em>Network Science</em>. Cambridge University Press.</li>
+<li class="fragment">Diessel, Holger. (2019). <em>The Grammar Network: How Linguistic Structure is Shaped by Language Use</em>. Cambridge University Press.</li>
+</ol>
+</div>
+</section>
+
+<section id="句構與詞彙之連結" class="title-slide slide level3">
+<h3>句構與詞彙之連結</h3>
+<ul>
+<li class="fragment">Collostruction Analysis
+<ul>
+<li class="fragment"><span class="note">Collexeme Analysis</span></li>
+<li class="fragment"><span class="note">Co-varying Collexeme Analysis</span></li>
+<li class="fragment"><span class="note">Distinctive Collexeme Analysis</span></li>
+</ul></li>
+</ul>
+<!--         -   e.g., Verbs in ditransitives and imperatives; Noun-*waiting-to-happen* construction -->
+<!--         -   e.g., V-*into*-Ving constructions (trick someone into buying, force someone into accepting), Verb-*way*-PREP-construction (weave your way through) -->
+<!--         -   e.g., ditransitive vs. prepositional datives; *will*- vs. *going-to* futures -->
+<div class="footnotes">
+<ol type="1">
+<li class="fragment">Stefanowitsch, A. &amp; Gries, S.T. 2003. Collostructions: Investigating the interaction of words and constructions. International Journal of Corpus Linguistics, 8(2), 209-243.</li>
+<li class="fragment">Gries, S. T., &amp; Stefanowitsch, A. 2004. Co-varying collexemes in the into-causative. Language, Culture, and Mind, 225-236.</li>
+<li class="fragment">Gries, S. T., &amp; Stefanowitsch, A. 2004. Extending collostructional analysis: A corpus-based perspective on alternations’. International Journal of Corpus Linguistics, 9(1), 97-129.</li>
+</ol>
+</div>
+</section>
+
+<section id="詞彙與詞彙之連結" class="title-slide slide level3">
+<h3>詞彙與詞彙之連結</h3>
+<ul>
+<li class="fragment">詞彙與詞彙之間存在許多不同類型的語意關係，形成「詞網(WordNet)」（如：情況, 情形, 狀況, 環境)。</li>
+<li class="fragment">詞彙關係(Lexical Relations)可由兩種方式取得：
+<ul>
+<li class="fragment">以字典<strong>手動</strong>方法(如: WordNet)</li>
+<li class="fragment">透過語料庫詞彙分佈，以<strong>自動化</strong>方式計算</li>
+</ul></li>
+</ul>
+<div id="htmlwidget-efe48f6718484e801108" style="width:960px;height:96px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-efe48f6718484e801108">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot, rankdir = LR]\n\nnode[style=filled,shape=box, fillcolor = Azure]\nedge[dir=both]\na [label = \"Linguistic\n(Manual)\"]\nb [label = \"Computational\n(Automatic)\"]\na -> b \n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</section>
+<section id="深度學習之詞向量" class="slide level4">
+<h4>深度學習之「詞向量」</h4>
+<ul>
+<li class="fragment"><p>透過深度學習方法，以非監督式方式，學習詞彙的分散式向量表徵，通常稱為「詞向量(Word Embeddings)」</p></li>
+<li class="fragment"><p>詞向量模型的學習目標任務為，學習每一個詞彙的數值向量表徵，且此向量表徵能夠有效預測：</p>
+<ul>
+<li class="fragment">在特定語境中，可能出現的特定詞彙<span class="math inline">\(W_i\)</span>為何？(Continuous Bag-of-Words)</li>
+<li class="fragment">針對一個特定詞彙<span class="math inline">\(W_i\)</span>，有哪些詞彙會與其共同出現於同一語境中？(Skip-Gram)</li>
+</ul></li>
+</ul>
+</section>
+<section id="詞彙搭配詞和語意" class="slide level4">
+<h4>詞彙、搭配詞和語意</h4>
+<ul>
+<li class="fragment">簡言之，詞向量學習仰賴<span class="note">大型語料庫</span>中，詞彙之間的共現關係作為訓練基礎。</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li class="fragment">此範例是根據<a href="http://www.aclclp.org.tw/use_mat_c.php#mcdc">中央研究院漢語對話語料庫</a>計算。</li>
+</ol>
+</div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover" style="font-size: 18px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+Target and Context Words Co-occurrence Matrix
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: darkgrey;">
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
+叔叔
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
+阿姨
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
+男孩
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
+女孩
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
+爺爺
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
+奶奶
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
+爸爸
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
+媽媽
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
+兒子
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
+女兒
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+叔叔
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+阿姨
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+男孩
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+女孩
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+爺爺
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+奶奶
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+爸爸
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+336
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+媽媽
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+兒子
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+女兒
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="slide level4">
+
+<p>詞向量讓我們能夠將詞彙語意做實際數值運算。</p>
+<p><img src="NCCU-TALK-2021-06-28_files/figure-revealjs/unnamed-chunk-11-1.png" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+</section>
+<section>
+<section id="從語料庫到網絡" class="title-slide slide level2" data-background-color="lightyellow">
+<h2 data-background-color="lightyellow">從語料庫到網絡</h2>
+
+</section>
+<section id="空間句構網絡" class="title-slide slide level3">
+<h3>空間句構網絡</h3>
+<p><img src="images/MLC_Network_all.png" width="960" height="550" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+<!-- <a href="./MLC_VisNet_CC.html" target="_blank">Dynamic Version</a> -->
+<p><small><a href="./MLC_VisNet_CC.html">Dynamic Version</a></small></p>
+</section>
+
+<section id="個別網絡一" class="title-slide slide level3">
+<h3>個別網絡(一)</h3>
+<p><small><a href="http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/">Dynamic Version</a></small></p>
+<p><img src="images/MLC_Subnetwork_Community_%E5%85%A7_%E4%B8%8B_%E5%89%8D_%E8%A3%A1.png" width="80%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="個別網絡二" class="title-slide slide level3">
+<h3>個別網絡(二)</h3>
+<p><small><a href="http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/">Dynamic Version</a></small></p>
+<p><img src="images/MLC_Subnetwork_Community_%E4%B8%8A_%E5%BE%8C_%E4%B8%AD_%E5%A4%96.png" width="80%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+</section>
+<section>
+<section id="語法知識語意網絡grammar-network" class="title-slide slide level2" data-background-color="lightyellow">
+<h2 data-background-color="lightyellow">語法知識語意網絡(Grammar Network)</h2>
+
+</section>
+<section id="三個層次網絡" class="title-slide slide level3">
+<h3>三個層次網絡</h3>
+<ul>
+<li class="fragment">Macroscopic分析：觀察整個網絡特質</li>
+<li class="fragment">Microscopic分析：觀察每一個節點的特質</li>
+<li class="fragment">Mesoscopic分析：觀察網絡結點間群集特質</li>
+</ul>
+</section>
+
+<section id="語意網絡對應分析" class="title-slide slide level3">
+<h3>語意網絡對應分析</h3>
+<ul>
+<li class="fragment"><p>結合網絡分析方法(Network Science)，我們可以透過句構的網絡，分析句構語意：</p>
+<ul>
+<li class="fragment">每一個空間句構中，<strong>典型</strong>(prototypical)的參考物體為何？</li>
+<li class="fragment">每一個空間句構中，其共現的參考物體有無<strong>語意共通性</strong>(semantic cohesiveness)？</li>
+<li class="fragment">在整個中文空間句構中，是否有明顯的<strong>語義場</strong>(Semantic fields)？每個語意場與每個空間概念的互動為何？</li>
+</ul></li>
+<li class="fragment"><p>透過<span class="note">統計學習方法</span>，更可從網絡中，學習「句構」的抽象<strong>分散式語意表徵(Representation Learning)</strong>。（如：DeepWalk, node2vec)</p></li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li class="fragment">Chami, I., Abu-El-Haija, S., Perozzi, B., Ré, C., &amp; Murphy, K. (2020). Machine Learning on Graphs: A Model and Comprehensive Taxonomy. <em>arXiv preprint arXiv:2005.03675</em>.</li>
+</ol>
+</div>
+</section>
+
+<section id="macroscopic分析" class="title-slide slide level3">
+<h3>Macroscopic分析</h3>
+
+</section>
+<section class="slide level4">
+
+<ul>
+<li class="fragment">無尺度網絡(<strong>Scale-free</strong>):
+<ul>
+<li class="fragment">在一個網絡中，僅有少數幾個節點擁有豐富對外連結，大多數的節點的連結數都很少，且此現象不會隨著整個網絡大小而改變。</li>
+</ul></li>
+<li class="fragment">小世界網絡(<strong>Small-world</strong>):
+<ul>
+<li class="fragment">在一個網絡中，常有聚集成堆的小群體，它們彼此之間的連結強度，比與其他小群體中的節點還有來的緊密。</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level4">
+
+<ul>
+<li class="fragment">Small-world: 代表語法網絡部分語言單位（詞彙或句構），因語意或語用相近，群集成堆。</li>
+<li class="fragment">Scale-free: 代表語法網絡裡的語意群集，僅有少數幾個高連結(high-degree)的節點，成為語意群集的「exemplar」。</li>
+</ul>
+</section>
+
+<section id="miscroscopic分析" class="title-slide slide level3">
+<h3>Miscroscopic分析</h3>
+
+</section>
+<section class="slide level4">
+
+<ul>
+<li class="fragment">Local Cluster Coefficient: 可看出某個node，其所鄰近的nodes，彼此之間的連結程度。</li>
+<li class="fragment">Centrality：可看出在一個網絡中，重要的nodes有哪些？</li>
+</ul>
+</section>
+<section class="slide level4">
+
+<p>空間詞（句構）Nodes的Local Coefficient，代表與該句構一同出現的詞彙彼此間之語意相關度。</p>
+<p><img src="images/MLC_Network_all_transitivity.png" width="95%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level4">
+
+<p>參考物體(詞彙) Nodes的Centrality，代表哪些物體為句構中代表性詞彙。</p>
+<p><img src="images/MLC_Network_all_pagerank.png" width="95%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="mescoscopic分析" class="title-slide slide level3">
+<h3>Mescoscopic分析</h3>
+
+</section>
+<section class="slide level4">
+
+<ul>
+<li class="fragment">透過網絡分析，尋找網絡中的小群集(Community Detection)。</li>
+<li class="fragment">群集的產生，代表某個特定語意場域(Semantic Field)的形成。</li>
+</ul>
+</section>
+<section class="slide level4">
+
+<p><small><a href="http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/">Dynamic Version</a></small></p>
+<p><img src="images/MLC_Subnetwork_Community_%E5%85%A7_%E4%B8%8B_%E5%89%8D_%E8%A3%A1.png" width="80%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level4">
+
+</section>
+</section>
+<section>
+<section id="結語" class="title-slide slide level2">
+<h2>結語</h2>
+<ul>
+<li class="fragment">語法表徵 (Grammar Knowledge Representation) 可視為一個由不同層次語言單位交織而成的語法網絡 (Grammar Network) 。</li>
+<li class="fragment">網絡不僅可以勾勒詞彙間的連結，更可成為語言構式的語意表徵方法。</li>
+<li class="fragment">網絡源自於語言使用，未來可透過更多網絡分析法，觀察特定場域的語法網絡生成：
+<ul>
+<li class="fragment">第一語言學習者 (Child Language Acquisition)</li>
+<li class="fragment">第二語言學習者 (Second Language Acquisition)</li>
+<li class="fragment">特定社群語言使用者 (Online Forums)</li>
+<li class="fragment">特定文化場域語言使用者 (Political Discourse Analysis)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level4">
+
+<p><span style="font-size: 2.5em">感謝聆聽!</span> </br> </br></p>
+<hr>
+<p><small>參考資料：Chen, Alvin Cheng-Hsien. In press. Words, constructions and corpora: Network representations of constructional semantics for Mandarin space particles. <em>Corpus Linguistics and Linguistic Theory</em> 19(1). <a href="https://doi.org/10.1515/cllt-2020-0012" class="uri">https://doi.org/10.1515/cllt-2020-0012</a> </small></p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="NCCU-TALK-2021-06-28_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="NCCU-TALK-2021-06-28_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          theme: 'blackboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'NCCU-TALK-2021-06-28_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: 'NCCU-TALK-2021-06-28_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: 'NCCU-TALK-2021-06-28_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: 'NCCU-TALK-2021-06-28_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+<div class='footer'>
+<p>國立政治大學，台北，2021年6月28日</p>
+<p>alvinchen@ntnu.edu.tw </p>
+</div>
+
+  </body>
+</html>

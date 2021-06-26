@@ -455,6 +455,9 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <script src="NCCU-TALK-2021-06-28_files/grViz-binding-1.0.6.1/grViz.js"></script>
     <script src="NCCU-TALK-2021-06-28_files/kePrint-0.0.1/kePrint.js"></script>
     <link href="NCCU-TALK-2021-06-28_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="NCCU-TALK-2021-06-28_files/d3-4.10.2/d3.min.js"></script>
+    <link href="NCCU-TALK-2021-06-28_files/collapsibleTree-0.1.6/collapsibleTree.css" rel="stylesheet" />
+    <script src="NCCU-TALK-2021-06-28_files/collapsibleTree-binding-0.1.7/collapsibleTree.js"></script>
 </head>
 <body>
   <div class="reveal">
@@ -463,27 +466,33 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section>
     <h1 class="title">語言中的語意網絡</h1>
     <h2 class="author"><div class="line-block"><br />
-陳正賢 (Alvin Chen)<br />
+陳正賢<br />
+<span style="font-size: 0.6em;font-family:&#39;Times New Roman&#39;, Times, serif;color:&#39;darkgrey&#39;">Alvin Cheng-Hsien Chen</span><br />
 <br />
 <small>國立台灣師範大學英語系</small></div></h2>
     <h3 class="date"><small>2021年06月28日</small></h3>
 </section>
 
 <section>
-<section id="背景" class="title-slide slide level2" data-background-color="lightyellow">
-<h2 data-background-color="lightyellow">背景</h2>
+<section id="背景" class="title-slide slide level2">
+<h2>背景</h2>
 
 </section>
-<section id="詞彙語意表達" class="title-slide slide level3">
-<h3>詞彙語意表達</h3>
+<section id="詞彙語意表徵" class="title-slide slide level3">
+<h3>詞彙語意表徵</h3>
 <ul>
-<li><p>一個詞彙的語意，該怎如何定義和表徵 (Representation)？</p>
+<li><p>一個詞彙的語意，該怎如何<span class="note">定義和表徵</span> (Semantic Representation)？</p>
 <ul>
 <li class="fragment">指涉(Meaning by <strong>reference</strong>)</li>
 <li class="fragment">比較(Meaning by <strong>contrast</strong>)</li>
 <li class="fragment">使用(Meaning by <strong>uses</strong>)</li>
 </ul></li>
 </ul>
+<div class="footnotes">
+<ol type="1">
+<li>Riemer, Nick. 2010. <em>Introducing semantics</em>. Cambridge: Cambridge University Press.</li>
+</ol>
+</div>
 </section>
 
 <section id="語言單位間的共現性co-occurrence" class="title-slide slide level3">
@@ -610,8 +619,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 </section>
 <section>
-<section id="空間構式" class="title-slide slide level2" data-background-color="lightyellow">
-<h2 data-background-color="lightyellow">空間構式</h2>
+<section id="空間構式" class="title-slide slide level2">
+<h2>空間構式</h2>
 
 </section>
 <section id="以中文空間句構為例" class="title-slide slide level3">
@@ -644,12 +653,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 </section>
 <section>
-<section id="語料庫學習" class="title-slide slide level2" data-background-color="lightyellow">
-<h2 data-background-color="lightyellow">語料庫學習</h2>
+<section id="語料庫學習" class="title-slide slide level2">
+<h2>語料庫學習</h2>
 
 </section>
 <section id="語料庫成為語言共現的寶藏盒" class="title-slide slide level3">
-<h3>語料庫成為語言共現的寶藏盒</h3>
+<h3>語料庫成為『語言共現』的寶藏盒</h3>
 <ul>
 <li>以上三種連結，是構成我們語法知識網絡的重要基礎，透過大量語料庫資料，我們可以利用量化方法學習並模擬這三種連結，重現一個句構的語意網絡(Semantic Network)。</li>
 <li>我們可利用「<span class="note"><strong>網絡分析</strong>方法</span>(network science)」，進一步以圖像方式呈現句構與其他詞彙間的互動關係，即<span class="note">語法知識網絡</span>(Grammatical Network)。</li>
@@ -694,8 +703,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>透過語料庫詞彙分佈，以<strong>自動化</strong>方式計算</li>
 </ul></li>
 </ul>
-<div id="htmlwidget-9e07f4bcffcb019c1327" style="width:960px;height:96px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9e07f4bcffcb019c1327">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot, rankdir = LR]\n\nnode[style=filled,shape=box, fillcolor = Azure]\nedge[dir=both]\na [label = \"Linguistic\n(Manual)\"]\nb [label = \"Computational\n(Automatic)\"]\na -> b \n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9c3472ef9d515ee523b9" style="width:960px;height:96px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9c3472ef9d515ee523b9">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot, rankdir = LR]\n\nnode[style=filled,shape=box, fillcolor = Azure]\nedge[dir=both]\na [label = \"Linguistic\n(Manual)\"]\nb [label = \"Computational\n(Automatic)\"]\na -> b \n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </section>
 <section id="深度學習之詞向量" class="slide level4">
 <h4>深度學習之「詞向量」</h4>
@@ -711,15 +720,15 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="詞彙搭配詞和語意" class="slide level4">
 <h4>詞彙、搭配詞和語意</h4>
 <ul>
-<li>簡言之，詞向量學習仰賴<span class="note">大型語料庫</span>中，詞彙之間的共現關係作為訓練基礎。</li>
+<li>簡言之，透過<span class="note">大型語料庫</span>，如果兩個詞彙周圍共現的搭配詞類似，則我們可以推測它們語意相近。</li>
 </ul>
 <div class="footnotes">
 <ol type="1">
 <li>此範例是根據<a href="http://www.aclclp.org.tw/use_mat_c.php#mcdc">中央研究院漢語對話語料庫</a>計算。</li>
 </ol>
 </div>
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
-<table class="table table-striped table-hover" style="font-size: 18px; margin-left: auto; margin-right: auto;">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:95%; ">
+<table class="table table-striped table-hover table-condensed" style="font-size: 18px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 Target and Context Words Co-occurrence Matrix
 </caption>
@@ -728,34 +737,34 @@ Target and Context Words Co-occurrence Matrix
 <th style="text-align:left;position: sticky; top:0; background-color: darkgrey;">
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
-叔叔
+CW1
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
-阿姨
+CW2
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
-男孩
+CW3
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
-女孩
+CW4
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
-爺爺
+CW5
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
-奶奶
+CW6
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
-爸爸
+CW7
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
-媽媽
+CW8
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
-兒子
+CW9
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: darkgrey;">
-女兒
+CW10
 </th>
 </tr>
 </thead>
@@ -901,72 +910,72 @@ Target and Context Words Co-occurrence Matrix
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 爺爺
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 23
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 20
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 11
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 2
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 奶奶
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 1
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 59
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 8
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 14
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 13
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 1
 </td>
-<td style="text-align:right;">
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
 1
 </td>
 </tr>
@@ -1121,13 +1130,13 @@ Target and Context Words Co-occurrence Matrix
 </section>
 </section>
 <section>
-<section id="從語料庫到網絡" class="title-slide slide level2" data-background-color="lightyellow">
-<h2 data-background-color="lightyellow">從語料庫到網絡</h2>
+<section id="從語料庫到網絡" class="title-slide slide level2">
+<h2>從語料庫到網絡</h2>
 
 </section>
 <section id="空間句構網絡" class="title-slide slide level3">
 <h3>空間句構網絡</h3>
-<iframe src="MLC_VisNet_CC.html" width="100%" height="768" style="border:1px solid darkgrey;">
+<iframe src="MLC_VisNet_CC.html" width="100%" height="600" style="border:1px solid darkgrey;">
 </iframe>
 <!-- <a href="./MLC_VisNet_CC.html" target="_blank">Dynamic Version</a> -->
 <!-- <small>[Dynamic Version](./MLC_VisNet_CC.html)</small> -->
@@ -1135,36 +1144,42 @@ Target and Context Words Co-occurrence Matrix
 
 <section id="個別網絡一" class="title-slide slide level3">
 <h3>個別網絡(一)</h3>
-<p><small><a href="http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/">Dynamic Version</a></small></p>
+<!-- <small>[Dynamic Version](http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/)</small> -->
 <p><img src="images/MLC_Subnetwork_Community_%E5%85%A7_%E4%B8%8B_%E5%89%8D_%E8%A3%A1.png" width="80%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
 </section>
 
 <section id="個別網絡二" class="title-slide slide level3">
 <h3>個別網絡(二)</h3>
-<p><small><a href="http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/">Dynamic Version</a></small></p>
+<!-- <small>[Dynamic Version](http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/)</small> -->
 <p><img src="images/MLC_Subnetwork_Community_%E4%B8%8A_%E5%BE%8C_%E4%B8%AD_%E5%A4%96.png" width="80%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
 </section>
 </section>
 <section>
-<section id="語法知識語意網絡grammar-network" class="title-slide slide level2" data-background-color="lightyellow">
-<h2 data-background-color="lightyellow">語法知識語意網絡(Grammar Network)</h2>
+<section id="如何分析句構網絡" class="title-slide slide level2">
+<h2>如何分析句構網絡?</h2>
 
 </section>
-<section id="三個層次網絡" class="title-slide slide level3">
-<h3>三個層次網絡</h3>
+<section id="三個層次網絡分析" class="title-slide slide level3">
+<h3><span class="note">三個層次網絡分析</span></h3>
 <ul>
-<li>Macroscopic分析：觀察整個<strong>網絡</strong>特質</li>
-<li>Microscopic分析：觀察每一個<strong>節點</strong>的特質</li>
-<li>Mesoscopic分析：觀察網絡<strong>節點間</strong>群集特質</li>
+<li class="fragment">宏觀(Macroscopic)分析：觀察整個<strong>網絡(Graph)</strong>特質</li>
+<li class="fragment">微觀(Microscopic)分析：觀察每一個<strong>節點(Node)</strong>的特質</li>
+<li class="fragment">中觀(Mesoscopic)分析：觀察網絡節點間<strong>群集(Community)</strong>特質</li>
 </ul>
+<div class="footnotes">
+<ol type="1">
+<li>Siew, Cynthia S. Q., Dirk U. Wulff, Nicole M. Beckage &amp; Yoed N. Kenett. 2019. Cognitive network science: A review of research on cognition through the lens of network representations, processes, and dynamics. <em>Complexity</em> 2019. 1–24.</li>
+</ol>
+</div>
 </section>
 
 <section id="macroscopic分析" class="title-slide slide level3">
 <h3>Macroscopic分析</h3>
 
 </section>
-<section class="slide level4">
 
+<section id="以人為本之社群網絡常見結構" class="title-slide slide level3">
+<h3>「以人為本」之社群網絡常見結構</h3>
 <ul>
 <li><span class="note">無尺度網絡</span>(<strong>Scale-free</strong>):
 <ul>
@@ -1172,7 +1187,7 @@ Target and Context Words Co-occurrence Matrix
 </ul></li>
 <li><span class="note">小世界網絡</span>(<strong>Small-world</strong>):
 <ul>
-<li>在一個網絡中，常有聚集成堆的小群體，它們彼此之間的連結強度，比與其他小群體中的節點還有來的緊密。</li>
+<li>在一個網絡中，常有聚集成堆的小社群，它們彼此之間的連結強度，比與其他社群中的節點還來得緊密。</li>
 </ul></li>
 </ul>
 <div class="footnotes">
@@ -1182,14 +1197,15 @@ Target and Context Words Co-occurrence Matrix
 </ol>
 </div>
 </section>
-<section class="slide level4">
 
+<section id="句構網絡亦如此" class="title-slide slide level3">
+<h3>句構網絡亦如此</h3>
 <!-- # ```{r echo=FALSE} -->
 <!-- # knitr::include_graphics("images/SCALE_FREE_PLOT.png") -->
 <!-- # ``` -->
 <ul>
-<li>Small-world: 代表語法網絡部分語言單位（詞彙或句構），因語意或語用相近，群集成堆。</li>
-<li>Scale-free: 代表語法網絡裡的語意群集，僅有少數幾個高連結(high-degree)的節點，成為語意群集的「exemplar」。</li>
+<li>Small-world: 代表語法網絡部分語言單位（詞彙或句構），因語意或語用相近，形成<strong>語意社群（semantic fields)</strong>。</li>
+<li>Scale-free: 代表語法網絡裡的語意社群，僅有少數幾個高連結(high-degree)的節點，成為語意社群的<strong>典型範例(exemplar)</strong>。</li>
 </ul>
 </section>
 
@@ -1197,22 +1213,27 @@ Target and Context Words Co-occurrence Matrix
 <h3>Miscroscopic分析</h3>
 
 </section>
-<section class="slide level4">
 
+<section id="網絡分析常用節點計量值" class="title-slide slide level3">
+<h3>網絡分析常用節點計量值</h3>
 <ul>
-<li>Local Cluster Coefficient: 可看出某個node，其所鄰近的nodes，彼此之間的連結程度。</li>
-<li>Centrality：可看出在一個網絡中，重要的nodes有哪些？</li>
+<li>Local Cluster Coefficient: 可看出某個node，其相連之nodes，彼此之間的連結程度。</li>
+<li>Centrality：可看出在一個網絡中，哪些node扮演比較重要的角色。</li>
 </ul>
 </section>
 <section class="slide level4">
 
-<p>空間詞（句構）Nodes的Local Coefficient，代表與該句構一同出現的詞彙彼此間之語意相關度。</p>
-<p><img src="images/MLC_Network_all_transitivity.png" width="95%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+<ul>
+<li>空間詞（句構）Nodes的Local Coefficient，代表與該句構一同出現的詞彙彼此間之<strong>語意同質性(Semantic Coherence)</strong>。</li>
+</ul>
+<p><img src="images/MLC_Network_all_transitivity.png" width="85%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
 </section>
 <section class="slide level4">
 
-<p>參考物體(詞彙) Nodes的Centrality，代表哪些物體為句構中代表性詞彙。</p>
-<p><img src="images/MLC_Network_all_pagerank.png" width="95%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+<ul>
+<li>參考物體(詞彙) Nodes的Centrality，代表哪些物體為與特定句構共現之<strong>典型詞彙(Exemplars)</strong>。</li>
+</ul>
+<p><img src="images/MLC_Network_all_pagerank.png" width="85%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
 </section>
 
 <section id="mescoscopic分析" class="title-slide slide level3">
@@ -1222,12 +1243,14 @@ Target and Context Words Co-occurrence Matrix
 <section class="slide level4">
 
 <ul>
-<li>透過網絡分析，尋找網絡中的小群集(Community Detection)。</li>
-<li>群集的產生，代表某個特定語意場域(Semantic Field)的形成。</li>
+<li>透過網絡分析，尋找網絡中的小<strong>社群</strong>(Community Detection)。</li>
 </ul>
 </section>
 <section class="slide level4">
 
+<ul>
+<li>語法網絡中的社群，代表某個<strong>特定語意場域</strong>(Semantic Field)的形成。</li>
+</ul>
 <p><img src="images/MLC_Subnetwork_Community_%E5%85%A7_%E4%B8%8B_%E5%89%8D_%E8%A3%A1.png" width="95%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
 </section>
 <section class="slide level4">
@@ -1241,40 +1264,57 @@ Target and Context Words Co-occurrence Matrix
 <ul>
 <li><p>結合網絡分析方法(Network Science)，我們可以透過句構的網絡，分析句構語意：</p>
 <ul>
-<li>每一個空間句構中，<strong>典型</strong>(prototypical)的參考物體為何？</li>
-<li>每一個空間句構中，其共現的參考物體有無<strong>語意共通性</strong>(semantic cohesiveness)？</li>
-<li>在整個中文空間句構中，是否有明顯的<strong>語義場</strong>(Semantic fields)？每個語意場與每個空間概念的互動為何？</li>
+<li class="fragment">每一個空間句構中，<strong>典型</strong>(prototypical)的參考物體為何？</li>
+<li class="fragment">每一個空間句構中，其共現的參考物體有無<strong>語意共通性</strong>(semantic cohesiveness)？</li>
+<li class="fragment">在整個中文空間句構中，是否有明顯的<strong>語義場</strong>(Semantic fields)？每個語意場與每個空間概念的互動為何？</li>
 </ul></li>
-<li><p>透過<span class="note">統計學習方法</span>，更可從網絡中，學習「句構」的抽象<strong>分散式語意表徵(Representation Learning)</strong>。（如：DeepWalk, node2vec)</p></li>
 </ul>
-<div class="footnotes">
-<ol type="1">
-<li>Chami, I., Abu-El-Haija, S., Perozzi, B., Ré, C., &amp; Murphy, K. (2020). Machine Learning on Graphs: A Model and Comprehensive Taxonomy. <em>arXiv preprint arXiv:2005.03675</em>.</li>
-</ol>
-</div>
+<!-- -   透過[統計學習方法]{.note}，更可從網絡中，學習「句構」的抽象**分散式語意表徵(Representation Learning)**。（如：DeepWalk, node2vec) -->
+<!-- ::: {.footnotes} -->
+<!-- 1.  Chami, I., Abu-El-Haija, S., Perozzi, B., Ré, C., & Murphy, K. (2020). Machine Learning on Graphs: A Model and Comprehensive Taxonomy. *arXiv preprint arXiv:2005.03675*. -->
+<!-- ::: -->
 </section>
 </section>
-<section>
+<section id="語法網絡與usage-based-grammar" class="title-slide slide level2">
+<h2>語法網絡與Usage-based Grammar</h2>
+<!-- # ```{r out.width="95%"} -->
+<!-- #  -->
+<!-- # knitr::include_graphics("images/summary.png") -->
+<!-- #  -->
+<!-- # ``` -->
+<div id="htmlwidget-48308f2e5d606aa98bee" style="width:768px;height:576px;" class="collapsibleTree html-widget"></div>
+<script type="application/json" data-for="htmlwidget-48308f2e5d606aa98bee">{"x":{"data":{"name":"Network","fill":"#FFFFB2","children":[{"name":"Macroscopic","fill":"#FECC5C","children":[{"name":"Small-worldness","fill":"#FECC5C","children":[{"name":"Emergence of Semantic Fields","fill":"#FECC5C"}]},{"name":"Scale-free","fill":"#FECC5C","children":[{"name":"Emergence of Examplars","fill":"#FECC5C"}]}]},{"name":"Microscopic","fill":"#FD8D3C","children":[{"name":"Local Clustering Coefficient","fill":"#FD8D3C","children":[{"name":"Construction Semantic Coherence","fill":"#FD8D3C"}]},{"name":"Centrality","fill":"#FD8D3C","children":[{"name":"Lexical Prototypicality","fill":"#FD8D3C"}]}]},{"name":"Mesoscopic","fill":"#E31A1C","children":[{"name":"Community","fill":"#E31A1C","children":[{"name":"Delineation of Semantic fields","fill":"#E31A1C"}]}]}]},"options":{"hierarchy":["Levels","Network_Properties","Usage_Based_Grammar"],"input":null,"attribute":"leafCount","linkLength":null,"fontSize":16,"tooltip":false,"collapsed":false,"zoomable":false,"margin":{"top":20,"bottom":20,"left":81,"right":273}}},"evals":[],"jsHooks":[]}</script>
+</section>
+
 <section id="結語" class="title-slide slide level2">
 <h2>結語</h2>
 <ul>
-<li>語法表徵 (Grammar Knowledge Representation) 可視為一個由不同層次語言單位交織而成的語法網絡 (Grammar Network) 。</li>
-<li>網絡不僅可以勾勒詞彙間的連結，更可成為語言構式的語意表徵方法。</li>
-<li>網絡源自於語言使用，未來可透過更多網絡分析法，觀察特定場域的語法網絡生成：
+<li>語法表徵 (Grammar Knowledge Representation) 可視為一個由不同層次語言單位交織而成的<strong>語法網絡</strong> (Grammar Network) 。</li>
+<li>網絡不僅可以勾勒<strong>詞彙</strong>間的連結，更可成為語言構式的<strong>語意</strong>表徵方法。</li>
+<li>網絡源自於<strong>語言使用</strong>(Language Use)，未來可透過更多網絡分析法，觀察特定<strong>場域</strong>的語法網絡生成：
 <ul>
 <li>第一語言學習者 (Child Language Acquisition)</li>
 <li>第二語言學習者 (Second Language Acquisition)</li>
+<li>語言行為之個別差異(Individual Differences)</li>
 <li>特定社群語言使用者 (Online Forums)</li>
 <li>特定文化場域語言使用者 (Political Discourse Analysis)</li>
 </ul></li>
 </ul>
 </section>
-<section class="slide level4">
 
-<p><span style="font-size: 2.5em">感謝聆聽!</span> </br> </br></p>
+<section id="section" class="title-slide slide level2" data-background="images/background.jpeg" data-background-transition="slide">
+<h2 data-background="images/background.jpeg" data-background-transition="slide"></h2>
+<p><span style="font-size: 2.5em">感謝聆聽!</span> </br></p>
 <hr>
-<p><small>參考資料：Chen, Alvin Cheng-Hsien. In press. Words, constructions and corpora: Network representations of constructional semantics for Mandarin space particles. <em>Corpus Linguistics and Linguistic Theory</em> 19(1). <a href="https://doi.org/10.1515/cllt-2020-0012" class="uri">https://doi.org/10.1515/cllt-2020-0012</a> </small></p>
-</section></section>
+<div class="footnotes">
+<p><small>參考資料：</small></p>
+<ol type="1">
+<li>Barabási, Albert-László. 2016. <em>Network science</em>. Cambridge: Cambridge University Press.</li>
+<li>Diessel, Holger. 2019. <em>The grammar network: How linguistic structure is shaped by language use</em>. Cambridge, UK: Cambridge University Press.</li>
+<li>Chen, Alvin Cheng-Hsien. In press. Words, constructions and corpora: Network representations of constructional semantics for Mandarin space particles. <em>Corpus Linguistics and Linguistic Theory</em> 19(1). <a href="https://doi.org/10.1515/cllt-2020-0012" class="uri">https://doi.org/10.1515/cllt-2020-0012</a>. (<a href="http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/">Supplementary Materials</a>)</li>
+</ol>
+</div>
+</section>
     </div>
   </div>
 

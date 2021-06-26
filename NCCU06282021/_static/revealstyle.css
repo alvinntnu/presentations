@@ -12,6 +12,12 @@
   font-family: 'Roboto', sans-serif;
 } */
 
+
+.reveal .slide-background{
+  /*background: rgba(0, 128, 0, 0.3) /* Green background with 30% opacity!important; */ 
+  opacity: 0.2 !important;
+}
+
 .reveal strong {
   color: #D82029;
   font-weight: bold;

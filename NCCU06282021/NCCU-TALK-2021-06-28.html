@@ -446,7 +446,7 @@ style.innerHTML = style_script;
 document.getElementsByTagName('head')[0].appendChild(style);
 </script>
 
-    <script src="NCCU-TALK-2021-06-28_files/header-attrs-2.8.6/header-attrs.js"></script>
+    <script src="NCCU-TALK-2021-06-28_files/header-attrs-2.8/header-attrs.js"></script>
     <link href="NCCU-TALK-2021-06-28_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
     <link href="NCCU-TALK-2021-06-28_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
     <script src="NCCU-TALK-2021-06-28_files/htmlwidgets-1.5.3/htmlwidgets.js"></script>
@@ -466,11 +466,24 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section>
     <h1 class="title">語言中的語意網絡</h1>
     <h2 class="author"><div class="line-block"><br />
-陳正賢<br />
+<span style="font-size:0.8em;">陳正賢</span><br />
 <span style="font-size: 0.6em;font-family:&#39;Times New Roman&#39;, Times, serif;color:&#39;darkgrey&#39;">Alvin Cheng-Hsien Chen</span><br />
 <br />
-<small>國立台灣師範大學英語系</small></div></h2>
+<small>國立台灣師範大學英語學系助理教授</small><br />
+<small><a href="mailto:alvinchen@ntnu.edu.tw" class="email">alvinchen@ntnu.edu.tw</a></small></div></h2>
     <h3 class="date"><small>2021年06月28日</small></h3>
+</section>
+
+<section id="報告大綱" class="title-slide slide level2">
+<h2>報告大綱</h2>
+<ul>
+<li>背景(語意、詞彙、句構與網絡)</li>
+<li>空間句構</li>
+<li>語料庫學習</li>
+<li>從語料庫到網絡</li>
+<li>如何分析句構網絡？</li>
+<li>結語</li>
+</ul>
 </section>
 
 <section>
@@ -645,9 +658,9 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li><p>一個抽象句構大概更難直接說出它「意義」為何。</p></li>
 <li><p>但，句構的語意，可從<strong>句構</strong>與<span class="mystrong1">其他語言單位</span>之間的共現性，一窺端倪(Distributed Semantic Representation)：</p>
 <ul>
-<li><strong>句構</strong>與<span class="mystrong1">詞彙</span>間的連結：哪些詞彙經常與特定空間句構共同使用？</li>
-<li><span class="mystrong1">詞彙</span>與<span class="mystrong1">詞彙</span>間的連結：出現在空間句構中的詞彙裡，哪些詞彙語意較為相近？哪些詞彙語意距離較遠？</li>
-<li><strong>句構</strong>與<strong>句構</strong>間的連結：哪些空間句構語意相似？哪些空間句構語意距離較遠？（如：「在 ＋… + 內」、「在 ＋… + 下」、「在 ＋… + 後」）</li>
+<li class="fragment"><strong>句構</strong>與<span class="mystrong1">詞彙</span>間的連結：哪些詞彙經常與特定空間句構共同使用？</li>
+<li class="fragment"><span class="mystrong1">詞彙</span>與<span class="mystrong1">詞彙</span>間的連結：出現在空間句構中的詞彙裡，哪些詞彙語意較為相近？彼此之間有什麼相似處嗎？</li>
+<li class="fragment"><strong>句構</strong>與<strong>句構</strong>間的連結：哪些空間句構語意相似？常與類似的詞彙一起使用？（如：「在 ＋… + 內」、「在 ＋… + 下」、「在 ＋… + 後」）</li>
 </ul></li>
 </ul>
 </section>
@@ -700,11 +713,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>詞彙關係(Lexical Relations)可由兩種方式取得：
 <ul>
 <li>以字典<strong>手動</strong>方法(如: WordNet)</li>
-<li>透過語料庫詞彙分佈，以<strong>自動化</strong>方式計算</li>
+<li>透過語料庫詞彙分佈，以<strong>自動化</strong>方式學習
+<hr></li>
 </ul></li>
 </ul>
-<div id="htmlwidget-7d88db3eca6a174487b4" style="width:960px;height:96px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7d88db3eca6a174487b4">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot, rankdir = LR]\n\nnode[style=filled,shape=box, fillcolor = Azure]\nedge[dir=both]\na [label = \"Linguistic\n(Manual)\"]\nb [label = \"Computational\n(Automatic)\"]\na -> b \n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-50e0af49d85ad4212e6a" style="width:960px;height:96px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-50e0af49d85ad4212e6a">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot, rankdir = LR]\n\nnode[style=filled,shape=box, fillcolor = Azure]\nedge[dir=both]\na [label = \"Linguistic\n(Manual)\"]\nb [label = \"Computational\n(Automatic)\"]\na -> b \n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </section>
 <section id="深度學習之詞向量" class="slide level4">
 <h4>深度學習之「詞向量」</h4>
@@ -1138,8 +1152,15 @@ CW10
 <h3>空間句構網絡</h3>
 <iframe src="MLC_VisNet_CC.html" width="100%" height="600" style="border:1px solid darkgrey;">
 </iframe>
-<!-- <a href="./MLC_VisNet_CC.html" target="_blank">Dynamic Version</a> -->
-<!-- <small>[Dynamic Version](./MLC_VisNet_CC.html)</small> -->
+<aside class="notes">
+<ul>
+<li>我們透過空間句構作為一個簡單的例子。</li>
+<li>一個完整的語法網絡， 應該涵蓋詞彙和句構（或是某種可以與詞彙一起使用的constructional schema)。</li>
+<li>每一個空間詞句構，形成他們個別的句構網絡，如「下」。</li>
+<li>而每一個句構網絡也與其他句構網絡構成連結，可能某兩個句構都同時能夠與某些特定詞彙一起使用，也間接代表著這兩個句構之間的語意相連性。如「結構」。可搭配「上」也可搭配「外」</li>
+<li>Network給予Grammar Representation很大的彈性，而這個彈性也確實存在於我們的native intuition。</li>
+</ul>
+</aside>
 </section>
 
 <section id="個別網絡一" class="title-slide slide level3">
@@ -1204,8 +1225,8 @@ CW10
 <!-- # knitr::include_graphics("images/SCALE_FREE_PLOT.png") -->
 <!-- # ``` -->
 <ul>
-<li>Small-world: 代表語法網絡部分語言單位（詞彙或句構），因語意或語用相近，形成<strong>語意社群（semantic fields)</strong>。</li>
-<li>Scale-free: 代表語法網絡裡的語意社群，僅有少數幾個高連結(high-degree)的節點，成為語意社群的<strong>典型範例(exemplar)</strong>。</li>
+<li>Small-world: 代表語法網絡中，有少部分語言單位（詞彙或句構），因語意或語用相近，形成<strong>語意社群（semantic fields)</strong>。</li>
+<li>Scale-free: 代表語法網絡中，僅有少數幾個連結數高(high-degree)的節點，成為語意社群的<strong>典型範例(exemplar)</strong>。</li>
 </ul>
 </section>
 
@@ -1217,9 +1238,15 @@ CW10
 <section id="網絡分析常用節點計量值" class="title-slide slide level3">
 <h3>網絡分析常用節點計量值</h3>
 <ul>
-<li>Local Cluster Coefficient: 可看出某個node，其相連之nodes，彼此之間的連結程度。</li>
-<li>Centrality：可看出在一個網絡中，哪些node扮演比較重要的角色。</li>
+<li><span class="note">Local Clustering Coefficient</span>: 可看出某個node，其所有相連之鄰近節點，彼此之間的連結程度。</li>
+<li><span class="note">Centrality</span>：可看出在一個網絡中，哪些node扮演比較重要的角色。</li>
 </ul>
+<div class="footnotes">
+<ol type="1">
+<li>亦稱Local Transitivity。</li>
+<li>常見的Centrality數值包括: Betweenness, PageRank, Authority, Closeness.</li>
+</ol>
+</div>
 </section>
 <section class="slide level4">
 
@@ -1227,6 +1254,13 @@ CW10
 <li>空間詞（句構）Nodes的Local Coefficient，代表與該句構一同出現的詞彙彼此間之<strong>語意同質性(Semantic Coherence)</strong>。</li>
 </ul>
 <p><img src="images/MLC_Network_all_transitivity.png" width="85%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+<aside class="notes">
+<ul>
+<li>內Transitivity最高，外最低</li>
+<li>與內一起使用的詞彙，彼此之間的相連性比高，象徵著較高的句構semantic coherence。</li>
+<li>與外一起使用的詞彙，彼此之間的相連性較低，象徵較低的 Constructional Sem Coherence.</li>
+</ul>
+</aside>
 </section>
 <section class="slide level4">
 
@@ -1248,15 +1282,21 @@ CW10
 </section>
 <section class="slide level4">
 
-<ul>
-<li>語法網絡中的社群，代表某個<strong>特定語意場域</strong>(Semantic Field)的形成。</li>
-</ul>
-<p><img src="images/MLC_Subnetwork_Community_%E5%85%A7_%E4%B8%8B_%E5%89%8D_%E8%A3%A1.png" width="95%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+<p>語法網絡中的社群，代表某個<strong>特定語意場域</strong>(Semantic Field)的形成。</p>
+<p><img src="images/MLC_Subnetwork_Community_%E5%85%A7_%E4%B8%8B_%E5%89%8D_%E8%A3%A1.png" width="75%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
 </section>
 <section class="slide level4">
 
-<iframe src="MLC_VisNet_CC_Community_下.html" width="100%" height="600" style="border:1px solid darkgrey;">
+<iframe src="MLC_VisNet_CC_Community_下.html" width="100%" height="700" style="border:1px solid darkgrey;">
 </iframe>
+<aside class="notes">
+<ul>
+<li>句構在語言使用過程中，語言學家發現它們經常會演化出一系列句構自己常搭配的詞彙。</li>
+<li>而往往這些詞彙彼此間也逐漸形成某些特定語意場域。</li>
+<li>顯現句構本身的Semantic Coherence的程度，以及該句構的成熟度。比方說，這個句構，通常只能夠與某些特定語意的詞彙一起使用。</li>
+<li>而加入句構之後的Grammar Network，我們相信更能夠反映說話者的完整語法知識。</li>
+</ul>
+</aside>
 </section>
 
 <section id="語法網絡-grammar-network" class="title-slide slide level3">
@@ -1275,26 +1315,28 @@ CW10
 <!-- ::: -->
 </section>
 
-<section id="重點整理" class="title-slide slide level3">
-<h3>重點整理</h3>
-<div id="htmlwidget-dbf0dc85c876e3ce5a00" style="width:768px;height:576px;" class="collapsibleTree html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dbf0dc85c876e3ce5a00">{"x":{"data":{"name":"Network","fill":"#FFFFB2","children":[{"name":"Macroscopic","fill":"#FECC5C","children":[{"name":"Small-worldness","fill":"#FECC5C","children":[{"name":"Emergence of Semantic Fields","fill":"#FECC5C"}]},{"name":"Scale-free","fill":"#FECC5C","children":[{"name":"Emergence of Examplars","fill":"#FECC5C"}]}]},{"name":"Microscopic","fill":"#FD8D3C","children":[{"name":"Local Clustering Coefficient","fill":"#FD8D3C","children":[{"name":"Construction Semantic Coherence","fill":"#FD8D3C"}]},{"name":"Centrality","fill":"#FD8D3C","children":[{"name":"Lexical Prototypicality","fill":"#FD8D3C"}]}]},{"name":"Mesoscopic","fill":"#E31A1C","children":[{"name":"Community","fill":"#E31A1C","children":[{"name":"Delineation of Semantic fields","fill":"#E31A1C"}]}]}]},"options":{"hierarchy":["Levels","Network_Properties","Usage_Based_Grammar"],"input":null,"attribute":"leafCount","linkLength":null,"fontSize":18,"tooltip":false,"collapsed":false,"zoomable":false,"margin":{"top":20,"bottom":20,"left":88,"right":304}}},"evals":[],"jsHooks":[]}</script>
+<section id="整理" class="title-slide slide level3">
+<h3>整理</h3>
+<div id="htmlwidget-fe88237e697c3d3a5aeb" style="width:768px;height:576px;" class="collapsibleTree html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fe88237e697c3d3a5aeb">{"x":{"data":{"name":"Network","fill":"#FFFFB2","children":[{"name":"Macroscopic","fill":"#FECC5C","children":[{"name":"Small-worldness","fill":"#FECC5C","children":[{"name":"Emergence of Semantic Fields","fill":"#FECC5C"}]},{"name":"Scale-free","fill":"#FECC5C","children":[{"name":"Emergence of Examplars","fill":"#FECC5C"}]}]},{"name":"Microscopic","fill":"#FD8D3C","children":[{"name":"Local Transitivity","fill":"#FD8D3C","children":[{"name":"Construction Semantic Coherence","fill":"#FD8D3C"}]},{"name":"Centrality","fill":"#FD8D3C","children":[{"name":"Lexical Prototypicality","fill":"#FD8D3C"}]}]},{"name":"Mesoscopic","fill":"#E31A1C","children":[{"name":"Community","fill":"#E31A1C","children":[{"name":"Delineation of Semantic fields","fill":"#E31A1C"}]}]}]},"options":{"hierarchy":["Levels","Network_Properties","Usage_Based_Grammar"],"input":null,"attribute":"leafCount","linkLength":null,"fontSize":18,"tooltip":false,"collapsed":false,"zoomable":false,"margin":{"top":20,"bottom":20,"left":88,"right":304}}},"evals":[],"jsHooks":[]}</script>
 </section>
 </section>
 <section id="結語" class="title-slide slide level2">
 <h2>結語</h2>
 <ul>
-<li>語法表徵 (Grammar Knowledge Representation) 可視為一個由不同層次語言單位交織而成的<strong>語法網絡</strong> (Grammar Network) 。</li>
-<li>網絡不僅可以勾勒<strong>詞彙</strong>間的連結，更可成為語言構式的<strong>語意</strong>表徵方法。</li>
-<li>網絡源自於<strong>語言使用</strong>(Language Use)，未來可透過更多網絡分析法，觀察特定<strong>場域</strong>的語法網絡生成：
+<li class="fragment">語法表徵 (Grammar Knowledge Representation) 可視為一個由不同層次語言單位交織而成的<strong>語法網絡</strong> (Grammar Network) 。</li>
+<li class="fragment">網絡不僅可以勾勒<strong>詞彙</strong>間的連結，更可成為語言構式的<strong>語意</strong>表徵方法。</li>
+<li class="fragment">網絡源自於<strong>語言使用</strong>(Language Use)，未來可透過網絡分析，觀察特定<strong>群體</strong>或<strong>場域</strong>的語法網絡生成。</li>
+</ul>
+<aside class="notes">
 <ul>
 <li>第一語言學習者 (Child Language Acquisition)</li>
 <li>第二語言學習者 (Second Language Acquisition)</li>
-<li>語言行為之個別差異(Individual Differences)</li>
+<li>個人語言行為</li>
 <li>特定社群語言使用者 (Online Forums)</li>
 <li>特定文化場域語言使用者 (Political Discourse Analysis)</li>
-</ul></li>
 </ul>
+</aside>
 </section>
 
 <section id="section" class="title-slide slide level2" data-background="images/background.jpeg" data-background-transition="slide">
@@ -1394,7 +1436,7 @@ CW10
 
 <div class='footer'>
 <p>國立政治大學，台北，2021年6月28日</p>
-<p>alvinchen@ntnu.edu.tw </p>
+<p>alvinchen@ntnu.edu.tw &ensp;|&ensp; <a href='https://alvinchen.myftp.org' target='_blank'> alvinchen.myftp.org </a></a></p>
 </div>
 
   </body>

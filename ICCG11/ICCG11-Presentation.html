@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Network Representation of Constructional Semantics</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="ICCG11-Presentation_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="ICCG11-Presentation_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="_static/revealstyle.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="ICCG11-Presentation_files/header-attrs-2.9/header-attrs.js"></script>
+    <link href="ICCG11-Presentation_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="ICCG11-Presentation_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <script src="ICCG11-Presentation_files/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+    <script src="ICCG11-Presentation_files/viz-1.8.2/viz.js"></script>
+    <link href="ICCG11-Presentation_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="ICCG11-Presentation_files/grViz-binding-1.0.6.1/grViz.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Network Representation of Constructional Semantics</h1>
+    <h2 class="author"><div class="line-block"><br />
+<span style="font-size:0.8em;">陳正賢</span><br />
+<span style="font-size: 0.6em;font-family:&#39;Times New Roman&#39;, Times, serif;color:&#39;darkgrey&#39;">Alvin Cheng-Hsien Chen</span><br />
+<br />
+<small>National Taiwan Normal University, Taiwan</small><br />
+<small><a href="mailto:alvinchen@ntnu.edu.tw" class="email">alvinchen@ntnu.edu.tw</a></small></div></h2>
+    <h3 class="date"><small>20 August, 2021, ICCG11</small></h3>
+</section>
+
+<section id="outline" class="title-slide slide level2">
+<h2>Outline</h2>
+<ul>
+<li>Background (Semantics, Words, Constructions and Network)</li>
+<li>Space Particle Construction</li>
+<li>Corpus Learning/Modeling</li>
+<li>From Corpus-based Distribution to Network</li>
+<li>Network Analysis of Constructional Semantics</li>
+<li>Conclusion</li>
+</ul>
+</section>
+
+<section>
+<section id="background" class="title-slide slide level2">
+<h2>Background</h2>
+
+</section>
+<section id="lexical-semantic-representation" class="title-slide slide level3">
+<h3>Lexical Semantic Representation</h3>
+<ul>
+<li><p><span class="note">How to represent lexical semantics</span> (Semantic Representation)？</p>
+<ul>
+<li class="fragment">Meaning by <strong>reference</strong></li>
+<li class="fragment">Meaning by <strong>contrast</strong></li>
+<li class="fragment">Meaning by <strong>uses</strong></li>
+</ul></li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>Riemer, Nick. 2010. <em>Introducing semantics</em>. Cambridge: Cambridge University Press.</li>
+</ol>
+</div>
+</section>
+
+<section id="co-occurrences-of-linguistic-units" class="title-slide slide level3">
+<h3>Co-occurrences of Linguistic Units</h3>
+<ul>
+<li><p><strong>Co-occurrences</strong> have been the central focus of usage-based linguists.</p>
+<ul>
+<li>Collocation, Colligation, Collostruction</li>
+</ul></li>
+</ul>
+<ul>
+<li class="fragment">With the increasing availability of corpora data, sequential orders of words in use are closely connected to the lexical semantics, forming the basis for its semantic representation (i.e., <strong>Distributed Semantic Representation</strong>)</li>
+</ul>
+</section>
+
+<section id="distributional-hypothesis" class="title-slide slide level3">
+<h3>Distributional Hypothesis</h3>
+<ul>
+<li>Co-occurrence patterns of a linguistic unit reflect its semantics to a great deal.</li>
+</ul>
+<blockquote>
+<p>You shall know a word by the comany it keeps. (Firth, 1957, p.11)</p>
+</blockquote>
+<blockquote>
+<p>[D]ifference of meaning correlates with difference of distribution. (Harris, 1970, p.785)</p>
+</blockquote>
+</section>
+
+<section id="constructional-semantics" class="title-slide slide level3">
+<h3>Constructional Semantics?</h3>
+<blockquote>
+<p>John baked me a cake.</p>
+</blockquote>
+<ul>
+<li>“Transfer” meaning from the constructional schema of Di-transitive</li>
+</ul>
+</section>
+
+<section id="words-and-constructions-are-alike" class="title-slide slide level3">
+<h3>Words and Constructions are alike</h3>
+<blockquote>
+<p>[G]rammatical knowledge represents a continuum on two dimensions, from the substantive to the schematic and from the atomic to the complex. This continuum is widely referred to as the <strong>syntax-lexicon</strong> continuum. (Croft &amp; Cruse, 2004, p.255-6)</p>
+</blockquote>
+</section>
+
+<section id="our-mental-grammar-includes-an-inventory-of-units-at-varying-granularities-from-words-phrases-chunks-to-fully-schematic-constructions." class="title-slide slide level3">
+<h3>Our mental grammar includes an inventory of units at varying granularities, from words, phrases, chunks to fully schematic constructions.</h3>
+
+</section>
+
+<section id="how-to-represent-constructional-semantics" class="title-slide slide level3">
+<h3>How to represent constructional semantics?</h3>
+<ul>
+<li>When we study lexical semantics, we look at the co-occurring words of the target word and identify the emerging semantic coherence from these co-occurrence collocates.</li>
+<li>When we study constructional semantics, we follow similar procedures. But due to the schematic nature of the constructions, we may need to consider more.</li>
+</ul>
+</section>
+
+<section id="grammar-as-network" class="title-slide slide level3">
+<h3>Grammar as Network</h3>
+<p><img src="images/network.png" width="70%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="meanings-are-in-the-grammar-network" class="title-slide slide level3">
+<h3>Meanings are in the grammar network</h3>
+<ul>
+<li>Language consists of <strong>words</strong> and <strong>constructions</strong>.</li>
+<li>Every <strong>word</strong> or <strong>construction</strong> would develop their own preferred linguistic co-texts/contexts in language use.</li>
+<li>The emerging patterns in these preferred linguistic co-texts/contexts are the semantic traces of these <strong>words</strong> or <strong>constructions</strong>.</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="space-particle-constructions" class="title-slide slide level2">
+<h2>Space Particle Constructions</h2>
+
+</section>
+<section id="spc-in-mandarin" class="title-slide slide level3">
+<h3>SPC in Mandarin</h3>
+<ul>
+<li>Mandarin speakers often encode spatial relations using the following constructional schema:</li>
+</ul>
+<blockquote>
+<p>「在zai + Reference_Landmark + Space_Particle」</p>
+</blockquote>
+<ul>
+<li>在zai…<span class="mystrong1">期限qixian ‘deadline’</span> <strong>內nei ‘IN’</strong></li>
+<li>在zai…<span class="mystrong1">條件tiaojian ‘condition’</span> <strong>下xia ‘DOWN’</strong></li>
+<li>在zai…<span class="mystrong1">比賽bisai ‘competition’</span> <strong>中zhong ‘IN’</strong></li>
+<li>在zai…<span class="mystrong1">情感qinggan ‘feeling’</span> <strong>上shang ‘UP’</strong></li>
+</ul>
+</section>
+
+<section id="keys-for-constructional-semantic-representation" class="title-slide slide level3">
+<h3>Keys for constructional semantic representation?</h3>
+<ul>
+<li><p>Hard to make a list of <strong>definitions</strong></p></li>
+<li><p>Represent semantics in distributional patterns:</p>
+<ul>
+<li class="fragment">Links between <strong>construction</strong> and <span class="mystrong1">word</span>：Which words tend to co-occurr with the construction?</li>
+<li class="fragment">Links between <span class="mystrong1"> word</span> and <span class="mystrong1"> word</span>：For those words co-occurring with the construction, how are these words connected？</li>
+<li class="fragment">Links between <strong>construction</strong> and <strong>construction</strong>：How are these space particle constructions connected? Do they co-occur with similar sets of words?（e.g., 在zai ＋… + 內nei」、「在zai ＋… + 下xia」、「在zai ＋… + 後hou」）</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section>
+<section id="corpus-learning" class="title-slide slide level2">
+<h2>Corpus Learning</h2>
+<ul>
+<li><p>Corpus data are a good source for the modeling of the linguistic co-occurrences, i.e., the three types of links (word-construction, word-word, construction-construction).</p></li>
+<li><p>With these links, we can create a grammar network, which could quantitatively represent the distributional patterns of the constructions.</p></li>
+</ul>
+</section>
+<section class="slide level4">
+
+<ul>
+<li>We can then utilize the <span class="note"><strong>network science methods</strong></span> to both visualize and analyze the constructional semantics quantitatively, which can be a very important step to the modeling of our knowledge of <span class="note">grammar network</span>(Grammatical Network)。</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>Barabási, Albert-László. (2016). <em>Network Science</em>. Cambridge University Press.</li>
+<li>Diessel, Holger. (2019). <em>The Grammar Network: How Linguistic Structure is Shaped by Language Use</em>. Cambridge University Press.</li>
+</ol>
+</div>
+</section>
+<section id="word-construction-links" class="title-slide slide level3">
+<h3>Word-Construction Links</h3>
+<ul>
+<li>Collostruction Analysis
+<ul>
+<li><span class="note">Collexeme Analysis</span></li>
+<li><span class="note">Co-varying Collexeme Analysis</span></li>
+<li><span class="note">Distinctive Collexeme Analysis</span></li>
+</ul></li>
+</ul>
+<!--         -   e.g., Verbs in ditransitives and imperatives; Noun-*waiting-to-happen* construction -->
+<!--         -   e.g., V-*into*-Ving constructions (trick someone into buying, force someone into accepting), Verb-*way*-PREP-construction (weave your way through) -->
+<!--         -   e.g., ditransitive vs. prepositional datives; *will*- vs. *going-to* futures -->
+<div class="footnotes">
+<ol type="1">
+<li>Stefanowitsch, A. &amp; Gries, S.T. 2003. Collostructions: Investigating the interaction of words and constructions. International Journal of Corpus Linguistics, 8(2), 209-243.</li>
+<li>Gries, S. T., &amp; Stefanowitsch, A. 2004. Co-varying collexemes in the into-causative. Language, Culture, and Mind, 225-236.</li>
+<li>Gries, S. T., &amp; Stefanowitsch, A. 2004. Extending collostructional analysis: A corpus-based perspective on alternations’. International Journal of Corpus Linguistics, 9(1), 97-129.</li>
+</ol>
+</div>
+</section>
+
+<section id="word-word-links" class="title-slide slide level3">
+<h3>Word-Word Links</h3>
+<ul>
+<li>Words can be connected via multiple relationships (e.g., morphosyntactic, semantic, pragmatic ones).</li>
+<li>Here we simplify the matters by modeling the semantic relationships between words, which is essentially the idea of WordNet (e.g. 情況, 情形, 狀況, 環境)。</li>
+<li>Lexical Relations can be modeled via at least two possible methods：
+<ul>
+<li><strong>Manual</strong> Annotation (e.g., WordNet)</li>
+<li><strong>Automatic</strong> Learning via corpus data (e.g., word embeddings)
+<hr></li>
+</ul></li>
+</ul>
+<div id="htmlwidget-eb25eedb3e0608dba974" style="width:960px;height:96px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eb25eedb3e0608dba974">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot, rankdir = LR]\n\nnode[style=filled,shape=box, fillcolor = Azure]\nedge[dir=both]\na [label = \"Linguistic\n(Manual)\"]\nb [label = \"Computational\n(Automatic)\"]\na -> b \n}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</section>
+<section id="word-embeddings" class="slide level4">
+<h4>Word Embeddings</h4>
+<ul>
+<li><p><strong>Word Embeddings</strong> utilize the deep learning methods to learn the vectorized representations of lexical semantics via the word distributions in a representative large corpus.</p></li>
+<li><p>These embeddings are learned by creating a deep neural network to achieve two objectives:</p>
+<ul>
+<li>Within a specific window frame, given all the contextg words in that frame, how likely will we observe a target word, <span class="math inline">\(W_i\)</span>？(Continuous Bag-of-Words)</li>
+<li>Given a target word, <span class="math inline">\(W_i\)</span>, how likely would a context word appear within the defined window frame of the target word? (Skip-Gram)</li>
+</ul></li>
+</ul>
+<!-- #### 詞彙、搭配詞和語意 -->
+<!-- - 簡言之，透過[大型語料庫]{.note}，如果兩個詞彙周圍共現的搭配詞類似，則我們可以推測它們語意相近。 -->
+<!-- ::: {.footnotes} -->
+<!-- 1.  此範例是根據[中央研究院漢語對話語料庫](http://www.aclclp.org.tw/use_mat_c.php#mcdc)計算。 -->
+<!-- ::: -->
+<!-- ```{r} -->
+<!-- library(tidyverse) -->
+<!-- library(kableExtra) -->
+<!-- require(text2vec) -->
+<!-- # create sinica co-occurrence matrix -->
+<!--   # dir(path ="/Users/Alvin/Dropbox/Projects/MandarinPhraseology/data/Sinica_4WordEmbeddings/",full.names = T) %>% -->
+<!--   #   sapply(function(x) readLines(x) %>% strsplit(x, split = "\u3000|\\s") %>% unlist) -> input_files -->
+<!--   # it = itoken(input_files, progressbar = FALSE) -->
+<!--   # vocab <- create_vocabulary(it) -->
+<!--   # # pruning vocabulary -->
+<!--   # vocab <- prune_vocabulary(vocab, term_count_min = 50L) -->
+<!--   # # Use our filtered vocabulary -->
+<!--   # vectorizer <- vocab_vectorizer(vocab) -->
+<!--   # # use window of 5 for context words -->
+<!--   # print("creat term co-occurrence matrix...") -->
+<!--   # tcm <- create_tcm(it, vectorizer, skip_grams_window = 5, weights = rep(1,5)) -->
+<!--   # saveRDS(tcm, "SINICA_TCM.rds") -->
+<!-- tcm <- readRDS("SINICA_TCM.rds") -->
+<!-- words_examples<- c("叔叔", "阿姨","男孩", "女孩", "爺爺", "奶奶","爸爸","媽媽", "兒子", "女兒") -->
+<!-- #words_examples<-c("希臘","雅典","北京","中國", "日本","東京", "美國", "紐約") -->
+<!-- tcm %>% as.matrix %>% .[words_examples, words_examples] %>% data.frame ->df -->
+<!-- colnames(df) <- paste0("CW", seq(1:dim(df)[2])) -->
+<!-- #df[, c("家","孩子","工作","學校","看","想")] -->
+<!-- df %>% -->
+<!--   kable(row.names=T, format="html", caption="Target and Context Words Co-occurrence Matrix") %>% -->
+<!--   kable_styling(font_size = 18,bootstrap_options = c("striped", "hover", "condensed")) %>%  -->
+<!--   row_spec(5:6, bold = T, color = "white", background = "#D7261E") %>% -->
+<!--   scroll_box(width = "95%", height = "400px", fixed_thead = list(enabled = T, background = "darkgrey")) #%> % -->
+<!-- ``` -->
+<!-- ------------------------------------------------------------------------ -->
+<!-- 詞向量讓我們能夠將詞彙語意做實際數值運算。 -->
+<!-- ```{r} -->
+<!-- library(Rtsne) -->
+<!-- library(ggplot2) -->
+<!-- # library(plotly) -->
+<!-- # library(magrittr) -->
+<!-- # library(dplyr) -->
+<!-- library(ggrepel) -->
+<!--   #word_vector <- readRDS("/Users/Alvin/Dropbox/Projects/LanguageModel/script/greg_script/20180617/Reference Corpus Processing/Sinica_word_embeddings_win10_dim300.rds") -->
+<!--   #word_vector <- readRDS("/Users/Alvin/Dropbox/Corpus/Word_Embeddings_Pretrained/Chinese_word_embeddings_cc.zh.300.vec.rds") -->
+<!--   #word_vector <- word_vector[1:60000,] -->
+<!--   #saveRDS(word_vector, "Chinese_word_embeddings_cc.zh.300.vec.60000.words.rds") -->
+<!-- word_vector <- readRDS("Chinese_word_embeddings_cc.zh.300.vec.60000.words.rds") -->
+<!-- words_examples<- c("叔叔", "阿姨","男孩", "女孩", "爺爺", "奶奶","爸爸","媽媽", "兒子", "女兒","新郎", "新娘") -->
+<!-- #words_examples<- c("希臘","雅典","北京","中國", "日本","東京", "美國", "紐約") -->
+<!-- words<- words_examples -->
+<!-- #words.index <- row.names(word_vector) %in% words -->
+<!-- #words.index <- !stringr::str_detect(row.names(word_vector),"[A-Za-z]+") -->
+<!-- set.seed(12) -->
+<!-- tsne <- Rtsne(word_vector[words,], perplexity = (length(words)-1)/3, pca = FALSE) -->
+<!-- # tsne_plot <- tsne$Y %>% -->
+<!-- #   as.data.frame() %>% -->
+<!-- #   mutate(word = words_examples) %>% -->
+<!-- #   ggplot(aes(x = V1, y = V2, label = sprintf("%s_%s",c(1:length(words)),words))) +  -->
+<!-- #   geom_point(color="blue", size= 5) + -->
+<!-- #   geom_path(color="lightgrey")+ -->
+<!-- #   geom_text_repel(size = 14, family = "Arial Unicode MS")  -->
+<!-- # tsne_plot -->
+<!-- path_color = "darkgrey" -->
+<!-- tsne_plot <- tsne$Y %>% -->
+<!--   as.data.frame() %>% -->
+<!--   mutate(word = words_examples) ->data -->
+<!--   h <- data %>% ggplot(aes(x = V1, y = V2, label = word, color=word)) + geom_point(size= 3) -->
+<!--   h + geom_text_repel(family = "Arial Unicode MS") + -->
+<!--     geom_path(data=data[c(1,2),], color=path_color, linetype="dashed") +  -->
+<!--     geom_path(data=data[c(3,4),], color=path_color, linetype="dashed") + -->
+<!--     geom_path(data=data[c(5,6),], color=path_color, linetype="dashed") + -->
+<!--     geom_path(data=data[c(7,8),], color=path_color, linetype="dashed") + -->
+<!--     geom_path(data=data[c(9,10),], color=path_color, linetype="dashed") + -->
+<!--     geom_path(data=data[c(11,12),], color=path_color, linetype="dashed") + -->
+<!--     labs(title = "詞向量", x="向量維度1", y="向量維度2")+ -->
+<!--     theme(text = element_text(family="Arial Unicode MS")) + -->
+<!--     scale_color_discrete(guide="none") -->
+<!-- #rm(word_vector) -->
+<!-- ``` -->
+</section>
+</section>
+<section>
+<section id="from-corpora-to-network" class="title-slide slide level2">
+<h2>From Corpora to Network</h2>
+
+</section>
+<section id="space-particle-network" class="title-slide slide level3">
+<h3>Space Particle Network</h3>
+<iframe src="MLC_VisNet_CC.html" width="100%" height="600" style="border:1px solid darkgrey;">
+</iframe>
+<aside class="notes">
+<ul>
+<li>我們透過空間句構作為一個簡單的例子。</li>
+<li>一個完整的語法網絡， 應該涵蓋詞彙和句構（或是某種可以與詞彙一起使用的constructional schema)。</li>
+<li>每一個空間詞句構，形成他們個別的句構網絡，如「下」。</li>
+<li>而每一個句構網絡也與其他句構網絡構成連結，可能某兩個句構都同時能夠與某些特定詞彙一起使用，也間接代表著這兩個句構之間的語意相連性。如「結構」。可搭配「上」也可搭配「外」</li>
+<li>Network給予Grammar Representation很大的彈性，而這個彈性也確實存在於我們的native intuition。</li>
+</ul>
+</aside>
+</section>
+
+<section id="specific-particle-constructions-i" class="title-slide slide level3">
+<h3>Specific Particle Constructions (I)</h3>
+<!-- <small>[Dynamic Version](http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/)</small> -->
+<p><img src="images/MLC_Subnetwork_Community_%E5%85%A7_%E4%B8%8B_%E5%89%8D_%E8%A3%A1.png" width="80%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="specific-particle-constructions-ii" class="title-slide slide level3">
+<h3>Specific Particle Constructions (II)</h3>
+<!-- <small>[Dynamic Version](http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/)</small> -->
+<p><img src="images/MLC_Subnetwork_Community_%E4%B8%8A_%E5%BE%8C_%E4%B8%AD_%E5%A4%96.png" width="80%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+</section>
+<section>
+<section id="how-to-analyze-the-network" class="title-slide slide level2">
+<h2>How to analyze the network?</h2>
+
+</section>
+<section id="three-levels-of-network-analysis" class="title-slide slide level3">
+<h3><span class="note">Three Levels of Network Analysis</span></h3>
+<ul>
+<li class="fragment">Macroscopic Analysis: Examine the properties of the entire <strong>Graph</strong></li>
+<li class="fragment">Microscopic Analysis: Examine the properties of the <strong>Nodes</strong></li>
+<li class="fragment">Mesoscopic Analysis: Examine the groupings of the nodes, i.e., the emergence of the <strong>Community</strong> in the graph</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>Siew, Cynthia S. Q., Dirk U. Wulff, Nicole M. Beckage &amp; Yoed N. Kenett. 2019. Cognitive network science: A review of research on cognition through the lens of network representations, processes, and dynamics. <em>Complexity</em> 2019. 1–24.</li>
+</ol>
+</div>
+</section>
+
+<section id="macroscopic-analysis" class="title-slide slide level3">
+<h3>Macroscopic Analysis</h3>
+
+</section>
+
+<section id="common-structures-in-social-networks" class="title-slide slide level3">
+<h3>Common Structures in Social Networks</h3>
+<ul>
+<li><span class="note">Scale-free</span>:
+<ul>
+<li>The small-world structure refers to a tendency in which a network usually consists of several small communities or clusters where the within-community edges are much stronger than across-community ones.</li>
+</ul></li>
+<li><span class="note">Small-world</span>:
+<ul>
+<li>a pattern in which the degree (i.e., the edge numbers of the node) distribution of the nodes follows a power law, suggesting that there are usually only a few nodes with high degrees and many more with low degrees.</li>
+</ul></li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>Barabási, Albert-László &amp; Re ́ka Albert. 1999. Emergence of scaling in random networks. <em>Science</em> 286(5439). 509–512.</li>
+<li>Watts, Duncan J. &amp; Steven H. Strogatz. 1998. Collective dynamics of ‘small-world’networks. <em>Nature</em> 393(6684). 440–442.</li>
+</ol>
+</div>
+</section>
+
+<section id="macroscopic-analysis-of-spc" class="title-slide slide level3">
+<h3>Macroscopic Analysis of SPC</h3>
+<!-- # ```{r echo=FALSE} -->
+<!-- # knitr::include_graphics("images/SCALE_FREE_PLOT.png") -->
+<!-- # ``` -->
+<ul>
+<li>Small-world: Semantically connected nodes form small <strong>clusters</strong> in the network.</li>
+<li>Scale-free: Only a few linguistic units (<strong>central nodes</strong>) in the system are frequently connected to other linguistic units, and most of the other units are relatively weak with this property.</li>
+</ul>
+</section>
+<section class="slide level4">
+
+<p>The small-world and scale-free structures may be quantitative indicators of the emergent semantic coherence of the constructional schema in speaker’s mental representation.</p>
+<ul>
+<li>The emergence of these small clusters (i.e., small-worldness) may be interpreted as the emerging <strong>semantic fields</strong> of the collexemes</li>
+<li>The small number of high-degree nodes (i.e., scale-free) can be taken as important <strong>exemplars</strong>, or “cognitive reference points” (Diessel 2019: 34)</li>
+</ul>
+</section>
+
+<section id="miscroscopic-analysis" class="title-slide slide level3">
+<h3>Miscroscopic Analysis</h3>
+
+</section>
+
+<section id="node-level-metrics" class="title-slide slide level3">
+<h3>Node-level Metrics</h3>
+<ul>
+<li><span class="note">Local Clustering Coefficient</span>: a metric that indicates the extent to which the neighbors of a node are interconnected – namely, whether a node’s neighbors are also neighbors of each other.</li>
+<li><span class="note">Centrality</span>：a metric that characterizes the importance of a node beyond its immediate neighbors.</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>亦稱Local Transitivity。</li>
+<li>常見的Centrality數值包括: Betweenness, PageRank, Authority, Closeness.</li>
+</ol>
+</div>
+</section>
+<section class="slide level4">
+
+<ul>
+<li>Construction Nodes: The local clustering coefficient values indicate the degrees of <strong>semantic coherence</strong> of their collexemes.</li>
+</ul>
+<p><img src="images/MLC_Network_all_transitivity.png" width="85%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+<aside class="notes">
+<ul>
+<li>內Transitivity最高，外最低</li>
+<li>與內一起使用的詞彙，彼此之間的相連性比高，象徵著較高的句構semantic coherence。</li>
+<li>與外一起使用的詞彙，彼此之間的相連性較低，象徵較低的 Constructional Sem Coherence.</li>
+</ul>
+</aside>
+</section>
+<section class="slide level4">
+
+<ul>
+<li>Lexical Nodes (Landmark): The centrality values indicate which nodes are more central, thus more likely to be an <strong>exemplar</strong> of the sub-network.</li>
+</ul>
+<p><img src="images/MLC_Network_all_pagerank.png" width="85%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+
+<section id="mescoscopic-analysis" class="title-slide slide level3">
+<h3>Mescoscopic Analysis</h3>
+
+</section>
+<section class="slide level4">
+
+<ul>
+<li>In network science, we can identify small clusters as communities using the algorithms of <strong>community detection</strong>.</li>
+</ul>
+</section>
+<section class="slide level4">
+
+<p>These <strong>communities</strong> arising from the construction network may indicate the emergence of specific <strong>semantic fields</strong>.</p>
+<p><img src="images/MLC_Subnetwork_Community_%E5%85%A7_%E4%B8%8B_%E5%89%8D_%E8%A3%A1.png" width="75%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level4">
+
+<iframe src="MLC_VisNet_CC_Community_下.html" width="100%" height="700" style="border:1px solid darkgrey;">
+</iframe>
+<aside class="notes">
+<ul>
+<li>句構在語言使用過程中，語言學家發現它們經常會演化出一系列句構自己常搭配的詞彙。</li>
+<li>而往往這些詞彙彼此間也逐漸形成某些特定語意場域。</li>
+<li>顯現句構本身的Semantic Coherence的程度，以及該句構的成熟度。比方說，這個句構，通常只能夠與某些特定語意的詞彙一起使用。</li>
+<li>而加入句構之後的Grammar Network，我們相信更能夠反映說話者的完整語法知識。</li>
+</ul>
+</aside>
+</section>
+
+<section id="capacity-of-grammar-network" class="title-slide slide level3">
+<h3>Capacity of Grammar Network</h3>
+<ul>
+<li>With the quantitative methods of network science, we can analyze the semantics of morpho-syntactic constructions as follows： &gt;- For each SPC, which landmarks (collexemes) are more prototypical? &gt;- For each SPC, how semantically cohensive are its co-occurring landmark collexemes? &gt;- For the entire construction network, what are the emerging semantic fields? How are these semantic feids connected to each indivdual construction?</li>
+</ul>
+</section>
+
+<section id="summary" class="title-slide slide level3">
+<h3>Summary</h3>
+<p><img src="images/summary.png" width="1593" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+<!-- ## 結語 -->
+<!-- >- 語法表徵 (Grammar Knowledge Representation) 可視為一個由不同層次語言單位交織而成的**語法網絡** (Grammar Network) 。 -->
+<!-- >- 網絡不僅可以勾勒**詞彙**間的連結，更可成為語言構式的**語意**表徵方法。 -->
+<!-- >- 網絡源自於**語言使用**(Language Use)，未來可透過網絡分析，觀察特定**群體**或**場域**的語法網絡生成。 -->
+<!-- :::{.notes} -->
+<!-- - 第一語言學習者 (Child Language Acquisition) -->
+<!-- - 第二語言學習者 (Second Language Acquisition) -->
+<!-- - 個人語言行為 -->
+<!-- - 特定社群語言使用者 (Online Forums) -->
+<!-- - 特定文化場域語言使用者 (Political Discourse Analysis) -->
+<!-- ::: -->
+</section>
+</section>
+<section id="section" class="title-slide slide level2" data-background="images/background.jpeg" data-background-transition="slide">
+<h2 data-background="images/background.jpeg" data-background-transition="slide"></h2>
+<p><span style="font-size: 2.5em">Thank you!</span> </br></p>
+<hr>
+<div class="footnotes">
+<p><small>References：</small></p>
+<ol type="1">
+<li>Barabási, Albert-László. 2016. <em>Network science</em>. Cambridge: Cambridge University Press.</li>
+<li>Diessel, Holger. 2019. <em>The grammar network: How linguistic structure is shaped by language use</em>. Cambridge, UK: Cambridge University Press.</li>
+<li>Chen, Alvin Cheng-Hsien. In press. Words, constructions and corpora: Network representations of constructional semantics for Mandarin space particles. <em>Corpus Linguistics and Linguistic Theory</em> 19(1). <a href="https://doi.org/10.1515/cllt-2020-0012" class="uri">https://doi.org/10.1515/cllt-2020-0012</a>. (<a href="http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/">Supplementary Materials</a>)</li>
+</ol>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="ICCG11-Presentation_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="ICCG11-Presentation_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          theme: 'blackboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'ICCG11-Presentation_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: 'ICCG11-Presentation_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: 'ICCG11-Presentation_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: 'ICCG11-Presentation_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+<div class='footer'>
+<p>20 August, 2021, ICCG11, Antwerp</p>
+<p>alvinchen@ntnu.edu.tw &ensp;|&ensp; <a href='https://alvinchen.myftp.org' target='_blank'> alvinchen.myftp.org </a></a></p>
+</div>
+
+  </body>
+</html>

@@ -496,7 +496,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul></li>
 </ul>
 <ul>
-<li class="fragment">With the increasing availability of corpora data, sequential orders of words in use are closely connected to the semantics of the units, forming the basis for their semantic representation (i.e., <strong>Distributed Semantic Representation</strong>)</li>
+<li class="fragment">With the increasing availability of corpora data, <strong>distributional properties</strong> of linguistics units are accessible.</li>
+<li class="fragment">The systematic distributional patterns are closely connected to the semantics of the linguistic units, forming the basis for their semantic representation (i.e., <strong>Distributed Semantic Representation</strong>)</li>
 </ul>
 <!-- ### Distributional Hypothesis -->
 <!-- -   Co-occurrence patterns of a linguistic unit reflect its semantics to a great deal. -->
@@ -513,8 +514,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="how-to-represent-constructional-semantics" class="title-slide slide level3">
 <h3>How to represent constructional semantics?</h3>
 <ul>
-<li class="fragment">When we study lexical semantics, we look at words’ collocates and identify the emerging semantic coherence from these collocates.</li>
-<li class="fragment">The distributional hypothesis has been widely applied to the study of constructional semantics.</li>
+<li class="fragment">When we study lexical semantics, we look at words’ <strong>collocates</strong> and identify the emerging semantic coherence from these collocates.</li>
+<li class="fragment">Following the same distributed semantic hypothesis, we can analyze constructional semantics in a similar way.</li>
 </ul>
 </section>
 
@@ -527,6 +528,10 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment">Every <strong>word</strong> or <strong>construction</strong> would develop their own preferred linguistic co-texts/contexts in language use.</li>
 <li class="fragment">The emerging patterns in these preferred linguistic co-texts/contexts are the semantic traces of these <strong>words</strong> or <strong>constructions</strong>.</li>
 </ul>
+<aside class="notes">
+<p>If we are able to determine the co-occurrence patterns of the constructions, we should be able to create a construction network, describing how the constructions are connected to the other linguistic units.</p>
+<p>We like to argue that if that’s the case, the constructional meanings should have been included in the network as well.</p>
+</aside>
 </section>
 </section>
 <section>
@@ -554,14 +559,18 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="keys-for-constructional-semantic-representation" class="title-slide slide level3">
 <h3>Keys for constructional semantic representation?</h3>
 <ul>
-<li><p>Hard to make a list of <strong>definitions</strong></p></li>
-<li><p>Constructional meaning by <strong>use</strong>:</p>
+<li><p>Constructional meanings emerge from the <strong>distributional patterns</strong>:</p>
 <ul>
 <li class="fragment">Links between <strong>construction</strong> and <span class="mystrong1">word</span>：Which words tend to co-occurr with the construction?</li>
 <li class="fragment">Links between <span class="mystrong1">word</span> and <span class="mystrong1">word</span>：For those words co-occurring with the construction, how are these words connected？</li>
-<li class="fragment">Links between <strong>construction</strong> and <strong>construction</strong>：Is one SPC more connected to a specific SPC? (e.g., <em>zai</em>+LM+<em>xia</em> vs. <em>zai</em>+LM+<em>shang</em>, <em>zai</em>+LM+<em>xia</em> vs. <em>zai</em>+LM+<em>nei</em>)</li>
+<li class="fragment">Links between <strong>construction</strong> and <strong>construction</strong>：Is one SPC more connected to another SPC? (e.g., <em>zai</em>+LM+<em>xia</em> vs. <em>zai</em>+LM+<em>shang</em>, <em>zai</em>+LM+<em>xia</em> vs. <em>zai</em>+LM+<em>nei</em>)</li>
 </ul></li>
 </ul>
+<aside class="notes">
+<ul>
+<li>Hard to make a list of <strong>definitions</strong></li>
+</ul>
+</aside>
 </section>
 </section>
 <section>
@@ -733,23 +742,41 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>In this network, there are two types of nodes (bipartite network). Lexical/Collexeme and constructions/SPC.</li>
 <li>Within this network, we model three types of links.</li>
-<li>For each SPC, we identify their co-occurring collexemes using the construction-word links.</li>
+<li>For each SPC, we identify their co-occurring collexemes using the word-construction links.</li>
 <li>For all the collexemes, we identify their semantic connections using the word-word links.</li>
 <li>For all the SPCs, we identify their semantic connections using the construction-construction links.</li>
 </ul>
 </aside>
-</section>
-
-<section id="specific-particle-constructions-i" class="title-slide slide level3">
-<h3>Specific Particle Constructions (I)</h3>
-<!-- <small>[Dynamic Version](http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/)</small> -->
-<p><img src="images/MLC_Subnetwork_Community_%E5%85%A7_%E4%B8%8B_%E5%89%8D_%E8%A3%A1.png" width="80%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
-</section>
-
-<section id="specific-particle-constructions-ii" class="title-slide slide level3">
-<h3>Specific Particle Constructions (II)</h3>
-<!-- <small>[Dynamic Version](http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/)</small> -->
-<p><img src="images/MLC_Subnetwork_Community_%E4%B8%8A_%E5%BE%8C_%E4%B8%AD_%E5%A4%96.png" width="80%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+<!-- ### Specific Particle Constructions (I) -->
+<!-- <!-- <small>[Dynamic Version](http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/)</small> -->
+<p>–&gt;</p>
+<!-- ```{r out.width='80%', echo=FALSE} -->
+<!-- knitr::include_graphics('images/MLC_Subnetwork_Community_內_下_前_裡.png', dpi=300) -->
+<!-- # knitr::include_url("MLC_VisNet_CC_Community_下.html", height = 600) -->
+<!-- # htmltools::tags$iframe( -->
+<!-- #   src="MLC_VisNet_CC_Community_下.html", -->
+<!-- #   width="95%",  -->
+<!-- #   height="550", -->
+<!-- #   scrolling="no",  -->
+<!-- #   seamless="seamless",  -->
+<!-- #   frameBorder="0" -->
+<!-- # ) -->
+<!-- ``` -->
+<!-- ### Specific Particle Constructions (II) -->
+<!-- <!-- <small>[Dynamic Version](http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/)</small> -->
+<p>–&gt;</p>
+<!-- ```{r out.width="80%", echo=FALSE} -->
+<!-- knitr::include_graphics('images/MLC_Subnetwork_Community_上_後_中_外.png', dpi=300) -->
+<!-- #knitr::include_url("MLC_VisNet_CC_Community_前.html", height = 600) -->
+<!-- # htmltools::tags$iframe( -->
+<!-- #   src="MLC_VisNet_CC_Community_前.html", -->
+<!-- #   width="95%",  -->
+<!-- #   height="550", -->
+<!-- #   scrolling="no",  -->
+<!-- #   seamless="seamless",  -->
+<!-- #   frameBorder="0" -->
+<!-- # ) -->
+<!-- ``` -->
 </section>
 </section>
 <section>
@@ -865,6 +892,13 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
 <p>These <strong>communities</strong> arising from the construction network may indicate the emergence of specific <strong>semantic fields</strong>.</p>
 <p><img src="images/MLC_Subnetwork_Community_%E5%85%A7_%E4%B8%8B_%E5%89%8D_%E8%A3%A1.png" width="75%" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
+<aside class="notes">
+<ul>
+<li>For each SPC subnetwork, we can identify their communities arising from the sub-network.</li>
+<li>If the SPC has higher local clustering coefficient, it is then more likely to get communities that are more semantically connected.</li>
+<li>Therefore, this is a good place to show that microscopic and mesoscopic analysis can be coordinated to get more comprehensive results.</li>
+</ul>
+</aside>
 </section>
 <section class="slide level4">
 
@@ -872,10 +906,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </iframe>
 <aside class="notes">
 <ul>
-<li>Take the sub-network of XIA for instance.</li>
+<li>Take the sub-network of XIA for instance (which has the 2nd highest LCC)</li>
 <li>The algorithm is able to identify quite a few communities from the sub-network.</li>
 <li>Based on these groupings of collexemes, we can analyze the emerging semantic fields from this sub-network.</li>
-<li>For each community we can interpret their semantics by identifying important members (nodes with high centrality values).</li>
+<li>For each community we can interpret their semantics by identifying important members (nodes with high centrality values). Again, using the centrality metrics from the microscopic analysis.</li>
+<li>Get comprehensive analysis by integrating miscroscopic and mesoscipic observations.</li>
 <li>A for CONDITION, B for GUIDANCE.</li>
 </ul>
 </aside>
@@ -891,11 +926,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <p><img src="images/summary.png" width="1593" style="border:1px solid darkgrey;" style="display: block; margin: auto;" /></p>
 <aside class="notes">
 <ul>
-<li><p>With the quantitative methods of network science, we can analyze the semantics of morpho-syntactic constructions as follows：</p>
+<li>With the quantitative methods of network science, we can analyze the semantics of morpho-syntactic constructions by first establishing their distributional patterns as a network.</li>
+<li>We can examine the network from at least three levels.
 <ul>
-<li class="fragment">For each SPC, which landmarks (collexemes) are more <strong>prototypical</strong>?</li>
-<li class="fragment">For each SPC, how <strong>semantically cohensive</strong> are its co-occurring landmark collexemes?</li>
-<li class="fragment">For the entire construction network, what are the emerging <strong>semantic fields</strong>? How are these semantic fields connected to each indivdual construction?</li>
+<li>For each SPC, which landmarks (collexemes) are more <strong>prototypical</strong>?</li>
+<li>For each SPC, how <strong>semantically cohensive</strong> are its co-occurring landmark collexemes?</li>
+<li>For the entire construction network, what are the emerging <strong>semantic fields</strong>? How are these semantic fields connected to each indivdual construction?</li>
 </ul></li>
 </ul>
 </aside>
@@ -924,6 +960,9 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Chen, Alvin Cheng-Hsien. In press. Words, constructions and corpora: Network representations of constructional semantics for Mandarin space particles. <em>Corpus Linguistics and Linguistic Theory</em> 19(1). <a href="https://doi.org/10.1515/cllt-2020-0012" class="uri">https://doi.org/10.1515/cllt-2020-0012</a>. (<a href="http://web.ntnu.edu.tw/~alvinchen/data/cllt-2020-0012/">Supplementary Materials</a>)</li>
 </ol>
 </div>
+<aside class="notes">
+<p>Because of the time limit, I didn’t have much time to cover the more technical/computational parts of the study. IF you are interested, I would be very happy to have more discussions in the chat or in the later QA or share my own works with you.</p>
+</aside>
 </section>
     </div>
   </div>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Processing Chinese Data with R</title>
+  <meta name="description" content="This website includes the materials for a workshop on Processing Chinese Text Data with R, at Hong Kong Shue Yan University (online)." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Processing Chinese Data with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This website includes the materials for a workshop on Processing Chinese Text Data with R, at Hong Kong Shue Yan University (online)." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Processing Chinese Data with R" />
+  
+  <meta name="twitter:description" content="This website includes the materials for a workshop on Processing Chinese Text Data with R, at Hong Kong Shue Yan University (online)." />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="environment-setup.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style-new.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-the-workshop"><i class="fa fa-check"></i>Structure of the Workshop</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="environment-setup.html"><a href="environment-setup.html"><i class="fa fa-check"></i>Environment Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="environment-setup.html"><a href="environment-setup.html#r-and-rstudio"><i class="fa fa-check"></i>R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="environment-setup.html"><a href="environment-setup.html#libraries"><i class="fa fa-check"></i>Libraries</a></li>
+<li class="chapter" data-level="" data-path="environment-setup.html"><a href="environment-setup.html#environment-checking"><i class="fa fa-check"></i>Environment Checking</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html"><i class="fa fa-check"></i>Loading Text Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#text-data-types"><i class="fa fa-check"></i>Text Data Types</a></li>
+<li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#libraries-1"><i class="fa fa-check"></i>Libraries</a></li>
+<li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#csv-format"><i class="fa fa-check"></i>CSV Format</a></li>
+<li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#directory-format"><i class="fa fa-check"></i>Directory Format</a></li>
+<li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#zipped-file-format"><i class="fa fa-check"></i>Zipped File Format</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html"><i class="fa fa-check"></i>Chinese Word Segmentation</a>
+<ul>
+<li><a href="chinese-word-segmentation.html#chinese-word-segmenter-jiebar">Chinese Word Segmenter <code>jiebaR</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#start"><i class="fa fa-check"></i>Start</a></li>
+<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#parameters-setting"><i class="fa fa-check"></i>Parameters Setting</a></li>
+<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#user-defined-dictionary"><i class="fa fa-check"></i>User-defined dictionary</a></li>
+<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#stopwords"><i class="fa fa-check"></i>Stopwords</a></li>
+<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#pos-tagging"><i class="fa fa-check"></i>POS Tagging</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#chinese-text-analytics-pipeline"><i class="fa fa-check"></i>Chinese Text Analytics Pipeline</a>
+<ul>
+<li><a href="chinese-word-segmentation.html#quanteda-framework"><code>Quanteda</code> Framework</a></li>
+<li><a href="chinese-word-segmentation.html#quanteda-framework-revised"><code>Quanteda</code> Framework: Revised</a></li>
+<li><a href="chinese-word-segmentation.html#tidytext-framework"><code>Tidytext</code> Framework</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i>Applications</a>
+<ul>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#loading-data"><i class="fa fa-check"></i>Loading Data</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#overview-of-the-data-set"><i class="fa fa-check"></i>Overview of the Data Set</a></li>
+<li><a href="applications.html#initialize-jiebar">Initialize <code>jiebaR</code></a></li>
+<li><a href="applications.html#quanteda-framework-1"><code>Quanteda</code> Framework</a></li>
+<li><a href="applications.html#case-study-1-concordances-with-kwic">Case Study 1: Concordances with <code>kwic()</code></a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-2-collocations"><i class="fa fa-check"></i>Case Study 2: Collocations</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-3-word-frequency-and-wordcloud"><i class="fa fa-check"></i>Case Study 3: Word Frequency and Wordcloud</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-4-patterns"><i class="fa fa-check"></i>Case Study 4: Patterns</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-5-lexical-bundles"><i class="fa fa-check"></i>Case Study 5: Lexical Bundles</a>
+<ul>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#n-grams-extraction"><i class="fa fa-check"></i>N-grams Extraction</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#frequency-and-dispersion"><i class="fa fa-check"></i>Frequency and Dispersion</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#recap"><i class="fa fa-check"></i>Recap</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://web.ntnu.edu.tw/~alvinchen" target ="blank"><img src="images/alerts/home.svg" height = "20" width = "20">Alvin Chen </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Processing Chinese Data with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Processing Chinese Data with R</h1>
+<p class="author"><em><p>Alvin Cheng-Hsien Chen </br>
+National Taiwan Normal University, Taiwan</p></em></p>
+<p class="date"><em><hr>
+April 26, 2022, @ HKSYU (Online Workshop)</em></p>
+</div>
+<div id="introduction" class="section level1 unnumbered">
+<h1>Introduction</h1>
+<p>The theme of this workshop is Chinese text processing with R. I will introduce a few useful R libraries that can be utilized for text analytic tasks. Also, I will focus on an important step in Chinese processing, namely, the word segmentation/tokenization, and show how to attend to this step in the pipeline. Finally, I will demonstrate a few potential applications of data analysis visualization with the help of the attractive informative graphs with R.</p>
+<div id="structure-of-the-workshop" class="section level2 unnumbered">
+<h2>Structure of the Workshop</h2>
+<ul>
+<li>Environment Setup</li>
+<li>Working Pipeline for Text Processing</li>
+<li>Chinese Word Segmentation</li>
+<li>Applications
+<ul>
+<li>Concordances</li>
+<li>Frequency Lists</li>
+<li>Word clouds</li>
+<li>Patterns</li>
+<li>N-gram/Lexical Bundles</li>
+</ul></li>
+</ul>
+</div>
+<div id="data" class="section level2 unnumbered">
+<h2>Data</h2>
+<p>All the data sets used in this workshop are available in the Dropbox directory <a href="https://www.dropbox.com/sh/5vyfijyr9ktqtwo/AAAysS1aCh4N_GOo5hhhjbG7a?dl=0"><code>demo_data</code></a>.</p>
+</div>
+<div id="materials" class="section level2 unnumbered">
+<h2>Materials</h2>
+<div class="try">
+<p>In the lecture notes, the text boxes in light blue refer to codes that you need to run in either terminal or your R/Python console. The text boxes in black background show the outputs of the code processing.</p>
+<p>We will follow this presentation convention throughout the entire lecture notes.</p>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&#39;Hello! R!&#39;</span>)</span></code></pre></div>
+<pre class="Rout"><code>[1] &quot;Hello! R!&quot;</code></pre>
+</div>
+<div id="resources" class="section level2 unnumbered">
+<h2>Resources</h2>
+<p>The course lectures will follow the materials provided on the course website. Please preview the lecture notes before the class.</p>
+<p>Also, for each topic, please review the assigned readings on your own. These readings will be part of the midterm and final exams as well.</p>
+<p>In particular, we will be referring to two useful reference books as our main reading materials– <span class="citation"><a href="#ref-stefanowitsch2019" role="doc-biblioref">Stefanowitsch</a> (<a href="#ref-stefanowitsch2019" role="doc-biblioref">2019</a>)</span>, <span class="citation"><a href="#ref-gries2016" role="doc-biblioref">Gries</a> (<a href="#ref-gries2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p><img src="images/stefanowitch-book.png" width="50%" /></p>
+<p><img src="images/qclwr-cover.jpg" width="50%" /></p>
+<p>In addition, there are a few more reference books listed at the end of the section (See <a href="references.html#references">References</a>), which we will refer to for specific topics, including <span class="citation"><a href="#ref-gries2021" role="doc-biblioref">Gries</a> (<a href="#ref-gries2021" role="doc-biblioref">2021</a>)</span>, <span class="citation"><a href="#ref-baayen2008" role="doc-biblioref">Baayen</a> (<a href="#ref-baayen2008" role="doc-biblioref">2008</a>)</span>, <span class="citation"><a href="#ref-brezina2018" role="doc-biblioref">Brezina</a> (<a href="#ref-brezina2018" role="doc-biblioref">2018</a>)</span>, <span class="citation"><a href="#ref-mcenery2011" role="doc-biblioref">McEnery and Hardie</a> (<a href="#ref-mcenery2011" role="doc-biblioref">2011</a>)</span>, <span class="citation"><a href="#ref-wynne2006" role="doc-biblioref">Wynne</a> (<a href="#ref-wynne2006" role="doc-biblioref">2006</a>)</span>, <span class="citation"><a href="#ref-winter2020" role="doc-biblioref">Winter</a> (<a href="#ref-winter2020" role="doc-biblioref">2020</a>)</span>, <span class="citation"><a href="#ref-hunston2022" role="doc-biblioref">Hunston</a> (<a href="#ref-hunston2022" role="doc-biblioref">2022</a>)</span>, <span class="citation"><a href="#ref-nltk" role="doc-biblioref">Bird, Klein, and Loper</a> (<a href="#ref-nltk" role="doc-biblioref">2009</a>)</span>.</p>
+<p>Throughout the semester, we will follow the materials provided on our course website (see below). We will not use a particular textbook for the course. However, I do like to recommend <span class="citation"><a href="#ref-hadley2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="#ref-hadley2017" role="doc-biblioref">2017</a>)</span> for its simplicity.</p>
+<p><img src="images/r4dbook.png" width="35%" /></p>
+<p>Also, another great book for R lovers, by <span class="citation"><a href="#ref-davies2016" role="doc-biblioref">Davies</a> (<a href="#ref-davies2016" role="doc-biblioref">2016</a>)</span>:</p>
+<p><img src="images/book-R-cover.png" width="35%" /></p>
+<p>And two more comprehensive books for Python basics: <span class="citation"><a href="#ref-gerrard2016" role="doc-biblioref">Gerrard</a> (<a href="#ref-gerrard2016" role="doc-biblioref">2016</a>)</span> and <span class="citation"><a href="#ref-sweigart2020" role="doc-biblioref">Sweigart</a> (<a href="#ref-sweigart2020" role="doc-biblioref">2020</a>)</span>:</p>
+<p><img src="images/book-lean-python.jpeg" width="35%" /><img src="images/book-automate-boring-python.jpg" width="35%" /></p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-baayen2008" class="csl-entry">
+Baayen, R. H. 2008. <em>Analyzing Linguistic Data: A Practical Introduction to Statistics Using <span>R</span></em>. Cambridge University Press.
+</div>
+<div id="ref-nltk" class="csl-entry">
+Bird, Steven, Ewan Klein, and Edward Loper. 2009. <em>Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit</em>. " O’Reilly Media, Inc.". <a href="https://www.nltk.org/book/">https://www.nltk.org/book/</a>.
+</div>
+<div id="ref-brezina2018" class="csl-entry">
+Brezina, Vaclav. 2018. <em>Statistics in Corpus Linguistics: A Practical Guide</em>. Cambridge University Press.
+</div>
+<div id="ref-davies2016" class="csl-entry">
+Davies, Tilman M. 2016. <em>The Book of <span>R</span>: A First Course in Programming and Statistics</em>. 1st ed. San Franscisco, US: No Starch Press, Inc.
+</div>
+<div id="ref-gerrard2016" class="csl-entry">
+Gerrard, Paul. 2016. <em>Lean Python: Learn Just Enough Python to Build Useful Tools</em>. Apress.
+</div>
+<div id="ref-gries2016" class="csl-entry">
+Gries, Stefan T. 2016. <em>Quantitative Corpus Linguistics with <span>R</span>: A Practical Introduction</em>. 2nd ed. Routledge.
+</div>
+<div id="ref-gries2021" class="csl-entry">
+———. 2021. <em>Statistics for Linguistics with <span>R</span>: A Practical Introduction. 3rd Edition.</em> 3rd ed. Walter de Gruyter.
+</div>
+<div id="ref-hunston2022" class="csl-entry">
+Hunston, Susan. 2022. <em>Corpora in Applied Linguistics</em>. 2nd ed. Cambridge University Press.
+</div>
+<div id="ref-mcenery2011" class="csl-entry">
+McEnery, Tony, and Andrew Hardie. 2011. <em>Corpus Linguistics: Method, Theory and Practice</em>. Cambridge University Press.
+</div>
+<div id="ref-stefanowitsch2019" class="csl-entry">
+Stefanowitsch, Anatol. 2019. <em>Corpus Linguistics: A Guide to the Methodology.</em> Language Science Press. <a href="http://langsci-press.org/catalog/book/148">http://langsci-press.org/catalog/book/148</a>.
+</div>
+<div id="ref-sweigart2020" class="csl-entry">
+Sweigart, Al. 2020. <em>Automate the Boring Stuff with Python: Practical Programming for Total Beginners. 2nd Edition.</em> No Starch Press.
+</div>
+<div id="ref-hadley2017" class="csl-entry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 1st ed. O’Reilly Media, Inc.
+</div>
+<div id="ref-winter2020" class="csl-entry">
+Winter, Bodo. 2020. <em>Statistics for Linguists: An Introduction Using <span>R</span></em>. Routledge.
+</div>
+<div id="ref-wynne2006" class="csl-entry">
+Wynne, Martin, ed. 2006. <em>Developing Linguistic Corpora—a Guide to Good Practice</em>. EADH: The European Association for Digital Humanities. <a href="https://users.ox.ac.uk/~martinw/dlc/index.htm">https://users.ox.ac.uk/~martinw/dlc/index.htm</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="environment-setup.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

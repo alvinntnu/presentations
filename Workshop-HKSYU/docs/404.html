@@ -54,13 +54,10 @@
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/viz-1.8.2/viz.js"></script>
-<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
-<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+<script src="libs/wordcloud2-binding-0.2.2/wordcloud2.js"></script>
 
 
 <style type="text/css">
@@ -184,6 +181,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#csv-format"><i class="fa fa-check"></i>CSV Format</a></li>
 <li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#directory-format"><i class="fa fa-check"></i>Directory Format</a></li>
 <li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#zipped-file-format"><i class="fa fa-check"></i>Zipped File Format</a></li>
+<li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#encoding-issues"><i class="fa fa-check"></i>Encoding Issues</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html"><i class="fa fa-check"></i>Chinese Word Segmentation</a>
 <ul>
@@ -204,18 +202,22 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i>Applications</a>
 <ul>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#environment"><i class="fa fa-check"></i>Environment</a></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#loading-data"><i class="fa fa-check"></i>Loading Data</a></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#overview-of-the-data-set"><i class="fa fa-check"></i>Overview of the Data Set</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#data-preprocessing-cleaning"><i class="fa fa-check"></i>Data Preprocessing (Cleaning)</a></li>
 <li><a href="applications.html#initialize-jiebar">Initialize <code>jiebaR</code></a></li>
-<li><a href="applications.html#quanteda-framework-1"><code>Quanteda</code> Framework</a></li>
-<li><a href="applications.html#case-study-1-concordances-with-kwic">Case Study 1: Concordances with <code>kwic()</code></a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-2-collocations"><i class="fa fa-check"></i>Case Study 2: Collocations</a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-3-word-frequency-and-wordcloud"><i class="fa fa-check"></i>Case Study 3: Word Frequency and Wordcloud</a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-4-patterns"><i class="fa fa-check"></i>Case Study 4: Patterns</a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-5-lexical-bundles"><i class="fa fa-check"></i>Case Study 5: Lexical Bundles</a>
+<li><a href="applications.html#tidytext-framework-1"><code>Tidytext</code> Framework</a>
 <ul>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#n-grams-extraction"><i class="fa fa-check"></i>N-grams Extraction</a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#frequency-and-dispersion"><i class="fa fa-check"></i>Frequency and Dispersion</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-word-frequency-and-wordcloud"><i class="fa fa-check"></i>Case Study: Word Frequency and Wordcloud</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-patterns"><i class="fa fa-check"></i>Case Study: Patterns</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-lexical-bundles"><i class="fa fa-check"></i>Case Study: Lexical Bundles</a></li>
+</ul></li>
+<li><a href="applications.html#quanteda-framework-1"><code>Quanteda</code> Framework</a>
+<ul>
+<li><a href="applications.html#case-study-concordances-with-kwic">Case Study: Concordances with <code>kwic()</code></a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-comparison-word-cloud"><i class="fa fa-check"></i>Case Study: Comparison Word Cloud</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-2-collocations"><i class="fa fa-check"></i>Case Study 2: Collocations</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#recap"><i class="fa fa-check"></i>Recap</a></li>
 </ul></li>
@@ -290,7 +292,8 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "section"
+"collapse": "section",
+"scroll_highlight": true
 }
 });
 });

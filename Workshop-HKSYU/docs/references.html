@@ -60,7 +60,7 @@
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
-<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+<script src="libs/wordcloud2-binding-0.2.2/wordcloud2.js"></script>
 
 
 <style type="text/css">
@@ -199,24 +199,27 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#chinese-text-analytics-pipeline"><i class="fa fa-check"></i>Chinese Text Analytics Pipeline</a>
 <ul>
 <li><a href="chinese-word-segmentation.html#quanteda-framework"><code>Quanteda</code> Framework</a></li>
-<li><a href="chinese-word-segmentation.html#quanteda-framework-revised"><code>Quanteda</code> Framework: Revised</a></li>
 <li><a href="chinese-word-segmentation.html#tidytext-framework"><code>Tidytext</code> Framework</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i>Applications</a>
 <ul>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#environment"><i class="fa fa-check"></i>Environment</a></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#loading-data"><i class="fa fa-check"></i>Loading Data</a></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#overview-of-the-data-set"><i class="fa fa-check"></i>Overview of the Data Set</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#data-preprocessing-cleaning"><i class="fa fa-check"></i>Data Preprocessing (Cleaning)</a></li>
 <li><a href="applications.html#initialize-jiebar">Initialize <code>jiebaR</code></a></li>
-<li><a href="applications.html#quanteda-framework-1"><code>Quanteda</code> Framework</a></li>
-<li><a href="applications.html#case-study-1-concordances-with-kwic">Case Study 1: Concordances with <code>kwic()</code></a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-2-collocations"><i class="fa fa-check"></i>Case Study 2: Collocations</a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-3-word-frequency-and-wordcloud"><i class="fa fa-check"></i>Case Study 3: Word Frequency and Wordcloud</a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-4-patterns"><i class="fa fa-check"></i>Case Study 4: Patterns</a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-5-lexical-bundles"><i class="fa fa-check"></i>Case Study 5: Lexical Bundles</a>
+<li><a href="applications.html#tidytext-framework-1"><code>Tidytext</code> Framework</a>
 <ul>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#n-grams-extraction"><i class="fa fa-check"></i>N-grams Extraction</a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#frequency-and-dispersion"><i class="fa fa-check"></i>Frequency and Dispersion</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-word-frequency-and-wordcloud"><i class="fa fa-check"></i>Case Study: Word Frequency and Wordcloud</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-patterns"><i class="fa fa-check"></i>Case Study: Patterns</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-lexical-bundles"><i class="fa fa-check"></i>Case Study: Lexical Bundles</a></li>
+</ul></li>
+<li><a href="applications.html#quanteda-framework-1"><code>Quanteda</code> Framework</a>
+<ul>
+<li><a href="applications.html#case-study-concordances-with-kwic">Case Study: Concordances with <code>kwic()</code></a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-comparison-word-cloud"><i class="fa fa-check"></i>Case Study: Comparison Word Cloud</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-collocations"><i class="fa fa-check"></i>Case Study: Collocations</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#recap"><i class="fa fa-check"></i>Recap</a></li>
 </ul></li>
@@ -252,16 +255,10 @@ Baayen, R. H. 2008. <em>Analyzing Linguistic Data: A Practical Introduction to S
 Biber, Douglas, Susan Conrad, and Viviana Cortes. 2004. <span>“If You Look at…: Lexical Bundles in University Teaching and Textbooks.”</span> <em>Applied Linguistics</em> 25 (3): 371–405.
 </div>
 <div class="csl-entry">
-Bird, Steven, Ewan Klein, and Edward Loper. 2009. <em>Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit</em>. " O’Reilly Media, Inc.". <a href="https://www.nltk.org/book/">https://www.nltk.org/book/</a>.
-</div>
-<div class="csl-entry">
 Brezina, Vaclav. 2018. <em>Statistics in Corpus Linguistics: A Practical Guide</em>. Cambridge University Press.
 </div>
 <div class="csl-entry">
 Davies, Tilman M. 2016. <em>The Book of <span>R</span>: A First Course in Programming and Statistics</em>. 1st ed. San Franscisco, US: No Starch Press, Inc.
-</div>
-<div class="csl-entry">
-Gerrard, Paul. 2016. <em>Lean Python: Learn Just Enough Python to Build Useful Tools</em>. Apress.
 </div>
 <div class="csl-entry">
 Gries, Stefan T. 2016. <em>Quantitative Corpus Linguistics with <span>R</span>: A Practical Introduction</em>. 2nd ed. Routledge.
@@ -270,25 +267,13 @@ Gries, Stefan T. 2016. <em>Quantitative Corpus Linguistics with <span>R</span>: 
 ———. 2021. <em>Statistics for Linguistics with <span>R</span>: A Practical Introduction. 3rd Edition.</em> 3rd ed. Walter de Gruyter.
 </div>
 <div class="csl-entry">
-Hunston, Susan. 2022. <em>Corpora in Applied Linguistics</em>. 2nd ed. Cambridge University Press.
-</div>
-<div class="csl-entry">
-McEnery, Tony, and Andrew Hardie. 2011. <em>Corpus Linguistics: Method, Theory and Practice</em>. Cambridge University Press.
-</div>
-<div class="csl-entry">
 Stefanowitsch, Anatol. 2019. <em>Corpus Linguistics: A Guide to the Methodology.</em> Language Science Press. <a href="http://langsci-press.org/catalog/book/148">http://langsci-press.org/catalog/book/148</a>.
-</div>
-<div class="csl-entry">
-Sweigart, Al. 2020. <em>Automate the Boring Stuff with Python: Practical Programming for Total Beginners. 2nd Edition.</em> No Starch Press.
 </div>
 <div class="csl-entry">
 Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 1st ed. O’Reilly Media, Inc.
 </div>
 <div class="csl-entry">
 Winter, Bodo. 2020. <em>Statistics for Linguists: An Introduction Using <span>R</span></em>. Routledge.
-</div>
-<div class="csl-entry">
-Wynne, Martin, ed. 2006. <em>Developing Linguistic Corpora—a Guide to Good Practice</em>. EADH: The European Association for Digital Humanities. <a href="https://users.ox.ac.uk/~martinw/dlc/index.htm">https://users.ox.ac.uk/~martinw/dlc/index.htm</a>.
 </div>
 </div>
 </div>

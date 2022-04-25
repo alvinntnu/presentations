@@ -206,22 +206,22 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#environment"><i class="fa fa-check"></i>Environment</a></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#loading-data"><i class="fa fa-check"></i>Loading Data</a></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#overview-of-the-data-set"><i class="fa fa-check"></i>Overview of the Data Set</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#overview-of-the-corpus"><i class="fa fa-check"></i>Overview of the Corpus</a></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#data-preprocessing-cleaning"><i class="fa fa-check"></i>Data Preprocessing (Cleaning)</a></li>
 <li><a href="applications.html#initialize-jiebar">Initialize <code>jiebaR</code></a></li>
-<li><a href="applications.html#tidytext-framework-1"><code>Tidytext</code> Framework</a>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#tidytext-framework-1"><i class="fa fa-check"></i>Tidytext Framework</a>
 <ul>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-word-frequency-and-wordcloud"><i class="fa fa-check"></i>Case Study: Word Frequency and Wordcloud</a></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-patterns"><i class="fa fa-check"></i>Case Study: Patterns</a></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-lexical-bundles"><i class="fa fa-check"></i>Case Study: Lexical Bundles</a></li>
 </ul></li>
-<li><a href="applications.html#quanteda-framework-1"><code>Quanteda</code> Framework</a>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#quanteda-framework-1"><i class="fa fa-check"></i>Quanteda Framework</a>
 <ul>
 <li><a href="applications.html#case-study-concordances-with-kwic">Case Study: Concordances with <code>kwic()</code></a></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-comparison-word-cloud"><i class="fa fa-check"></i>Case Study: Comparison Word Cloud</a></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#case-study-collocations"><i class="fa fa-check"></i>Case Study: Collocations</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#recap"><i class="fa fa-check"></i>Recap</a></li>
+<li class="chapter" data-level="" data-path="applications.html"><a href="applications.html#conclusion"><i class="fa fa-check"></i>Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -438,8 +438,8 @@ div.csl-indent {
 </ul>
 <p>As these two packages are more optimized for the English language, I will highlight a few important steps that require more attention with respect to Chinese word segmentation.</p>
 <div class="figure"><span style="display:block;" id="fig:cpflowchart"></span>
-<div id="htmlwidget-92ad58657693ec223459" style="width:672px;height:576px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-92ad58657693ec223459">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\nnode[style=filled, color = grey90, penwidth = 0.3, fontcolor = grey30]\nedge[color= grey40, alpha = 0.8, penwidth= 0.4, arrowsize=0.8, arrowhead = normal]\n\n\n## objects\nraw_texts [label = \"Raw Texts\", shape = folder, fillcolor= \"#cccccc\"]\nquanteda [label = \"Quanteda\", shape = folder, fillcolor= \"#f981bb\"]\ntidytext [label = \"Tidytext\", shape = folder, fillcolor= \"#B0E2FC\"]\ntextdf [label = \"Text-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\nworddf [label = \"Word-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\ncorpus [label = \"Corpus Object\", shape = folder, fillcolor= \"#f981bb\"]\ntokens [label = \"Tokens Object\", shape = folder, fillcolor= \"#f981bb\"]\n\n## functions\nf_readtext [label = \"readtext()\", shape=document, fillcolor= \"#96F597\"]\nf_dataframe [label = \"data.frame()\", shape=document, fillcolor= \"#96F597\"]\nf_corpus [label = \"corpus()\", shape=document, fillcolor= \"#96F597\"]\nf_segment [label = \"segment()\", shape=document, fillcolor= \"#96F597\"]\nf_astokens [label = \"as.tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_tokens [label = \"tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_unnest [label = \"unnest_tokens()\", shape=document, fillcolor= \"#96F597\"]\n\n## links\nraw_texts -> tidytext -> f_readtext -> textdf\ntidytext -> f_dataframe -> textdf\n\ntextdf -> f_unnest -> worddf\nraw_texts -> quanteda -> f_segment -> f_astokens -> tokens #[color=orangered, penwidth=5]\n\nquanteda -> f_corpus -> corpus -> f_tokens -> tokens[color=grey80, penwidth = 0.4, style=\"dashed\"]\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e50790e3629e48ca3731" style="width:672px;height:576px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e50790e3629e48ca3731">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\nnode[style=filled, color = grey90, penwidth = 0.3, fontcolor = grey30]\nedge[color= grey40, alpha = 0.8, penwidth= 0.4, arrowsize=0.8, arrowhead = normal]\n\n\n## objects\nraw_texts [label = \"Raw Texts\", shape = folder, fillcolor= \"#cccccc\"]\nquanteda [label = \"Quanteda\", shape = folder, fillcolor= \"#f981bb\"]\ntidytext [label = \"Tidytext\", shape = folder, fillcolor= \"#B0E2FC\"]\ntextdf [label = \"Text-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\nworddf [label = \"Word-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\ncorpus [label = \"Corpus Object\", shape = folder, fillcolor= \"#f981bb\"]\ntokens [label = \"Tokens Object\", shape = folder, fillcolor= \"#f981bb\"]\n\n## functions\nf_readtext [label = \"readtext()\", shape=document, fillcolor= \"#96F597\"]\nf_dataframe [label = \"data.frame()\", shape=document, fillcolor= \"#96F597\"]\nf_corpus [label = \"corpus()\", shape=document, fillcolor= \"#96F597\"]\nf_segment [label = \"segment()\", shape=document, fillcolor= \"#96F597\"]\nf_astokens [label = \"as.tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_tokens [label = \"tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_unnest [label = \"unnest_tokens()\", shape=document, fillcolor= \"#96F597\"]\n\n## links\nraw_texts -> tidytext -> f_readtext -> textdf\ntidytext -> f_dataframe -> textdf\n\ntextdf -> f_unnest -> worddf\nraw_texts -> quanteda -> f_segment -> f_astokens -> tokens #[color=orangered, penwidth=5]\n\nquanteda -> f_corpus -> corpus -> f_tokens -> tokens[color=grey80, penwidth = 0.4, style=\"dashed\"]\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 1: Chinese Text Analytics Flowchart
 </p>
@@ -449,7 +449,7 @@ Figure 1: Chinese Text Analytics Flowchart
 <p>To perform word tokenization using <code>jiebaR</code> under the Quanteda framework, we need to create the <code>tokens</code> object using the <code>segment()</code> from <code>jiebaR</code>.</p>
 <p>The steps are very straightforward. We utilize <code>jiebaR</code> for word tokenization like before:</p>
 <ol style="list-style-type: decimal">
-<li>Initialize a <code>jiebar</code> model;</li>
+<li>Initialize a <code>jiebaR</code> model;</li>
 <li>Use it to tokenize the corpus text with <code>segment()</code>;</li>
 <li>Convert the object into a <code>tokens</code> with <code>as.tokens()</code>.</li>
 </ol>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Environment Setup | Processing Chinese Data with R</title>
+  <title>Introduction | Processing Chinese Data with R</title>
   <meta name="description" content="This website includes the materials for a workshop on Processing Chinese Text Data with R, at Hong Kong Shue Yan University (online)." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Environment Setup | Processing Chinese Data with R" />
+  <meta property="og:title" content="Introduction | Processing Chinese Data with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Environment Setup | Processing Chinese Data with R" />
+  <meta name="twitter:title" content="Introduction | Processing Chinese Data with R" />
   
   <meta name="twitter:description" content="This website includes the materials for a workshop on Processing Chinese Text Data with R, at Hong Kong Shue Yan University (online)." />
   
@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="loading-text-data.html"/>
+<link rel="next" href="environment-setup.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -164,12 +164,13 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Workshop</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-the-workshop"><i class="fa fa-check"></i>Structure of the Workshop</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#data"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i>Materials</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#structure-of-the-workshop"><i class="fa fa-check"></i>Structure of the Workshop</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#resources"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="environment-setup.html"><a href="environment-setup.html"><i class="fa fa-check"></i>Environment Setup</a>
 <ul>
@@ -244,120 +245,76 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="environment-setup" class="section level1">
-<h1>Environment Setup</h1>
-<div id="r-and-rstudio" class="section level2">
-<h2>R and RStudio</h2>
-<p>In this workshop, I expect that all the participants have installed an working <a href="https://www.r-project.org/">R</a> environment and the IDE <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a> in their workstation.</p>
-</div>
-<div id="libraries" class="section level2">
-<h2>Libraries</h2>
-<p>There are many useful and effective R libraries for text processing. I would highly recommend the official webpage, <a href="https://cran.r-project.org/web/views/">CRAN Task Views</a>, which provides a theme-based categorization of the R libraries.</p>
-<p>Of particular relevance in this workshop is the CRAN Task Topic – <a href="https://cran.r-project.org/web/views/NaturalLanguageProcessing.html"><strong>Natural Language Processing</strong></a>.</p>
-<p>Specifically, in this workshop, I will use the following libraries. Based on my experiences with data processing, I think these libraries are quite effective and easy to learn.</p>
+<div id="introduction" class="section level1 unnumbered">
+<h1>Introduction</h1>
+<p>The theme of this workshop is Chinese text processing with R. I will introduce a few useful R libraries that can be utilized for text analytic tasks. Also, I will focus on an important step in Chinese processing, namely, the word segmentation/tokenization, and show how to attend to this step in the pipeline. Finally, I will demonstrate a few potential applications of data analysis &amp; visualization with the help of the attractive informative graphs with R.</p>
+<div id="structure-of-the-workshop" class="section level2 unnumbered">
+<h2>Structure of the Workshop</h2>
 <ul>
-<li><a href="https://www.tidyverse.org/packages/#installation-and-use"><code>tidyverse</code></a>: This library includes a collection of useful R libraries for data analysis.</li>
-<li><a href="https://quanteda.io/"><code>quanteda</code></a>: This library provides many useful functions for exploratory quantitative text analysis.</li>
-<li><a href="https://github.com/juliasilge/tidytext"><code>tidytext</code></a>: This library provides many useful functions for computational text analysis under the same tidy structure framework.</li>
-<li><a href="https://github.com/qinwf/jiebaR"><code>jiebar</code></a>: This library provides functions for Chinese tokenization (i.e., word segmentation).</li>
-<li><a href="https://github.com/quanteda/readtext"><code>readtext</code></a>: This library provides functions for effectively importing text files into R.</li>
+<li>Environment Setup</li>
+<li>Loading Text Data</li>
+<li>Chinese Word Segmentation</li>
+<li>Applications</li>
 </ul>
-<p>These libraries can be easily installed in R using the following codes:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb3-1"><a href="environment-setup.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Install these libraries if you haven&#39;t</span></span>
-<span id="cb3-2"><a href="environment-setup.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb3-3"><a href="environment-setup.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;quanteda&quot;</span>)</span>
-<span id="cb3-4"><a href="environment-setup.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;quanteda.textplots&quot;</span>)</span>
-<span id="cb3-5"><a href="environment-setup.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;quanteda.textstats&quot;</span>)</span>
-<span id="cb3-6"><a href="environment-setup.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;readtext&quot;</span>)</span>
-<span id="cb3-7"><a href="environment-setup.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidytext&quot;</span>)</span>
-<span id="cb3-8"><a href="environment-setup.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;jiebaR&quot;</span>)</span>
-<span id="cb3-9"><a href="environment-setup.html#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span></code></pre></div>
 </div>
-<div id="environment-checking" class="section level2 unnumbered">
-<h2>Environment Checking</h2>
-<p>The R Version to produce these lecture notes: R version 4.1.2 (2021-11-01).</p>
-<p>After you install the libraries, you can import these libraries in the current R session for the later use:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb4-1"><a href="environment-setup.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Importing libraries</span></span>
-<span id="cb4-2"><a href="environment-setup.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-3"><a href="environment-setup.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda)</span>
-<span id="cb4-4"><a href="environment-setup.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda.textplots)</span>
-<span id="cb4-5"><a href="environment-setup.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda.textstats)</span>
-<span id="cb4-6"><a href="environment-setup.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readtext)</span>
-<span id="cb4-7"><a href="environment-setup.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb4-8"><a href="environment-setup.html#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jiebaR)</span>
-<span id="cb4-9"><a href="environment-setup.html#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span>
-<span id="cb4-10"><a href="environment-setup.html#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="environment-setup.html#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="environment-setup.html#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking library versions</span></span>
-<span id="cb4-13"><a href="environment-setup.html#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb4-14"><a href="environment-setup.html#cb4-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&#39;1.3.1&#39;</span></span>
-<span id="cb4-15"><a href="environment-setup.html#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;quanteda&quot;</span>)</span>
-<span id="cb4-16"><a href="environment-setup.html#cb4-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&#39;3.2.1&#39;</span></span>
-<span id="cb4-17"><a href="environment-setup.html#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;quanteda.textplots&quot;</span>)</span>
-<span id="cb4-18"><a href="environment-setup.html#cb4-18" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&#39;0.94.1&#39;</span></span>
-<span id="cb4-19"><a href="environment-setup.html#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;quanteda.textstats&quot;</span>)</span>
-<span id="cb4-20"><a href="environment-setup.html#cb4-20" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&#39;0.95&#39;</span></span>
-<span id="cb4-21"><a href="environment-setup.html#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;tidytext&quot;</span>)</span>
-<span id="cb4-22"><a href="environment-setup.html#cb4-22" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&#39;0.3.2&#39;</span></span>
-<span id="cb4-23"><a href="environment-setup.html#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;jiebaR&quot;</span>)</span>
-<span id="cb4-24"><a href="environment-setup.html#cb4-24" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&#39;0.11&#39;</span></span>
-<span id="cb4-25"><a href="environment-setup.html#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
-<span id="cb4-26"><a href="environment-setup.html#cb4-26" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&#39;0.2.2&#39;</span></span></code></pre></div>
-<p>Or alternatively, we can run the function <code>sessionInfo()</code> to get an overview of the current R environment:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb5-1"><a href="environment-setup.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Check the session info</span></span>
-<span id="cb5-2"><a href="environment-setup.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre class="Rout"><code>R version 4.1.2 (2021-11-01)
-Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
-
-Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
-
-locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
- [1] wordcloud2_0.2.2          jiebaR_0.11              
- [3] jiebaRD_0.1               tidytext_0.3.2           
- [5] readtext_0.81             quanteda.textstats_0.95  
- [7] quanteda.textplots_0.94.1 quanteda_3.2.1           
- [9] forcats_0.5.1             stringr_1.4.0            
-[11] dplyr_1.0.7               purrr_0.3.4              
-[13] readr_2.1.1               tidyr_1.1.4              
-[15] tibble_3.1.6              ggplot2_3.3.5            
-[17] tidyverse_1.3.1           showtext_0.9-4           
-[19] showtextdb_3.0            sysfonts_0.8.5           
-
-loaded via a namespace (and not attached):
- [1] fs_1.5.2           lubridate_1.8.0    httr_1.4.2         SnowballC_0.7.0   
- [5] tools_4.1.2        backports_1.4.1    bslib_0.3.1        utf8_1.2.2        
- [9] R6_2.5.1           DBI_1.1.2          colorspace_2.0-2   withr_2.4.3       
-[13] tidyselect_1.1.1   compiler_4.1.2     cli_3.1.0          rvest_1.0.2       
-[17] xml2_1.3.3         bookdown_0.24      sass_0.4.0         scales_1.1.1      
-[21] digest_0.6.29      rmarkdown_2.11     pkgconfig_2.0.3    htmltools_0.5.2   
-[25] dbplyr_2.1.1       fastmap_1.1.0      highr_0.9          htmlwidgets_1.5.4 
-[29] rlang_0.4.12       readxl_1.3.1       rstudioapi_0.13    jquerylib_0.1.4   
-[33] generics_0.1.1     jsonlite_1.7.2     tokenizers_0.2.1   magrittr_2.0.1    
-[37] Matrix_1.4-0       Rcpp_1.0.8.3       munsell_0.5.0      fansi_0.5.0       
-[41] lifecycle_1.0.1    stringi_1.7.6      yaml_2.2.1         grid_4.1.2        
-[45] crayon_1.4.2       lattice_0.20-45    haven_2.4.3        hms_1.1.1         
-[49] knitr_1.37         pillar_1.6.4       stopwords_2.3      fastmatch_1.1-3   
-[53] reprex_2.0.1       glue_1.6.0         evaluate_0.14      data.table_1.14.2 
-[57] RcppParallel_5.1.4 modelr_0.1.8       vctrs_0.3.8        tzdb_0.2.0        
-[61] cellranger_1.1.0   gtable_0.3.0       assertthat_0.2.1   xfun_0.29         
-[65] broom_0.7.11       janeaustenr_0.1.5  nsyllable_1.0      ellipsis_0.3.2    </code></pre>
+<div id="data" class="section level2 unnumbered">
+<h2>Data</h2>
+<p>All the data sets and the R scripts used in this workshop can be downloaded <a href="https://www.dropbox.com/s/lazjc5f1mgr8nfu/WorkshopHKSYU.zip?dl=0"><code>here</code></a> as a zipped file: <code>WorkshopHKSYU.zip</code>.</p>
+<p>After downloading the file, please unzip the file and you will see a new directory, <code>WorkshopHKSYU</code>.</p>
+<p>In this directory, you will find all the R script files (<code>WorkshopHKSYU/*.R</code>) and a sub-directory (<code>WorkshopHKSYU/demo_data</code>) required for this workshop.</p>
+<p>Please double click the R script file to start your RStudio/R.</p>
+</div>
+<div id="materials" class="section level2 unnumbered">
+<h2>Materials</h2>
 <div class="try">
-<p>If your R version is older than the above one, please consider updating your R. Details about updating R can be found in:</p>
-<ul>
-<li><a href="https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol">3 Methods to Update R &amp; Rstudio (For Windows &amp; Mac)</a></li>
-<li><a href="https://bookdown.org/pdr_higgins/rmrwr/updating-r-rstudio-and-your-packages.html">Updating R, Rstudio, and Your Packages</a></li>
-</ul>
+<p>In the workshop notes, the text boxes in light blue refer to the R codes that you need to run in the R console. The text boxes in black background show the outputs of the code processing.</p>
+<p>We will follow this presentation convention throughout the entire notes.</p>
 </div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&#39;Hello! R!&#39;</span>)</span></code></pre></div>
+<pre class="Rout"><code>[1] &quot;Hello! R!&quot;</code></pre>
+</div>
+<div id="resources" class="section level2 unnumbered">
+<h2>Resources</h2>
+<ul>
+<li>R Fundamentals <span class="citation">(<a href="#ref-hadley2017" role="doc-biblioref">Wickham and Grolemund 2017</a>; <a href="#ref-davies2016" role="doc-biblioref">Davies 2016</a>)</span></li>
+</ul>
+<p><img src="images/r4dbook.png" width="35%" /><img src="images/book-R-cover.png" width="35%" /></p>
+<ul>
+<li>Corpus Processing <span class="citation">(<a href="#ref-gries2016" role="doc-biblioref">Gries 2016</a>; <a href="#ref-stefanowitsch2019" role="doc-biblioref">Stefanowitsch 2019</a>)</span></li>
+</ul>
+<p><img src="images/qclwr-cover.jpg" width="35%" /><img src="images/stefanowitch-book.png" width="35%" /></p>
+<ul>
+<li>Statistics <span class="citation">(<a href="#ref-gries2021" role="doc-biblioref">Gries 2021</a>; <a href="#ref-baayen2008" role="doc-biblioref">Baayen 2008</a>; <a href="#ref-brezina2018" role="doc-biblioref">Brezina 2018</a>; <a href="#ref-winter2020" role="doc-biblioref">Winter 2020</a>)</span></li>
+</ul>
+<p><img src="images/gries-stats-cover.jpeg" width="35%" /><img src="images/baayen-2008.jpg" width="35%" /><img src="images/brezina-2018.jpg" width="35%" /><img src="images/winter-2020.jpg" width="35%" /></p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-baayen2008" class="csl-entry">
+Baayen, R. H. 2008. <em>Analyzing Linguistic Data: A Practical Introduction to Statistics Using <span>R</span></em>. Cambridge University Press.
+</div>
+<div id="ref-brezina2018" class="csl-entry">
+Brezina, Vaclav. 2018. <em>Statistics in Corpus Linguistics: A Practical Guide</em>. Cambridge University Press.
+</div>
+<div id="ref-davies2016" class="csl-entry">
+Davies, Tilman M. 2016. <em>The Book of <span>R</span>: A First Course in Programming and Statistics</em>. 1st ed. San Franscisco, US: No Starch Press, Inc.
+</div>
+<div id="ref-gries2016" class="csl-entry">
+Gries, Stefan T. 2016. <em>Quantitative Corpus Linguistics with <span>R</span>: A Practical Introduction</em>. 2nd ed. Routledge.
+</div>
+<div id="ref-gries2021" class="csl-entry">
+———. 2021. <em>Statistics for Linguistics with <span>R</span>: A Practical Introduction. 3rd Edition.</em> 3rd ed. Walter de Gruyter.
+</div>
+<div id="ref-stefanowitsch2019" class="csl-entry">
+Stefanowitsch, Anatol. 2019. <em>Corpus Linguistics: A Guide to the Methodology.</em> Language Science Press. <a href="http://langsci-press.org/catalog/book/148">http://langsci-press.org/catalog/book/148</a>.
+</div>
+<div id="ref-hadley2017" class="csl-entry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 1st ed. O’Reilly Media, Inc.
+</div>
+<div id="ref-winter2020" class="csl-entry">
+Winter, Bodo. 2020. <em>Statistics for Linguists: An Introduction Using <span>R</span></em>. Routledge.
 </div>
 </div>
             </section>
@@ -366,7 +323,7 @@ loaded via a namespace (and not attached):
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="loading-text-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="environment-setup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

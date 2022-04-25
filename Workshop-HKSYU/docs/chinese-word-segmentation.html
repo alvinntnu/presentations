@@ -180,7 +180,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html"><i class="fa fa-check"></i>Loading Text Data</a>
 <ul>
 <li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#text-data-types"><i class="fa fa-check"></i>Text Data Types</a></li>
-<li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#libraries-1"><i class="fa fa-check"></i>Libraries</a></li>
+<li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#data-description"><i class="fa fa-check"></i>Data Description</a></li>
 <li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#csv-format"><i class="fa fa-check"></i>CSV Format</a></li>
 <li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#directory-format"><i class="fa fa-check"></i>Directory Format</a></li>
 <li class="chapter" data-level="" data-path="loading-text-data.html"><a href="loading-text-data.html#zipped-file-format"><i class="fa fa-check"></i>Zipped File Format</a></li>
@@ -190,8 +190,8 @@ div.csl-indent {
 <ul>
 <li><a href="chinese-word-segmentation.html#chinese-word-segmenter-jiebar">Chinese Word Segmenter <code>jiebaR</code></a>
 <ul>
-<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#start"><i class="fa fa-check"></i>Start</a></li>
-<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#parameters-setting"><i class="fa fa-check"></i>Parameters Setting</a></li>
+<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#a-quick-example"><i class="fa fa-check"></i>A Quick Example</a></li>
+<li><a href="chinese-word-segmentation.html#parameters-setting-of-jiebar">Parameters Setting of <code>jiebaR</code></a></li>
 <li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#user-defined-dictionary"><i class="fa fa-check"></i>User-defined dictionary</a></li>
 <li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#stopwords"><i class="fa fa-check"></i>Stopwords</a></li>
 <li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#pos-tagging"><i class="fa fa-check"></i>POS Tagging</a></li>
@@ -255,24 +255,29 @@ div.csl-indent {
 <span id="cb15-7"><a href="chinese-word-segmentation.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jiebaR)</span>
 <span id="cb15-8"><a href="chinese-word-segmentation.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span>
 <span id="cb15-9"><a href="chinese-word-segmentation.html#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="chinese-word-segmentation.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Uncomment to set locale</span></span>
-<span id="cb15-11"><a href="chinese-word-segmentation.html#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Sys.setlocale(category = &quot;LC_ALL&quot;, locale = &quot;cht&quot;)</span></span></code></pre></div>
-<p>Before we perform any analysis on the Chinese data, we need to fix the issue of word tokenization. Unlike English, where each word token is delimited by white spaces, Chinese word tokens are much less straightforward.A word, however, is an important semantic unit in many corpus analysis.</p>
+<span id="cb15-10"><a href="chinese-word-segmentation.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Windows-only</span></span>
+<span id="cb15-11"><a href="chinese-word-segmentation.html#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Uncomment to set locale</span></span>
+<span id="cb15-12"><a href="chinese-word-segmentation.html#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Sys.setlocale(category = &quot;LC_ALL&quot;, locale = &quot;cht&quot;)</span></span></code></pre></div>
+<p>Before we perform any analysis on the Chinese data, we need to fix the issue of word tokenization.</p>
+<p>Unlike English, where each word token is delimited by white spaces, Chinese word tokens are much less straightforward. A word, however, is an important semantic unit in many linguistic analysis.</p>
 <p>In this workshop, I will introduce a frequently used library, <code>jiebaR</code>, for Chinese word segmentation.</p>
 <div id="chinese-word-segmenter-jiebar" class="section level2">
 <h2>Chinese Word Segmenter <code>jiebaR</code></h2>
-<div id="start" class="section level3">
-<h3>Start</h3>
-<p>Now let us take a look at a quick example. Let us assume that in our corpus, we have collected only one text document, with only a short paragraph.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb16-1"><a href="chinese-word-segmentation.html#cb16-1" aria-hidden="true" tabindex="-1"></a>sents <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;綠黨桃園市議員王浩宇爆料，指民眾黨不分區被提名人蔡壁如、黃瀞瑩，在昨（6）日才請辭是為領年終獎金。台灣民眾黨主席、台北市長柯文哲7日受訪時則說，都是按流程走，不要把人家想得這麼壞。&quot;</span>,</span>
-<span id="cb16-2"><a href="chinese-word-segmentation.html#cb16-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;新北消防救護人員說，119在疫情的期間，除肩負協助確診患者送醫的任務，仍需負擔每天超過500件以上的緊急救護案件，疫情期間稍一不慎，極可能造成到院前，緊急救護能量和醫療體系的崩壞；目前確診案件不斷的增加，國家面臨疫情是在清零與共存政策間的戰略上，指引的調整勢必勢在必行。&quot;</span>)</span></code></pre></div>
-<p>There are two important steps in Chinese word segmentation:</p>
+<div id="a-quick-example" class="section level3">
+<h3>A Quick Example</h3>
+<p>Now let’s take a look at a quick example. Let’s assume that in our corpus, we have collected only two documents, each consisting of only one short paragraph.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb16-1"><a href="chinese-word-segmentation.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple corpus data</span></span>
+<span id="cb16-2"><a href="chinese-word-segmentation.html#cb16-2" aria-hidden="true" tabindex="-1"></a>sents <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;綠黨桃園市議員王浩宇爆料，指民眾黨不分區被提名人蔡壁如、黃瀞瑩，在昨（6）日才請辭是為領年終獎金。台灣民眾黨主席、台北市長柯文哲7日受訪時則說，都是按流程走，不要把人家想得這麼壞。&quot;</span>,</span>
+<span id="cb16-3"><a href="chinese-word-segmentation.html#cb16-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;新北消防救護人員說，119在疫情的期間，除肩負協助確診患者送醫的任務，仍需負擔每天超過500件以上的緊急救護案件，疫情期間稍一不慎，極可能造成到院前，緊急救護能量和醫療體系的崩壞；目前確診案件不斷的增加，國家面臨疫情是在清零與共存政策間的戰略上，指引的調整勢必勢在必行。&quot;</span>)</span></code></pre></div>
+<p>To use <code>jiebaR</code>, there are two important steps:</p>
 <ul>
-<li><em>Initialize</em> a <code>jiebar</code> object using <code>worker()</code></li>
-<li><em>Tokenize</em> the texts into words using the function <code>segment()</code> with the designated <code>jiebar</code> object created earlier</li>
+<li><strong>Initialize</strong> a <code>jiebar</code> object using <code>worker()</code></li>
+<li><strong>Tokenize</strong> the texts into words using the function <code>segment()</code> with the initialized <code>jiebaR</code> object created earlier</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb17-1"><a href="chinese-word-segmentation.html#cb17-1" aria-hidden="true" tabindex="-1"></a>seg1 <span class="ot">&lt;-</span> <span class="fu">worker</span>()</span>
-<span id="cb17-2"><a href="chinese-word-segmentation.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">segment</span>(sents, <span class="at">jiebar =</span> seg1)</span></code></pre></div>
+<p>For example, in the following code chunk, we first initialize a <code>jiebaR</code> object, i.e., <code>seg1</code>, using <code>worker()</code> and use this as our segmentation model to tokenize our texts into words with <code>segment(sents, jiebar = seg1)</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb17-1"><a href="chinese-word-segmentation.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## quicl example of word-seg</span></span>
+<span id="cb17-2"><a href="chinese-word-segmentation.html#cb17-2" aria-hidden="true" tabindex="-1"></a>seg1 <span class="ot">&lt;-</span> <span class="fu">worker</span>()</span>
+<span id="cb17-3"><a href="chinese-word-segmentation.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">segment</span>(sents, <span class="at">jiebar =</span> seg1)</span></code></pre></div>
 <pre class="Rout"><code>  [1] &quot;綠黨&quot;     &quot;桃園市&quot;   &quot;議員&quot;     &quot;王浩宇&quot;   &quot;爆料&quot;     &quot;指民眾&quot;  
   [7] &quot;黨&quot;       &quot;不&quot;       &quot;分區&quot;     &quot;被&quot;       &quot;提名&quot;     &quot;人&quot;      
  [13] &quot;蔡壁如&quot;   &quot;黃&quot;       &quot;瀞&quot;       &quot;瑩&quot;       &quot;在昨&quot;     &quot;6&quot;       
@@ -293,27 +298,31 @@ div.csl-indent {
 [103] &quot;面臨&quot;     &quot;疫情&quot;     &quot;是&quot;       &quot;在&quot;       &quot;清零&quot;     &quot;與&quot;      
 [109] &quot;共存&quot;     &quot;政策&quot;     &quot;間&quot;       &quot;的&quot;       &quot;戰略&quot;     &quot;上&quot;      
 [115] &quot;指引&quot;     &quot;的&quot;       &quot;調整&quot;     &quot;勢必&quot;     &quot;勢在必行&quot;</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb19-1"><a href="chinese-word-segmentation.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(seg1)</span></code></pre></div>
-<pre class="Rout"><code>[1] &quot;jiebar&quot;  &quot;segment&quot; &quot;jieba&quot;  </code></pre>
-<p>To word-tokenize the document, <code>text</code>, you first initialize a <code>jiebar</code> object, i.e., <code>seg1</code>, using <code>worker()</code> and feed this <code>jiebar</code> to <code>segment(jiebar = seg1)</code>and tokenize <code>text</code> into words.</p>
 </div>
-<div id="parameters-setting" class="section level3">
-<h3>Parameters Setting</h3>
-<p>There are many different parameters you can specify when you initialize the <code>jiebar</code> object. You may get more detail via the documentation <code>?worker()</code>. Some of the important arguments include:</p>
+<div id="parameters-setting-of-jiebar" class="section level3">
+<h3>Parameters Setting of <code>jiebaR</code></h3>
+<p>There are many different parameters we can specify when we initialize the <code>jiebar</code> object (See the documentation in <code>?work()</code>).</p>
+<p>Important parameters include:</p>
 <ul>
-<li><code>user = ...</code>: This argument is to specify the path to a user-defined dictionary</li>
-<li><code>stop_word = ...</code>: This argument is to specify the path to a stopword list</li>
-<li><code>symbol = FALSE</code>: Whether to return symbols (the default is FALSE)</li>
+<li><code>type = ...</code>: The type of the segmenter’s model</li>
+<li><code>user = ...</code>: A path to the user-defined dictionary</li>
+<li><code>stop_word = ...</code>: A path to the stopword list</li>
+<li><code>symbol = FALSE</code>: Whether to return symbols (the default is <code>FALSE</code>, i.e., <code>jiebaR</code> removes tokens symbols by default)</li>
 <li><code>bylines = FALSE</code>: Whether to return a list or not (crucial if you are using <code>tidytext::unnest_tokens()</code>)</li>
 </ul>
 </div>
 <div id="user-defined-dictionary" class="section level3">
 <h3>User-defined dictionary</h3>
-<p>From the above example, it is clear to see that some of the words have not been correctly identified by the current segmenter: for example, <code>民眾黨</code>, <code>不分區</code>, <code>黃瀞瑩</code>, <code>柯文哲</code>.</p>
+<p>From the above example, it is clear to see that some of the words have not been correctly identified by <code>jiebaR</code>: for example, <code>民眾黨</code>, <code>不分區</code>, <code>黃瀞瑩</code>, <code>柯文哲</code>.</p>
 <p>It is always recommended to include a user-defined dictionary when tokenizing your texts because different corpora may have their own <strong>unique</strong> vocabulary (i.e., <strong>domain-specific</strong> lexicon).</p>
-<p>This can be done with the argument <code>user = ...</code> when you initialize the <code>jiebar</code> object, i.e, <code>worker(..., user = ...)</code>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb21-1"><a href="chinese-word-segmentation.html#cb21-1" aria-hidden="true" tabindex="-1"></a>seg2 <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">user =</span> <span class="st">&quot;demo_data/dict-ch-user-demo.txt&quot;</span>)</span>
-<span id="cb21-2"><a href="chinese-word-segmentation.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">segment</span>(sents, seg2)</span></code></pre></div>
+<p>So, we can pack all new words in one text file:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb19-1"><a href="chinese-word-segmentation.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## check user-dictionary file</span></span>
+<span id="cb19-2"><a href="chinese-word-segmentation.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;demo_data/dict-ch-user-demo.txt&quot;</span>, <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span></code></pre></div>
+<pre class="Rout"><code>[1] &quot;民眾黨&quot; &quot;不分區&quot; &quot;黃瀞瑩&quot; &quot;柯文哲&quot;</code></pre>
+<p>And include this user-defined dictionary path when initializing the <code>jiebaR</code>:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb21-1"><a href="chinese-word-segmentation.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## User-defined dictionary</span></span>
+<span id="cb21-2"><a href="chinese-word-segmentation.html#cb21-2" aria-hidden="true" tabindex="-1"></a>seg2 <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">user =</span> <span class="st">&quot;demo_data/dict-ch-user-demo.txt&quot;</span>)</span>
+<span id="cb21-3"><a href="chinese-word-segmentation.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">segment</span>(sents, seg2)</span></code></pre></div>
 <pre class="Rout"><code>  [1] &quot;綠黨&quot;     &quot;桃園市&quot;   &quot;議員&quot;     &quot;王浩宇&quot;   &quot;爆料&quot;     &quot;指&quot;      
   [7] &quot;民眾黨&quot;   &quot;不分區&quot;   &quot;被&quot;       &quot;提名&quot;     &quot;人&quot;       &quot;蔡壁如&quot;  
  [13] &quot;黃瀞瑩&quot;   &quot;在昨&quot;     &quot;6&quot;        &quot;日&quot;       &quot;才&quot;       &quot;請辭&quot;    
@@ -334,25 +343,23 @@ div.csl-indent {
 [103] &quot;清零&quot;     &quot;與&quot;       &quot;共存&quot;     &quot;政策&quot;     &quot;間&quot;       &quot;的&quot;      
 [109] &quot;戰略&quot;     &quot;上&quot;       &quot;指引&quot;     &quot;的&quot;       &quot;調整&quot;     &quot;勢必&quot;    
 [115] &quot;勢在必行&quot;</code></pre>
-<div class="dnager">
+<div class="try">
 <p>The format of the user-defined dictionary is a text file, with one word per line. Also, the default encoding of the dictionary is <strong>UTF-8</strong>.</p>
 <p>Please note that in Windows, the default encoding of a Chinese <code>txt</code> file created by Notepad may not be UTF-8. (Usually, it is encoded in <strong>big-5</strong>).</p>
 <p>Also, files created by MS Office applications tend to be less transparent in terms of their encoding.</p>
 </div>
-<p>:::{.info}
-Creating a user-defined dictionary may take a lot of time. You may consult <a href="https://pinyin.sogou.com/dict/">搜狗詞庫</a>, which includes many domain-specific dictionaries created by others.</p>
-<p>However, it should be noted that the format of the dictionaries is <code>.scel</code>. You may need to convert the <code>.scel</code> to <code>.txt</code> before you use it in <code>jiebaR</code>.</p>
-<p>To do the conversion automatically, please consult the library <a href="https://github.com/qinwf/cidian"><code>cidian</code></a>.</p>
-<p>Also, you need to do the traditional-simplified Chinese conversion as well. For this, you may consult the library <a href="https://github.com/qinwf/ropencc"><code>ropencc</code></a> in R.
-:::{.info}</p>
 </div>
 <div id="stopwords" class="section level3">
 <h3>Stopwords</h3>
-<p>When you initialize the <code>worker()</code>, you can also specify a <strong>stopword</strong> list, i.e., words that you do not need to include in the later analyses.</p>
-<p>For example, in text mining, functional words are usually less informative, thus often excluded in the process of preprocessing.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb23-1"><a href="chinese-word-segmentation.html#cb23-1" aria-hidden="true" tabindex="-1"></a>seg3 <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">user =</span> <span class="st">&quot;demo_data/dict-ch-user-demo.txt&quot;</span>,</span>
-<span id="cb23-2"><a href="chinese-word-segmentation.html#cb23-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">stop_word =</span> <span class="st">&quot;demo_data/stopwords-ch-demo.txt&quot;</span>)</span>
-<span id="cb23-3"><a href="chinese-word-segmentation.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">segment</span>(sents, seg3)</span></code></pre></div>
+<p>When we initialize the <code>worker()</code>, we can also specify a <strong>stopword</strong> list, i.e., words that we do not need to include in the later analyses.</p>
+<p>For example, in text mining, functional words are usually less informative, thus often excluded in data processing.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb23-1"><a href="chinese-word-segmentation.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## check stopword demo file</span></span>
+<span id="cb23-2"><a href="chinese-word-segmentation.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;demo_data/stopwords-ch-demo.txt&quot;</span>, <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span></code></pre></div>
+<pre class="Rout"><code>[1] &quot;日&quot; &quot;都&quot; &quot;是&quot; &quot;的&quot;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb25-1"><a href="chinese-word-segmentation.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Stopwords</span></span>
+<span id="cb25-2"><a href="chinese-word-segmentation.html#cb25-2" aria-hidden="true" tabindex="-1"></a>seg3 <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">user =</span> <span class="st">&quot;demo_data/dict-ch-user-demo.txt&quot;</span>,</span>
+<span id="cb25-3"><a href="chinese-word-segmentation.html#cb25-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">stop_word =</span> <span class="st">&quot;demo_data/stopwords-ch-demo.txt&quot;</span>)</span>
+<span id="cb25-4"><a href="chinese-word-segmentation.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">segment</span>(sents, seg3)</span></code></pre></div>
 <pre class="Rout"><code>  [1] &quot;綠黨&quot;     &quot;桃園市&quot;   &quot;議員&quot;     &quot;王浩宇&quot;   &quot;爆料&quot;     &quot;指&quot;      
   [7] &quot;民眾黨&quot;   &quot;不分區&quot;   &quot;被&quot;       &quot;提名&quot;     &quot;人&quot;       &quot;蔡壁如&quot;  
  [13] &quot;黃瀞瑩&quot;   &quot;在昨&quot;     &quot;6&quot;        &quot;才&quot;       &quot;請辭&quot;     &quot;為領&quot;    
@@ -360,28 +367,27 @@ Creating a user-defined dictionary may take a lot of time. You may consult <a hr
  [25] &quot;柯文哲&quot;   &quot;7&quot;        &quot;受訪&quot;     &quot;時則&quot;     &quot;說&quot;       &quot;按&quot;      
  [31] &quot;流程&quot;     &quot;走&quot;       &quot;不要&quot;     &quot;把&quot;       &quot;人家&quot;     &quot;想得&quot;    
  [37] &quot;這麼&quot;     &quot;壞&quot;       &quot;新北&quot;     &quot;消防&quot;     &quot;救護&quot;     &quot;人員&quot;    
- [43] &quot;說&quot;       &quot;119&quot;      &quot;在&quot;       &quot;疫情&quot;     &quot;的&quot;       &quot;期間&quot;    
- [49] &quot;除&quot;       &quot;肩負&quot;     &quot;協助&quot;     &quot;確診&quot;     &quot;患者&quot;     &quot;送醫&quot;    
- [55] &quot;的&quot;       &quot;任務&quot;     &quot;仍&quot;       &quot;需&quot;       &quot;負擔&quot;     &quot;每天&quot;    
- [61] &quot;超過&quot;     &quot;500&quot;      &quot;件&quot;       &quot;以上&quot;     &quot;的&quot;       &quot;緊急&quot;    
- [67] &quot;救護&quot;     &quot;案件&quot;     &quot;疫情&quot;     &quot;期間&quot;     &quot;稍&quot;       &quot;一&quot;      
- [73] &quot;不慎&quot;     &quot;極&quot;       &quot;可能&quot;     &quot;造成&quot;     &quot;到&quot;       &quot;院前&quot;    
- [79] &quot;緊急&quot;     &quot;救護&quot;     &quot;能量&quot;     &quot;和&quot;       &quot;醫療&quot;     &quot;體系&quot;    
- [85] &quot;的&quot;       &quot;崩壞&quot;     &quot;目前&quot;     &quot;確診&quot;     &quot;案件&quot;     &quot;不斷&quot;    
- [91] &quot;的&quot;       &quot;增加&quot;     &quot;國家&quot;     &quot;面臨&quot;     &quot;疫情&quot;     &quot;在&quot;      
- [97] &quot;清零&quot;     &quot;與&quot;       &quot;共存&quot;     &quot;政策&quot;     &quot;間&quot;       &quot;的&quot;      
-[103] &quot;戰略&quot;     &quot;上&quot;       &quot;指引&quot;     &quot;的&quot;       &quot;調整&quot;     &quot;勢必&quot;    
-[109] &quot;勢在必行&quot;</code></pre>
+ [43] &quot;說&quot;       &quot;119&quot;      &quot;在&quot;       &quot;疫情&quot;     &quot;期間&quot;     &quot;除&quot;      
+ [49] &quot;肩負&quot;     &quot;協助&quot;     &quot;確診&quot;     &quot;患者&quot;     &quot;送醫&quot;     &quot;任務&quot;    
+ [55] &quot;仍&quot;       &quot;需&quot;       &quot;負擔&quot;     &quot;每天&quot;     &quot;超過&quot;     &quot;500&quot;     
+ [61] &quot;件&quot;       &quot;以上&quot;     &quot;緊急&quot;     &quot;救護&quot;     &quot;案件&quot;     &quot;疫情&quot;    
+ [67] &quot;期間&quot;     &quot;稍&quot;       &quot;一&quot;       &quot;不慎&quot;     &quot;極&quot;       &quot;可能&quot;    
+ [73] &quot;造成&quot;     &quot;到&quot;       &quot;院前&quot;     &quot;緊急&quot;     &quot;救護&quot;     &quot;能量&quot;    
+ [79] &quot;和&quot;       &quot;醫療&quot;     &quot;體系&quot;     &quot;崩壞&quot;     &quot;目前&quot;     &quot;確診&quot;    
+ [85] &quot;案件&quot;     &quot;不斷&quot;     &quot;增加&quot;     &quot;國家&quot;     &quot;面臨&quot;     &quot;疫情&quot;    
+ [91] &quot;在&quot;       &quot;清零&quot;     &quot;與&quot;       &quot;共存&quot;     &quot;政策&quot;     &quot;間&quot;      
+ [97] &quot;戰略&quot;     &quot;上&quot;       &quot;指引&quot;     &quot;調整&quot;     &quot;勢必&quot;     &quot;勢在必行&quot;</code></pre>
 </div>
 <div id="pos-tagging" class="section level3">
 <h3>POS Tagging</h3>
-<p>So far we haven’t seen the parts-of-speech tags provided by the word segmenter. If you need the POS tags of the words, you need to specify the argument <code>type = "tag"</code> when you initialize the <code>worker()</code>.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb25-1"><a href="chinese-word-segmentation.html#cb25-1" aria-hidden="true" tabindex="-1"></a>seg4 <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">type =</span> <span class="st">&quot;tag&quot;</span>,</span>
-<span id="cb25-2"><a href="chinese-word-segmentation.html#cb25-2" aria-hidden="true" tabindex="-1"></a>               <span class="co">#dict = &quot;demo_data/jieba-tw/dict.txt&quot;,</span></span>
-<span id="cb25-3"><a href="chinese-word-segmentation.html#cb25-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">user =</span> <span class="st">&quot;demo_data/dict-ch-user-demo.txt&quot;</span>, </span>
-<span id="cb25-4"><a href="chinese-word-segmentation.html#cb25-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">stop_word =</span> <span class="st">&quot;demo_data/stopwords-ch-demo.txt&quot;</span>,</span>
-<span id="cb25-5"><a href="chinese-word-segmentation.html#cb25-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">symbol =</span> F)</span>
-<span id="cb25-6"><a href="chinese-word-segmentation.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">segment</span>(sents, seg4)</span></code></pre></div>
+<p>In addition to word tokenization, <code>jiebaR</code> also supports parts-of-speech (POS) tagging. That is, for each word, <code>jiebaR</code> can also provide its part-of-speech tag.</p>
+<p>We can get the POS annotations by specifying <code>type = "tag"</code> when we initialize the <code>worker()</code>.</p>
+<p>The returned object is a <strong>named character vector</strong>, i.e., the POS tags of the words are included in the <strong>names</strong> of the vectors.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb27-1"><a href="chinese-word-segmentation.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## POS Tagging </span></span>
+<span id="cb27-2"><a href="chinese-word-segmentation.html#cb27-2" aria-hidden="true" tabindex="-1"></a>seg4 <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">type =</span> <span class="st">&quot;tag&quot;</span>,</span>
+<span id="cb27-3"><a href="chinese-word-segmentation.html#cb27-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">user =</span> <span class="st">&quot;demo_data/dict-ch-user-demo.txt&quot;</span>, </span>
+<span id="cb27-4"><a href="chinese-word-segmentation.html#cb27-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">stop_word =</span> <span class="st">&quot;demo_data/stopwords-ch-demo.txt&quot;</span>)</span>
+<span id="cb27-5"><a href="chinese-word-segmentation.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">segment</span>(sents, seg4)</span></code></pre></div>
 <pre class="Rout"><code>         n         ns          n          x          n          n          x 
     &quot;綠黨&quot;   &quot;桃園市&quot;     &quot;議員&quot;   &quot;王浩宇&quot;     &quot;爆料&quot;       &quot;指&quot;   &quot;民眾黨&quot; 
          x          p          v          n          x          x          x 
@@ -394,27 +400,24 @@ Creating a user-defined dictionary may take a lot of time. You may consult <a hr
       &quot;說&quot;       &quot;按&quot;     &quot;流程&quot;       &quot;走&quot;     &quot;不要&quot;       &quot;把&quot;     &quot;人家&quot; 
          x          r          a          x          n          v          n 
     &quot;想得&quot;     &quot;這麼&quot;       &quot;壞&quot;     &quot;新北&quot;     &quot;消防&quot;     &quot;救護&quot;     &quot;人員&quot; 
-        zg          m          p          n         uj          f          p 
-      &quot;說&quot;      &quot;119&quot;       &quot;在&quot;     &quot;疫情&quot;       &quot;的&quot;     &quot;期間&quot;       &quot;除&quot; 
-         n          v          v          n          v         uj          n 
-    &quot;肩負&quot;     &quot;協助&quot;     &quot;確診&quot;     &quot;患者&quot;     &quot;送醫&quot;       &quot;的&quot;     &quot;任務&quot; 
-        zg          v          v          r          v          m         zg 
-      &quot;仍&quot;       &quot;需&quot;     &quot;負擔&quot;     &quot;每天&quot;     &quot;超過&quot;      &quot;500&quot;       &quot;件&quot; 
-         f         uj          a          v          n          n          f 
-    &quot;以上&quot;       &quot;的&quot;     &quot;緊急&quot;     &quot;救護&quot;     &quot;案件&quot;     &quot;疫情&quot;     &quot;期間&quot; 
-        zg          m          a          d          v          v          v 
-      &quot;稍&quot;       &quot;一&quot;     &quot;不慎&quot;       &quot;極&quot;     &quot;可能&quot;     &quot;造成&quot;       &quot;到&quot; 
-         s          a          v          n          c          n          n 
-    &quot;院前&quot;     &quot;緊急&quot;     &quot;救護&quot;     &quot;能量&quot;       &quot;和&quot;     &quot;醫療&quot;     &quot;體系&quot; 
-        uj          v          t          v          n          d         uj 
-      &quot;的&quot;     &quot;崩壞&quot;     &quot;目前&quot;     &quot;確診&quot;     &quot;案件&quot;     &quot;不斷&quot;       &quot;的&quot; 
-         v          n          v          n          p          z         zg 
-    &quot;增加&quot;     &quot;國家&quot;     &quot;面臨&quot;     &quot;疫情&quot;       &quot;在&quot;     &quot;清零&quot;       &quot;與&quot; 
-         v          n          f         uj          n          f          v 
-    &quot;共存&quot;     &quot;政策&quot;       &quot;間&quot;       &quot;的&quot;     &quot;戰略&quot;       &quot;上&quot;     &quot;指引&quot; 
-        uj         vn          d          i 
-      &quot;的&quot;     &quot;調整&quot;     &quot;勢必&quot; &quot;勢在必行&quot; </code></pre>
-<p>The returned object is a <strong>named character vector</strong>, i.e., the POS tags of the words are included in the <strong>names</strong> of the vectors.</p>
+        zg          m          p          n          f          p          n 
+      &quot;說&quot;      &quot;119&quot;       &quot;在&quot;     &quot;疫情&quot;     &quot;期間&quot;       &quot;除&quot;     &quot;肩負&quot; 
+         v          v          n          v          n         zg          v 
+    &quot;協助&quot;     &quot;確診&quot;     &quot;患者&quot;     &quot;送醫&quot;     &quot;任務&quot;       &quot;仍&quot;       &quot;需&quot; 
+         v          r          v          m         zg          f          a 
+    &quot;負擔&quot;     &quot;每天&quot;     &quot;超過&quot;      &quot;500&quot;       &quot;件&quot;     &quot;以上&quot;     &quot;緊急&quot; 
+         v          n          n          f         zg          m          a 
+    &quot;救護&quot;     &quot;案件&quot;     &quot;疫情&quot;     &quot;期間&quot;       &quot;稍&quot;       &quot;一&quot;     &quot;不慎&quot; 
+         d          v          v          v          s          a          v 
+      &quot;極&quot;     &quot;可能&quot;     &quot;造成&quot;       &quot;到&quot;     &quot;院前&quot;     &quot;緊急&quot;     &quot;救護&quot; 
+         n          c          n          n          v          t          v 
+    &quot;能量&quot;       &quot;和&quot;     &quot;醫療&quot;     &quot;體系&quot;     &quot;崩壞&quot;     &quot;目前&quot;     &quot;確診&quot; 
+         n          d          v          n          v          n          p 
+    &quot;案件&quot;     &quot;不斷&quot;     &quot;增加&quot;     &quot;國家&quot;     &quot;面臨&quot;     &quot;疫情&quot;       &quot;在&quot; 
+         z         zg          v          n          f          n          f 
+    &quot;清零&quot;       &quot;與&quot;     &quot;共存&quot;     &quot;政策&quot;       &quot;間&quot;     &quot;戰略&quot;       &quot;上&quot; 
+         v         vn          d          i 
+    &quot;指引&quot;     &quot;調整&quot;     &quot;勢必&quot; &quot;勢在必行&quot; </code></pre>
 <div class="info">
 <p>Every POS tagger has its own predefined tag set. The following table lists the annotations of the POS tag set used in <code>jiebaR</code>:</p>
 <div data-pagedtable="false">
@@ -435,8 +438,8 @@ Creating a user-defined dictionary may take a lot of time. You may consult <a hr
 </ul>
 <p>As these two packages are more optimized for the English language, I will highlight a few important steps that require more attention with respect to Chinese word segmentation.</p>
 <div class="figure"><span style="display:block;" id="fig:cpflowchart"></span>
-<div id="htmlwidget-07e0daff201de3d242c0" style="width:672px;height:960px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-07e0daff201de3d242c0">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\nnode[style=filled, color = grey90, penwidth = 0.3, fontcolor = grey30]\nedge[color= grey40, alpha = 0.8, penwidth= 0.4, arrowsize=0.8, arrowhead = normal]\n\n\n## objects\nraw_texts [label = \"Raw Texts\", shape = folder, fillcolor= \"#cccccc\"]\nquanteda [label = \"Quanteda\", shape = folder, fillcolor= \"#f981bb\"]\ntidytext [label = \"Tidytext\", shape = folder, fillcolor= \"#B0E2FC\"]\ntextdf [label = \"Text-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\nworddf [label = \"Word-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\ncorpus [label = \"Corpus Object\", shape = folder, fillcolor= \"#f981bb\"]\ntokens [label = \"Tokens Object\", shape = folder, fillcolor= \"#f981bb\"]\n\n## functions\nf_readtext [label = \"readtext()\", shape=document, fillcolor= \"#96F597\"]\nf_dataframe [label = \"data.frame()\", shape=document, fillcolor= \"#96F597\"]\nf_corpus [label = \"corpus()\", shape=document, fillcolor= \"#96F597\"]\nf_segment [label = \"segment()\", shape=document, fillcolor= \"#96F597\"]\nf_astokens [label = \"as.tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_tokens [label = \"tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_unnest [label = \"unnest_tokens()\", shape=document, fillcolor= \"#96F597\"]\n\n## links\nraw_texts -> tidytext -> f_readtext -> textdf\ntidytext -> f_dataframe -> textdf\n\ntextdf -> f_unnest -> worddf\nraw_texts -> quanteda -> f_segment -> f_astokens -> tokens #[color=orangered, penwidth=5]\n\nquanteda -> f_corpus -> corpus -> f_tokens -> tokens[color=grey80, penwidth = 0.4, style=\"dashed\"]\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-92ad58657693ec223459" style="width:672px;height:576px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-92ad58657693ec223459">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\nnode[style=filled, color = grey90, penwidth = 0.3, fontcolor = grey30]\nedge[color= grey40, alpha = 0.8, penwidth= 0.4, arrowsize=0.8, arrowhead = normal]\n\n\n## objects\nraw_texts [label = \"Raw Texts\", shape = folder, fillcolor= \"#cccccc\"]\nquanteda [label = \"Quanteda\", shape = folder, fillcolor= \"#f981bb\"]\ntidytext [label = \"Tidytext\", shape = folder, fillcolor= \"#B0E2FC\"]\ntextdf [label = \"Text-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\nworddf [label = \"Word-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\ncorpus [label = \"Corpus Object\", shape = folder, fillcolor= \"#f981bb\"]\ntokens [label = \"Tokens Object\", shape = folder, fillcolor= \"#f981bb\"]\n\n## functions\nf_readtext [label = \"readtext()\", shape=document, fillcolor= \"#96F597\"]\nf_dataframe [label = \"data.frame()\", shape=document, fillcolor= \"#96F597\"]\nf_corpus [label = \"corpus()\", shape=document, fillcolor= \"#96F597\"]\nf_segment [label = \"segment()\", shape=document, fillcolor= \"#96F597\"]\nf_astokens [label = \"as.tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_tokens [label = \"tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_unnest [label = \"unnest_tokens()\", shape=document, fillcolor= \"#96F597\"]\n\n## links\nraw_texts -> tidytext -> f_readtext -> textdf\ntidytext -> f_dataframe -> textdf\n\ntextdf -> f_unnest -> worddf\nraw_texts -> quanteda -> f_segment -> f_astokens -> tokens #[color=orangered, penwidth=5]\n\nquanteda -> f_corpus -> corpus -> f_tokens -> tokens[color=grey80, penwidth = 0.4, style=\"dashed\"]\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 1: Chinese Text Analytics Flowchart
 </p>
@@ -444,26 +447,31 @@ Figure 1: Chinese Text Analytics Flowchart
 <div id="quanteda-framework" class="section level3">
 <h3><code>Quanteda</code> Framework</h3>
 <p>To perform word tokenization using <code>jiebaR</code> under the Quanteda framework, we need to create the <code>tokens</code> object using the <code>segment()</code> from <code>jiebaR</code>.</p>
-<p>The steps are very straightforward. We utilize <code>jiebaR</code> for word tokenization like before: (1) initialize a <code>jiebar</code> model and (2) use it to tokenize the corpus text with <code>segment()</code>.</p>
+<p>The steps are very straightforward. We utilize <code>jiebaR</code> for word tokenization like before:</p>
+<ol style="list-style-type: decimal">
+<li>Initialize a <code>jiebar</code> model;</li>
+<li>Use it to tokenize the corpus text with <code>segment()</code>;</li>
+<li>Convert the object into a <code>tokens</code> with <code>as.tokens()</code>.</li>
+</ol>
 <p>The key is that we need to convert the output of <code>segment()</code> from a <code>list</code> to a <code>tokens</code> using <code>as.tokens()</code>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb29-1"><a href="chinese-word-segmentation.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize segmenter</span></span>
+<span id="cb29-2"><a href="chinese-word-segmentation.html#cb29-2" aria-hidden="true" tabindex="-1"></a>my_seg <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">user =</span> <span class="st">&quot;demo_data/dict-ch-user-demo.txt&quot;</span>, </span>
+<span id="cb29-3"><a href="chinese-word-segmentation.html#cb29-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">symbol=</span> <span class="cn">TRUE</span>,</span>
+<span id="cb29-4"><a href="chinese-word-segmentation.html#cb29-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bylines =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-5"><a href="chinese-word-segmentation.html#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="chinese-word-segmentation.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="do">## create tokens based on self-defined segmentation</span></span>
+<span id="cb29-7"><a href="chinese-word-segmentation.html#cb29-7" aria-hidden="true" tabindex="-1"></a>text_tokens <span class="ot">&lt;-</span> <span class="fu">as.tokens</span>(<span class="fu">segment</span>(sents, my_seg))</span></code></pre></div>
 <p>With this <code>tokens</code> object, we can apply <code>kiwc()</code> or other Quanteda-supported processing to the corpus data.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb27-1"><a href="chinese-word-segmentation.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize segmenter</span></span>
-<span id="cb27-2"><a href="chinese-word-segmentation.html#cb27-2" aria-hidden="true" tabindex="-1"></a>my_seg <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">bylines =</span> T, </span>
-<span id="cb27-3"><a href="chinese-word-segmentation.html#cb27-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user =</span> <span class="st">&quot;demo_data/dict-ch-user-demo.txt&quot;</span>, </span>
-<span id="cb27-4"><a href="chinese-word-segmentation.html#cb27-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">symbol=</span>T)</span>
-<span id="cb27-5"><a href="chinese-word-segmentation.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="do">## create tokens based on self-defined segmentation</span></span>
-<span id="cb27-6"><a href="chinese-word-segmentation.html#cb27-6" aria-hidden="true" tabindex="-1"></a>text_tokens <span class="ot">&lt;-</span> <span class="fu">as.tokens</span>(<span class="fu">segment</span>(sents, my_seg))</span>
-<span id="cb27-7"><a href="chinese-word-segmentation.html#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="chinese-word-segmentation.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="do">## kwic on word tokens</span></span>
-<span id="cb27-9"><a href="chinese-word-segmentation.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kwic</span>(text_tokens,</span>
-<span id="cb27-10"><a href="chinese-word-segmentation.html#cb27-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">pattern =</span> <span class="st">&quot;柯文哲&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb30-1"><a href="chinese-word-segmentation.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">## keyword-in-context</span></span>
+<span id="cb30-2"><a href="chinese-word-segmentation.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kwic</span>(text_tokens,</span>
+<span id="cb30-3"><a href="chinese-word-segmentation.html#cb30-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">pattern =</span> <span class="st">&quot;柯文哲&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["docname"],"name":[1],"type":["chr"],"align":["left"]},{"label":["from"],"name":[2],"type":["int"],"align":["right"]},{"label":["to"],"name":[3],"type":["int"],"align":["right"]},{"label":["pre"],"name":[4],"type":["chr"],"align":["left"]},{"label":["keyword"],"name":[5],"type":["chr"],"align":["left"]},{"label":["post"],"name":[6],"type":["chr"],"align":["left"]},{"label":["pattern"],"name":[7],"type":["fct"],"align":["left"]}],"data":[{"1":"text1","2":"34","3":"34","4":"民眾黨 主席 、 台北 市長","5":"柯文哲","6":"7 日 受訪 時則 說","7":"柯文哲"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb28-1"><a href="chinese-word-segmentation.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kwic</span>(text_tokens,</span>
-<span id="cb28-2"><a href="chinese-word-segmentation.html#cb28-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">pattern =</span> <span class="st">&quot;.*?[台市].*?&quot;</span>, <span class="at">valuetype =</span> <span class="st">&quot;regex&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb31-1"><a href="chinese-word-segmentation.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kwic</span>(text_tokens,</span>
+<span id="cb31-2"><a href="chinese-word-segmentation.html#cb31-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">pattern =</span> <span class="st">&quot;.*?[台市].*?&quot;</span>, <span class="at">valuetype =</span> <span class="st">&quot;regex&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["docname"],"name":[1],"type":["chr"],"align":["left"]},{"label":["from"],"name":[2],"type":["int"],"align":["right"]},{"label":["to"],"name":[3],"type":["int"],"align":["right"]},{"label":["pre"],"name":[4],"type":["chr"],"align":["left"]},{"label":["keyword"],"name":[5],"type":["chr"],"align":["left"]},{"label":["post"],"name":[6],"type":["chr"],"align":["left"]},{"label":["pattern"],"name":[7],"type":["fct"],"align":["left"]}],"data":[{"1":"text1","2":"2","3":"2","4":"綠黨","5":"桃園市","6":"議員 王浩宇 爆料 ， 指","7":".*?[台市].*?"},{"1":"text1","2":"28","3":"28","4":"請辭 是 為領 年終獎金 。","5":"台灣","6":"民眾黨 主席 、 台北 市長","7":".*?[台市].*?"},{"1":"text1","2":"32","3":"32","4":"。 台灣 民眾黨 主席 、","5":"台北","6":"市長 柯文哲 7 日 受訪","7":".*?[台市].*?"},{"1":"text1","2":"33","3":"33","4":"台灣 民眾黨 主席 、 台北","5":"市長","6":"柯文哲 7 日 受訪 時則","7":".*?[台市].*?"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -471,71 +479,64 @@ Figure 1: Chinese Text Analytics Flowchart
 </div>
 <div class="try">
 <p>In Quanteda, there is a quanteda-native Chinese tokenizer, <code>tokens()</code>. However, its performance is very limited and it does not support user-defined dictionary. Therefore, I would suggest using one’s own self-defined tokenizer for Chinese word segmentation.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb29-1"><a href="chinese-word-segmentation.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Examples of using quanteda-native </span></span>
-<span id="cb29-2"><a href="chinese-word-segmentation.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Word segmentation</span></span>
-<span id="cb29-3"><a href="chinese-word-segmentation.html#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="chinese-word-segmentation.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="do">## create corpus object</span></span>
-<span id="cb29-5"><a href="chinese-word-segmentation.html#cb29-5" aria-hidden="true" tabindex="-1"></a>text_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(sents)</span>
-<span id="cb29-6"><a href="chinese-word-segmentation.html#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="chinese-word-segmentation.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="do">## summary</span></span>
-<span id="cb29-8"><a href="chinese-word-segmentation.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(text_corpus)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb32-1"><a href="chinese-word-segmentation.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Examples of using quanteda-native </span></span>
+<span id="cb32-2"><a href="chinese-word-segmentation.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Word segmentation</span></span>
+<span id="cb32-3"><a href="chinese-word-segmentation.html#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="chinese-word-segmentation.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="do">## create corpus object</span></span>
+<span id="cb32-5"><a href="chinese-word-segmentation.html#cb32-5" aria-hidden="true" tabindex="-1"></a>text_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(sents)</span>
+<span id="cb32-6"><a href="chinese-word-segmentation.html#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="chinese-word-segmentation.html#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="do">## summary</span></span>
+<span id="cb32-8"><a href="chinese-word-segmentation.html#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(text_corpus)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Text"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Types"],"name":[2],"type":["int"],"align":["right"]},{"label":["Tokens"],"name":[3],"type":["int"],"align":["right"]},{"label":["Sentences"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"text1","2":"60","3":"67","4":"2","_rn_":"1"},{"1":"text2","2":"64","3":"88","4":"1","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb30-1"><a href="chinese-word-segmentation.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Create tokens object</span></span>
-<span id="cb30-2"><a href="chinese-word-segmentation.html#cb30-2" aria-hidden="true" tabindex="-1"></a>text_tokens <span class="ot">&lt;-</span> <span class="fu">tokens</span>(text_corpus)</span>
-<span id="cb30-3"><a href="chinese-word-segmentation.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="chinese-word-segmentation.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Check quanteda-native word tokenization result</span></span>
-<span id="cb30-5"><a href="chinese-word-segmentation.html#cb30-5" aria-hidden="true" tabindex="-1"></a>text_tokens[[<span class="dv">1</span>]]</span></code></pre></div>
-<pre class="Rout"><code> [1] &quot;綠黨&quot;     &quot;桃園市&quot;   &quot;議員&quot;     &quot;王&quot;       &quot;浩&quot;       &quot;宇&quot;      
- [7] &quot;爆&quot;       &quot;料&quot;       &quot;，&quot;       &quot;指&quot;       &quot;民眾&quot;     &quot;黨&quot;      
-[13] &quot;不&quot;       &quot;分區&quot;     &quot;被&quot;       &quot;提名&quot;     &quot;人&quot;       &quot;蔡&quot;      
-[19] &quot;壁&quot;       &quot;如&quot;       &quot;、&quot;       &quot;黃&quot;       &quot;瀞&quot;       &quot;瑩&quot;      
-[25] &quot;，&quot;       &quot;在&quot;       &quot;昨&quot;       &quot;（&quot;       &quot;6&quot;        &quot;）&quot;      
-[31] &quot;日&quot;       &quot;才&quot;       &quot;請辭&quot;     &quot;是&quot;       &quot;為&quot;       &quot;領&quot;      
-[37] &quot;年終獎金&quot; &quot;。&quot;       &quot;台灣&quot;     &quot;民眾&quot;     &quot;黨主席&quot;   &quot;、&quot;      
-[43] &quot;台北市&quot;   &quot;長&quot;       &quot;柯&quot;       &quot;文&quot;       &quot;哲&quot;       &quot;7&quot;       
-[49] &quot;日&quot;       &quot;受&quot;       &quot;訪&quot;       &quot;時&quot;       &quot;則&quot;       &quot;說&quot;      
-[55] &quot;，&quot;       &quot;都是&quot;     &quot;按&quot;       &quot;流程&quot;     &quot;走&quot;       &quot;，&quot;      
-[61] &quot;不要&quot;     &quot;把&quot;       &quot;人家&quot;     &quot;想得&quot;     &quot;這麼&quot;     &quot;壞&quot;      
-[67] &quot;。&quot;      </code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb32-1"><a href="chinese-word-segmentation.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="do">## KWIC</span></span>
-<span id="cb32-2"><a href="chinese-word-segmentation.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kwic</span>(text_tokens, <span class="at">pattern =</span> <span class="st">&quot;柯文哲&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb33-1"><a href="chinese-word-segmentation.html#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-2"><a href="chinese-word-segmentation.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Create tokens object</span></span>
+<span id="cb33-3"><a href="chinese-word-segmentation.html#cb33-3" aria-hidden="true" tabindex="-1"></a>text_tokens <span class="ot">&lt;-</span> <span class="fu">tokens</span>(text_corpus)</span>
+<span id="cb33-4"><a href="chinese-word-segmentation.html#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="chinese-word-segmentation.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Check quanteda-native word tokenization result</span></span>
+<span id="cb33-6"><a href="chinese-word-segmentation.html#cb33-6" aria-hidden="true" tabindex="-1"></a>text_tokens[[<span class="dv">1</span>]]</span>
+<span id="cb33-7"><a href="chinese-word-segmentation.html#cb33-7" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;綠黨&quot;</span>     <span class="st">&quot;桃園市&quot;</span>   <span class="st">&quot;議員&quot;</span>     <span class="st">&quot;王&quot;</span>       <span class="st">&quot;浩&quot;</span>       <span class="st">&quot;宇&quot;</span>      </span>
+<span id="cb33-8"><a href="chinese-word-segmentation.html#cb33-8" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>] <span class="st">&quot;爆&quot;</span>       <span class="st">&quot;料&quot;</span>       <span class="st">&quot;，&quot;</span>       <span class="st">&quot;指&quot;</span>       <span class="st">&quot;民眾&quot;</span>     <span class="st">&quot;黨&quot;</span>      </span>
+<span id="cb33-9"><a href="chinese-word-segmentation.html#cb33-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">13</span>] <span class="st">&quot;不&quot;</span>       <span class="st">&quot;分區&quot;</span>     <span class="st">&quot;被&quot;</span>       <span class="st">&quot;提名&quot;</span>     <span class="st">&quot;人&quot;</span>       <span class="st">&quot;蔡&quot;</span>      </span>
+<span id="cb33-10"><a href="chinese-word-segmentation.html#cb33-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">19</span>] <span class="st">&quot;壁&quot;</span>       <span class="st">&quot;如&quot;</span>       <span class="st">&quot;、&quot;</span>       <span class="st">&quot;黃&quot;</span>       <span class="st">&quot;瀞&quot;</span>       <span class="st">&quot;瑩&quot;</span>      </span>
+<span id="cb33-11"><a href="chinese-word-segmentation.html#cb33-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">25</span>] <span class="st">&quot;，&quot;</span>       <span class="st">&quot;在&quot;</span>       <span class="st">&quot;昨&quot;</span>       <span class="st">&quot;（&quot;</span>       <span class="st">&quot;6&quot;</span>        <span class="st">&quot;）&quot;</span>      </span>
+<span id="cb33-12"><a href="chinese-word-segmentation.html#cb33-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">31</span>] <span class="st">&quot;日&quot;</span>       <span class="st">&quot;才&quot;</span>       <span class="st">&quot;請辭&quot;</span>     <span class="st">&quot;是&quot;</span>       <span class="st">&quot;為&quot;</span>       <span class="st">&quot;領&quot;</span>      </span>
+<span id="cb33-13"><a href="chinese-word-segmentation.html#cb33-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">37</span>] <span class="st">&quot;年終獎金&quot;</span> <span class="st">&quot;。&quot;</span>       <span class="st">&quot;台灣&quot;</span>     <span class="st">&quot;民眾&quot;</span>     <span class="st">&quot;黨主席&quot;</span>   <span class="st">&quot;、&quot;</span>      </span>
+<span id="cb33-14"><a href="chinese-word-segmentation.html#cb33-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">43</span>] <span class="st">&quot;台北市&quot;</span>   <span class="st">&quot;長&quot;</span>       <span class="st">&quot;柯&quot;</span>       <span class="st">&quot;文&quot;</span>       <span class="st">&quot;哲&quot;</span>       <span class="st">&quot;7&quot;</span>       </span>
+<span id="cb33-15"><a href="chinese-word-segmentation.html#cb33-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">49</span>] <span class="st">&quot;日&quot;</span>       <span class="st">&quot;受&quot;</span>       <span class="st">&quot;訪&quot;</span>       <span class="st">&quot;時&quot;</span>       <span class="st">&quot;則&quot;</span>       <span class="st">&quot;說&quot;</span>      </span>
+<span id="cb33-16"><a href="chinese-word-segmentation.html#cb33-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">55</span>] <span class="st">&quot;，&quot;</span>       <span class="st">&quot;都是&quot;</span>     <span class="st">&quot;按&quot;</span>       <span class="st">&quot;流程&quot;</span>     <span class="st">&quot;走&quot;</span>       <span class="st">&quot;，&quot;</span>      </span>
+<span id="cb33-17"><a href="chinese-word-segmentation.html#cb33-17" aria-hidden="true" tabindex="-1"></a>[<span class="dv">61</span>] <span class="st">&quot;不要&quot;</span>     <span class="st">&quot;把&quot;</span>       <span class="st">&quot;人家&quot;</span>     <span class="st">&quot;想得&quot;</span>     <span class="st">&quot;這麼&quot;</span>     <span class="st">&quot;壞&quot;</span>      </span>
+<span id="cb33-18"><a href="chinese-word-segmentation.html#cb33-18" aria-hidden="true" tabindex="-1"></a>[<span class="dv">67</span>] <span class="st">&quot;。&quot;</span>      </span>
+<span id="cb33-19"><a href="chinese-word-segmentation.html#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="chinese-word-segmentation.html#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="do">## KWIC</span></span>
+<span id="cb33-21"><a href="chinese-word-segmentation.html#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="fu">kwic</span>(text_tokens, <span class="at">pattern =</span> <span class="st">&quot;柯文哲&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["docname"],"name":[1],"type":["chr"],"align":["left"]},{"label":["from"],"name":[2],"type":["int"],"align":["right"]},{"label":["to"],"name":[3],"type":["int"],"align":["right"]},{"label":["pre"],"name":[4],"type":["chr"],"align":["left"]},{"label":["keyword"],"name":[5],"type":["chr"],"align":["left"]},{"label":["post"],"name":[6],"type":["chr"],"align":["left"]},{"label":["pattern"],"name":[7],"type":["fct"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb33-1"><a href="chinese-word-segmentation.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kwic</span>(text_tokens, <span class="at">pattern =</span> <span class="st">&quot;柯&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb34-1"><a href="chinese-word-segmentation.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kwic</span>(text_tokens, <span class="at">pattern =</span> <span class="st">&quot;柯&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["docname"],"name":[1],"type":["chr"],"align":["left"]},{"label":["from"],"name":[2],"type":["int"],"align":["right"]},{"label":["to"],"name":[3],"type":["int"],"align":["right"]},{"label":["pre"],"name":[4],"type":["chr"],"align":["left"]},{"label":["keyword"],"name":[5],"type":["chr"],"align":["left"]},{"label":["post"],"name":[6],"type":["chr"],"align":["left"]},{"label":["pattern"],"name":[7],"type":["fct"],"align":["left"]}],"data":[{"1":"text1","2":"45","3":"45","4":"民眾 黨主席 、 台北市 長","5":"柯","6":"文 哲 7 日 受","7":"柯"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>From the above example, it is clear to see that quite a few word tokens have not been successfully identified by the Quanteda-native word segmentation (e.g., several proper names in the text). This would also have great impact on the effectiveness of <code>kwic()</code> as well. Therefore analysis based on the Quanteda-native segmentation can be very limited.</p>
+<p>From the above example, it is clear to see that quite a few word tokens have not been successfully identified by the Quanteda-native word segmentation (e.g., proper names like <code>柯文哲</code>, <code>王浩宇</code>). This would also have great impact on the effectiveness of <code>kwic()</code> as well. Therefore analysis based on the Quanteda-native segmentation can be very limited.</p>
 </div>
 </div>
 <div id="tidytext-framework" class="section level3">
 <h3><code>Tidytext</code> Framework</h3>
 <p>Now let’s turn to the <code>Titytext</code> framework of text processing.</p>
 <p>The <code>tidytext</code> package is made for the handling of the tidy text format of the corpus data, i.e., to process textual data on the basis of <strong>data frames</strong>.</p>
-<p>With a data frame format of the text data, we can manipulate the text data with a standard set of tidy tools and packages, including <code>dplyr</code>, <code>tidyr</code>, and <code>ggplot2</code>.</p>
+<p>With a data frame format of the text data, we can manipulate the text data with a standard set of tidy tools and packages in R, including <code>dplyr</code>, <code>tidyr</code>, and <code>ggplot2</code>.</p>
 <p>In the <code>tidytext</code> format, the tokenization is taken care of by <code>unnest_tokens()</code>.</p>
-<hr />
-<p><img src="images/unnest-tokens.png" width="80%" /></p>
-<hr />
-<div class="sourceCode" id="cb34"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb34-1"><a href="chinese-word-segmentation.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a text-based tidy corpus</span></span>
-<span id="cb34-2"><a href="chinese-word-segmentation.html#cb34-2" aria-hidden="true" tabindex="-1"></a>corp_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">text_id =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb34-3"><a href="chinese-word-segmentation.html#cb34-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">text =</span> sents)</span>
-<span id="cb34-4"><a href="chinese-word-segmentation.html#cb34-4" aria-hidden="true" tabindex="-1"></a>corp_df</span></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["text_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["text"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"綠黨桃園市議員王浩宇爆料，指民眾黨不分區被提名人蔡壁如、黃瀞瑩，在昨（6）日才請辭是為領年終獎金。台灣民眾黨主席、台北市長柯文哲7日受訪時則說，都是按流程走，不要把人家想得這麼壞。"},{"1":"2","2":"新北消防救護人員說，119在疫情的期間，除肩負協助確診患者送醫的任務，仍需負擔每天超過500件以上的緊急救護案件，疫情期間稍一不慎，極可能造成到院前，緊急救護能量和醫療體系的崩壞；目前確診案件不斷的增加，國家面臨疫情是在清零與共存政策間的戰略上，指引的調整勢必勢在必行。"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb35-1"><a href="chinese-word-segmentation.html#cb35-1" aria-hidden="true" tabindex="-1"></a>corp_df</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb35-1"><a href="chinese-word-segmentation.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a text-based data frame</span></span>
+<span id="cb35-2"><a href="chinese-word-segmentation.html#cb35-2" aria-hidden="true" tabindex="-1"></a>corp_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">text_id =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb35-3"><a href="chinese-word-segmentation.html#cb35-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">text =</span> sents)</span>
+<span id="cb35-4"><a href="chinese-word-segmentation.html#cb35-4" aria-hidden="true" tabindex="-1"></a>corp_df</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["text_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["text"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"綠黨桃園市議員王浩宇爆料，指民眾黨不分區被提名人蔡壁如、黃瀞瑩，在昨（6）日才請辭是為領年終獎金。台灣民眾黨主席、台北市長柯文哲7日受訪時則說，都是按流程走，不要把人家想得這麼壞。"},{"1":"2","2":"新北消防救護人員說，119在疫情的期間，除肩負協助確診患者送醫的任務，仍需負擔每天超過500件以上的緊急救護案件，疫情期間稍一不慎，極可能造成到院前，緊急救護能量和醫療體系的崩壞；目前確診案件不斷的增加，國家面臨疫情是在清零與共存政策間的戰略上，指引的調整勢必勢在必行。"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -543,6 +544,9 @@ Figure 1: Chinese Text Analytics Flowchart
 </div>
 <p>Then, we use <code>unnest_tokens()</code> to tokenize the <strong>text-based</strong> data frame (<code>corp_df</code>) into a <strong>word-based</strong> data frame (<code>corp_df_word</code>).</p>
 <p>Texts included in the <code>text</code> column are tokenized into words, which are unnested into independent rows in the <code>word</code> column of the new data frame.</p>
+<hr />
+<p><img src="images/unnest-tokens.png" width="80%" /></p>
+<hr />
 <div class="sourceCode" id="cb36"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb36-1"><a href="chinese-word-segmentation.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tokenization</span></span>
 <span id="cb36-2"><a href="chinese-word-segmentation.html#cb36-2" aria-hidden="true" tabindex="-1"></a>corp_df_word <span class="ot">&lt;-</span> corp_df <span class="sc">%&gt;%</span></span>
 <span id="cb36-3"><a href="chinese-word-segmentation.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(</span>
@@ -559,7 +563,7 @@ Figure 1: Chinese Text Analytics Flowchart
   </script>
 </div>
 <div class="info">
-<p>It can be seen that for the <code>token</code> parameter in <code>unnest_tokens()</code>, we use an <strong>anonymous</strong> function based on <code>jieba</code> and <code>segment()</code> for self-defined Chinese word segmentation.</p>
+<p>It can be seen that for the <code>token</code> parameter in <code>unnest_tokens()</code>, we use an <strong>anonymous</strong> function based on <code>jiebaR</code> and <code>segment()</code> for self-defined Chinese word segmentation.</p>
 <p>This is called <strong>anonymous functions</strong> because it has not been assigned to any object name in the current R session.</p>
 <p>You may check <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Writing-functions">R language documentation</a> for more detail on Writing Functions.</p>
 </div>

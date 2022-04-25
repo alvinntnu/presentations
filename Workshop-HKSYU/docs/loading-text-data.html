@@ -255,7 +255,7 @@ div.csl-indent {
 <ul>
 <li>CSV: <code>demo_data/song-jay-amei-v1.csv</code></li>
 <li>Directory: <code>demo_data/corp_dir</code></li>
-<li>A Zipped File: <code>demo_data/song-jay-amei-v2.zip</code></li>
+<li>A Zipped File: <code>demo_data/song-jay-amei-v2.tar.gz</code></li>
 </ul>
 <p>In this workshop, I will show you how to load the data of these three types into R.</p>
 </div>
@@ -343,10 +343,10 @@ div.csl-indent {
 <p>For Mac, the default encoding is <code>UTF-8</code>.</p>
 <p>For Windows, things can get more complicated. In general, the default encoding in Windows is locale-dependent (i.e., depending on the OS language setting: <code>big-5</code> for Chinese-Taiwan).</p>
 <p>In Windows, we can change the locale in R as below:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb14-1"><a href="loading-text-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## from chinese to english</span></span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb14-1"><a href="loading-text-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## from Chinese to English</span></span>
 <span id="cb14-2"><a href="loading-text-data.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="at">category =</span> <span class="st">&quot;LC_ALL&quot;</span>, <span class="at">locale =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
 <span id="cb14-3"><a href="loading-text-data.html#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="loading-text-data.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="do">## from english to traditional chinese</span></span>
+<span id="cb14-4"><a href="loading-text-data.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="do">## from English to traditional Chinese</span></span>
 <span id="cb14-5"><a href="loading-text-data.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="at">category =</span> <span class="st">&quot;LC_ALL&quot;</span>, <span class="at">locale =</span> <span class="st">&quot;cht&quot;</span>)</span>
 <span id="cb14-6"><a href="loading-text-data.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="at">category =</span> <span class="st">&quot;LC_ALL&quot;</span>, <span class="at">locale =</span> <span class="st">&quot;chs&quot;</span>)</span></code></pre></div>
 <p>To process Chinese data with R, for Windows users, please set the locale to the Chinese language.</p>

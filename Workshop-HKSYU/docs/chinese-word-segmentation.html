@@ -201,8 +201,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#chinese-text-analytics-pipeline"><i class="fa fa-check"></i>Chinese Text Analytics Pipeline</a>
 <ul>
-<li><a href="chinese-word-segmentation.html#quanteda-framework"><code>Quanteda</code> Framework</a></li>
-<li><a href="chinese-word-segmentation.html#tidytext-framework"><code>Tidytext</code> Framework</a></li>
+<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#quanteda-framework"><i class="fa fa-check"></i>Quanteda Framework</a></li>
+<li class="chapter" data-level="" data-path="chinese-word-segmentation.html"><a href="chinese-word-segmentation.html#tidytext-framework"><i class="fa fa-check"></i>Tidytext Framework</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i>Applications</a>
@@ -441,14 +441,14 @@ div.csl-indent {
 </ul>
 <p>As these two packages are more optimized for the English language, I will highlight a few important steps that require more attention with respect to Chinese word segmentation.</p>
 <div class="figure"><span style="display:block;" id="fig:cpflowchart"></span>
-<div id="htmlwidget-e72f8fa796bd37edb685" style="width:672px;height:576px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e72f8fa796bd37edb685">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\nnode[style=filled, color = grey90, penwidth = 0.3, fontcolor = grey30]\nedge[color= grey40, alpha = 0.8, penwidth= 0.4, arrowsize=0.8, arrowhead = normal]\n\n\n## objects\nraw_texts [label = \"Raw Texts\", shape = folder, fillcolor= \"#cccccc\"]\nquanteda [label = \"Quanteda\", shape = folder, fillcolor= \"#f981bb\"]\ntidytext [label = \"Tidytext\", shape = folder, fillcolor= \"#B0E2FC\"]\ntextdf [label = \"Text-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\nworddf [label = \"Word-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\ncorpus [label = \"Corpus Object\", shape = folder, fillcolor= \"#f981bb\"]\ntokens [label = \"Tokens Object\", shape = folder, fillcolor= \"#f981bb\"]\n\n## functions\nf_readtext [label = \"readtext()\", shape=document, fillcolor= \"#96F597\"]\nf_dataframe [label = \"data.frame()\", shape=document, fillcolor= \"#96F597\"]\nf_corpus [label = \"corpus()\", shape=document, fillcolor= \"#96F597\"]\nf_segment [label = \"segment()\", shape=document, fillcolor= \"#96F597\"]\nf_astokens [label = \"as.tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_tokens [label = \"tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_unnest [label = \"unnest_tokens()\", shape=document, fillcolor= \"#96F597\"]\n\n## links\nraw_texts -> tidytext -> f_readtext -> textdf\ntidytext -> f_dataframe -> textdf\n\ntextdf -> f_unnest -> worddf\nraw_texts -> quanteda -> f_segment -> f_astokens -> tokens #[color=orangered, penwidth=5]\n\nquanteda -> f_corpus -> corpus -> f_tokens -> tokens[color=grey80, penwidth = 0.4, style=\"dashed\"]\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-06b7e27c1dee6130dbc1" style="width:672px;height:576px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-06b7e27c1dee6130dbc1">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\nnode[style=filled, color = grey90, penwidth = 0.3, fontcolor = grey30]\nedge[color= grey40, alpha = 0.8, penwidth= 0.4, arrowsize=0.8, arrowhead = normal]\n\n\n## objects\nraw_texts [label = \"Raw Texts\", shape = folder, fillcolor= \"#cccccc\"]\nquanteda [label = \"Quanteda\", shape = folder, fillcolor= \"#f981bb\"]\ntidytext [label = \"Tidytext\", shape = folder, fillcolor= \"#B0E2FC\"]\ntextdf [label = \"Text-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\nworddf [label = \"Word-based DF\", shape = folder, fillcolor= \"#B0E2FC\"]\ncorpus [label = \"Corpus Object\", shape = folder, fillcolor= \"#f981bb\"]\ntokens [label = \"Tokens Object\", shape = folder, fillcolor= \"#f981bb\"]\n\n## functions\nf_readtext [label = \"readtext()\", shape=document, fillcolor= \"#96F597\"]\nf_dataframe [label = \"data.frame()\", shape=document, fillcolor= \"#96F597\"]\nf_corpus [label = \"corpus()\", shape=document, fillcolor= \"#96F597\"]\nf_segment [label = \"segment()\", shape=document, fillcolor= \"#96F597\"]\nf_astokens [label = \"as.tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_tokens [label = \"tokens()\", shape=document, fillcolor= \"#96F597\"]\nf_unnest [label = \"unnest_tokens()\", shape=document, fillcolor= \"#96F597\"]\n\n## links\nraw_texts -> tidytext -> f_readtext -> textdf\ntidytext -> f_dataframe -> textdf\n\ntextdf -> f_unnest -> worddf\nraw_texts -> quanteda -> f_segment -> f_astokens -> tokens #[color=orangered, penwidth=5]\n\nquanteda -> f_corpus -> corpus -> f_tokens -> tokens[color=grey80, penwidth = 0.4, style=\"dashed\"]\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 1: Chinese Text Analytics Flowchart
 </p>
 </div>
 <div id="quanteda-framework" class="section level3">
-<h3><code>Quanteda</code> Framework</h3>
+<h3>Quanteda Framework</h3>
 <p>To perform word tokenization using <code>jiebaR</code> under the Quanteda framework, we need to create the <code>tokens</code> object using the <code>segment()</code> from <code>jiebaR</code>.</p>
 <p>The steps are very straightforward. We utilize <code>jiebaR</code> for word tokenization like before:</p>
 <ol style="list-style-type: decimal">
@@ -531,11 +531,11 @@ Figure 1: Chinese Text Analytics Flowchart
 </div>
 </div>
 <div id="tidytext-framework" class="section level3">
-<h3><code>Tidytext</code> Framework</h3>
+<h3>Tidytext Framework</h3>
 <p>Now let’s turn to the <code>Titytext</code> framework of text processing.</p>
 <p>The <code>tidytext</code> package is made for the handling of the tidy text format of the corpus data, i.e., to process textual data on the basis of <strong>data frames</strong>.</p>
 <p>With a data frame format of the text data, we can manipulate the text data with a standard set of tidy tools and packages in R, including <code>dplyr</code>, <code>tidyr</code>, and <code>ggplot2</code>.</p>
-<p>In the <code>tidytext</code> format, the tokenization is taken care of by <code>unnest_tokens()</code>.</p>
+<p>In the <code>tidytext</code> framework, the tokenization is taken care of by <code>unnest_tokens()</code>.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r Rchunk"><code class="sourceCode r"><span id="cb35-1"><a href="chinese-word-segmentation.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a text-based data frame</span></span>
 <span id="cb35-2"><a href="chinese-word-segmentation.html#cb35-2" aria-hidden="true" tabindex="-1"></a>corp_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">text_id =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
 <span id="cb35-3"><a href="chinese-word-segmentation.html#cb35-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">text =</span> sents)</span>

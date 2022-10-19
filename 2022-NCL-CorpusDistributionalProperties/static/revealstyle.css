@@ -1,0 +1,96 @@
+.reveal strong {
+  color: blue;
+  font-weight: bold;
+}
+
+body {
+    background-image: url('http://web.ntnu.edu.tw/~alvinchen/img/ntnu-word.png');
+    background-size: 12%;
+    background-repeat: no-repeat;
+    background-position: 2% 2%;
+}
+
+.slides .header{
+  position:absolute;
+  top: -50%;
+  left: -50%;
+}
+
+.footer {
+  height: 10vh; /*reletive to the % of the viewport*/
+  position: fixed;
+  bottom: 0;
+  line-height: 60%;
+  width: 100%;
+  background: transparent;
+  text-align: center;
+}
+
+.footer p {
+  color: darkgrey;
+  font-size: 1.5em;
+  text-align: center;
+  vertical-align: text-top;
+}
+
+
+span.note:after {
+  /*** Control how note references are displayed ***/
+
+  /* With brackets around the numbers */
+  content: "[" counter(note-ref-counter) "]";
+
+  /* Without brackets around the numbers */
+  /*content: counter(note-ref-counter);*/
+  vertical-align: super;
+  color: blue;
+  font-size: 50%;
+}
+
+div.footnotes ol {
+  /* Hide the automatic list markers */
+  list-style: none;
+  font-size: 50%;
+  color: rgb(64,64,64);
+}
+
+/***  Once we have figured out how to make counters go beyond 9
+ *    we can uncomment the "body" selector and comment out
+ *    the "section" selectors!
+ ***/
+/* body { */
+section.slide, section.title-slide {
+  counter-reset: note-ref-counter note-counter;
+}
+
+div.footnotes ol li:before {
+  /* With brackets around the numbers */
+  content: "[" counter(note-counter) "]"; 
+
+  /* Without brackets around the numbers */
+  /*content: counter(note-counter);*/
+
+  vertical-align: super;
+  color: blue;
+  display: inline-block;
+  width: 1.3em;
+  /* Outdent the list markers */
+  margin-left: -1em;
+}
+
+span.note {
+  /* Increment the note ref counter for each note ref */
+  counter-increment: note-ref-counter;
+}
+
+div.footnotes ol li {
+  /* Increment the note counter for each list item */
+  counter-increment: note-counter;
+}
+
+/*** Insert some vertical space above the list of notes? ***/
+div.footnotes {
+   padding-top: 1em;
+ }
+
+/* Vim: set ft=css sw=2 sts=2 et: */

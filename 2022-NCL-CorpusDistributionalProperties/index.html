@@ -446,7 +446,7 @@ style.innerHTML = style_script;
 document.getElementsByTagName('head')[0].appendChild(style);
 </script>
 
-    <script src="2022-NCL-CorpusDistributionalProperties_files/header-attrs-2.11/header-attrs.js"></script>
+    <script src="2022-NCL-CorpusDistributionalProperties_files/header-attrs-2.14/header-attrs.js"></script>
     <link href="2022-NCL-CorpusDistributionalProperties_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
     <link href="2022-NCL-CorpusDistributionalProperties_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 </head>
@@ -474,35 +474,41 @@ class="email">alvinchen@ntnu.edu.tw</a></small></div></h2>
 <section id="語料庫語言學" class="title-slide slide level2">
 <h2>語料庫語言學</h2>
 <ul>
-<li>頻率(Frequency)一直是語料庫語言學研究中，相當重要的分佈訊息(Distributional
+<li>頻率(Frequency)一直是語料庫語言學研究中，相當重要的<strong>分佈訊息</strong>(Distributional
 Properties)。</li>
 <li>從單一詞彙頻率、多字詞組頻率、或是許多量化研究中的特定語言單位頻率計算，都成為許多語言學研究假設的佐證基礎。</li>
 </ul>
 </section>
 
-<section id="語料庫的分佈訊息" class="title-slide slide level2">
-<h2>語料庫的分佈訊息</h2>
+<section id="語料庫中的分佈訊息" class="title-slide slide level2">
+<h2>語料庫中的分佈訊息</h2>
 <ul>
 <li>透過語料庫，最常使用與擷取的兩種<span
 class="note">分析資料</span>是：
 <ul>
-<li>某個特定語言單位/結構在語料庫中出現的頻率
+<li>某個特定語言單位/結構在語料庫中<strong>出現</strong>(occurrences)的頻率
 <ul>
 <li>如：morphemes, words, grammatical patterns</li>
 </ul></li>
-<li>某些語言單位/結構在語料庫中一起出現的頻率
+<li>某些語言單位/結構在語料庫中<strong>共同出現</strong>(co-occurrences)的頻率
 <ul>
-<li>某個morpheme多常與某個詞彙一起出現？</li>
+<li>某個詞素多常與某個詞彙一起出現？</li>
 <li>某個詞彙多常與某個句構一起出現？</li>
+<li>某個詞彙/句構多常與某個文類/文體一起出現？</li>
 </ul></li>
 </ul></li>
-<li>這些分佈資料往往都成為語言結論的依歸。</li>
+<li><span
+class="note">這些分佈資料往往都成為語言結論的依歸</span>。</li>
 </ul>
 <div class="footnotes">
 <ol type="1">
 <li>Gries, Stefan Th. 2017. Quantitative Corpus Linguistics with R: A
 Practical Introduction. Second Edition. New York and London:
 Routledge.</li>
+<li>Stefanowitsch (2019) defines Corpus Linguistics as “the
+investigation of linguistic research questions that have been framed in
+terms of the conditional distribution of linguistic phenomena in a
+linguistic corpus”.</li>
 </ol>
 </div>
 </section>
@@ -511,10 +517,11 @@ Routledge.</li>
 <h2>除了頻率，還有什麼？</h2>
 <ul>
 <li>近年來有許多研究顯示，我們的語感，<span
-class="note">除了頻率以外，還有很多更細緻語感表現，是超越簡單的頻率</span>。</li>
+class="note">除了頻率以外，還有很多更細緻<strong>語感</strong>表現，是超越簡單的頻率</span>。</li>
 <li>語料庫中的「頻率」，體現我們語感中，「哪個語言詞彙或結構特別常出現？」的預測。</li>
-<li>然而，過去許多以「語用為本」之語法研究，都顯示說話者<span
-class="note">更多層面的語感預測能力</span>:
+<li>然而，「<strong>語用為本</strong>(Usage-based
+Grammar)」之語法研究，顯示說話者更具備<span
+class="note"><strong>多層面</strong>(Multifaceted)的語感預測能力</span>:
 <ul>
 <li>相關性(Exclusivity)</li>
 <li>離散性(Dispersion)</li>
@@ -541,44 +548,44 @@ interpreting the evidence. Language Learning, 67, 155–179.</li>
 <p>假設我們找出語料庫中所有的二字詞組（即:
 Bigrams），建立二字詞組頻率表（Frequency
 List），高頻的二字詞組可能會像是…</p>
-<p><img src="images/g0.png" title="Bigram頻率排序表" alt="Bigram頻率排序表" width="1050" /></p>
+<p><img src="images/g0.png" title="Bigram頻率排序表" alt="Bigram頻率排序表" width="1050" height="80%" /></p>
 </section>
 <section class="slide level3">
 
 <p>這些高頻Bigram，符合我們語感預測，但對於具體語言學假設的論證，似乎幫助不大？</p>
+<!-- ## Frequency vs. Exlusivity -->
 </section></section>
-<section id="frequency-vs.-exlusivity" class="title-slide slide level2">
-<h2>Frequency vs. Exlusivity</h2>
-<p>如果我們帶入「相關性」這個層次的分佈訊息呢？</p>
+<section id="如果我們帶入相關性這個層次的分佈訊息呢"
+class="title-slide slide level2">
+<h2>如果我們帶入「相關性」這個層次的分佈訊息呢？</h2>
 <p><img src="images/g1.png" width="1050" /></p>
+<!-- ## Exclusivity vs. Dispersion -->
 </section>
 
-<section id="exclusivity-vs.-dispersion"
+<section id="除了相關性如果我們再納入離散性呢"
 class="title-slide slide level2">
-<h2>Exclusivity vs. Dispersion</h2>
-<p>除了「相關性」，如果我們再納入「離散性」呢？</p>
+<h2>除了「相關性」，如果我們再納入「離散性」呢？</h2>
 <p><img src="images/g2.png" width="1050" /></p>
 </section>
 
-<section id="exclusivity-vs-directionality"
+<section id="除了相關性如果我們納入的是方向性呢"
 class="title-slide slide level2">
-<h2>Exclusivity vs Directionality</h2>
-<p>除了「相關性」，如果我們納入的是「方向性」呢？</p>
+<h2>除了「相關性」，如果我們納入的是「方向性」呢？</h2>
 <p><img src="images/g3.png" width="1050" /></p>
+<!-- ## Exclusivity, Directionality, Dispersion -->
 </section>
 
-<section id="exclusivity-directionality-dispersion"
+<section id="當然我們可以同時納入相關性離散性與方向性"
 class="title-slide slide level2">
-<h2>Exclusivity, Directionality, Dispersion</h2>
-<p>當然，我們可以同時納入「相關性」、「離散性」與「方向性」。</p>
-<p><img src="images/g4.png" width="1200" /></p>
+<h2>當然，我們可以同時納入「相關性」、「離散性」與「方向性」。</h2>
+<p><img src="images/g4.png" width="1350" /></p>
 </section>
 
 <section id="除了頻率還有" class="title-slide slide level2">
 <h2>除了「頻率」，還有…？</h2>
 <ul>
-<li>如果我們要回答的研究問題是「中文中常見的搭配詞組有哪些？」，我們可能就必須要更加善用語料庫所提供的分布信息。</li>
-<li>一個具有代表性的搭配詞組，可能不僅僅頻率必須要高，同時分布要夠廣，且詞語詞之間的相關性可能還有方向性之區分.</li>
+<li>如果我們要回答的研究問題是「中文中常見的搭配詞組有哪些？」，我們可能就必須要更加善用語料庫所提供的分佈信息。</li>
+<li>一個具有代表性的搭配詞組，可能不僅僅<strong>頻率</strong>必須要高，同時<strong>分布</strong>要夠廣，且詞與詞之間的<strong>相關性</strong>可能還有<strong>方向性</strong>之區分.</li>
 </ul>
 </section>
 
@@ -586,8 +593,20 @@ class="title-slide slide level2">
 <section id="分佈信息與語言習得" class="title-slide slide level2">
 <h2>分佈信息與語言習得</h2>
 <ul>
-<li>我們甚至發現語言使用者在語言學習的過程當中也不斷學習到這些語言當中的機率表現。</li>
+<li>我們也發現，語言使用者在語言學習的過程當中也不斷學習到這些語言當中的<span
+class="note"><strong>機率分佈表現</strong>(statistical distributional
+properties)</span><span class="note"></span>。</li>
 </ul>
+<div class="footnotes">
+<ol type="1">
+<li>Chen, A. C.-H. (2022).Assessing L2 learner’s multifaceted
+collocation competence: A comparative analysis of Chinese and English L2
+learners’ essays. EUROCALL2022, Reykjavik,16–19 August 2022.</li>
+<li>Chen, A. C.-H. (2021). Acquisition of L2 collocation competence: A
+corpus analysis of exclusivity, directionality, dispersion and novel
+usage. <em>Taiwan Journal of TESOL</em>,18(1),29–61.</li>
+</ol>
+</div>
 </section>
 <section class="slide level3">
 
@@ -613,8 +632,9 @@ class="title-slide slide level2">
 <section id="語料庫語言學的下一步" class="title-slide slide level2">
 <h2>語料庫語言學的下一步？</h2>
 <ul>
-<li>在使用語料庫語言學方法，探索一個語言學研究議題時，我們應更加注意「多面向(Multifaceted)」的語料庫語言學分佈訊息，並考量不同面向的分佈訊息可能代表的意義與彼此間互動。</li>
-<li>在常見的語料庫語言學研究議題裡（如：近義詞研究、構式功能與語意研究、關鍵詞研究等），應多加考量「離散性」與「方向性」，讓研究結論能更全面反映語言使用者之語言能力。</li>
+<li>在使用語料庫語言學方法，探索一個語言學研究議題時，我們應更加注意「<strong>多面向(Multifaceted)</strong>」的語料庫語言學分佈訊息，並考量不同面向的分佈訊息，彼此間互動與可能代表的意義。</li>
+<li>在常見的語料庫語言學研究議題裡（如：近義詞研究、構式功能與語意研究、關鍵詞研究等），應多加考量「<strong>離散性</strong>」與「<strong>方向性</strong>」，讓研究結論能更全面地反映語言使用者之語言能力(Native
+Intuition, Grammatical Competence)。</li>
 </ul>
 <!-- ## 「句構」的分散式語意表徵 -->
 <!-- - 句構的語意，亦可從**句構**與<span style="color:red; font-weight:bold">其他語言單位</span>之間的共現性，學習其分散式語意表徵(Distributed Semantic Representation)： -->

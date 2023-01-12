@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>人文社會科學 x 資訊教育:</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="UFO_2023_Sharing_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="UFO_2023_Sharing_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="static/revealstyle.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="UFO_2023_Sharing_files/header-attrs-2.19/header-attrs.js"></script>
+    <link href="UFO_2023_Sharing_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="UFO_2023_Sharing_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title"><span style="font-size:0.9em;">人文社會科學 x
+資訊教育:</span></h1>
+  <h1 class="subtitle"><span
+style="font-size:0.9em;">在文學院教程式設計!?</span></h1>
+    <h2 class="author"><div class="line-block"><br />
+<span style="font-size:0.6em;line-height:50%;">陳正賢</span><br />
+<span
+style="font-size: 0.6em;font-family:&#39;Times New Roman&#39;, Times, serif;color:&#39;darkgrey;line-height:50%;&#39;">Alvin
+Cheng-Hsien Chen</span><br />
+<br />
+<small>國立台灣師範大學英語學系</small><br />
+<small><a href="mailto:alvinchen@ntnu.edu.tw"
+class="email">alvinchen@ntnu.edu.tw</a></small></div></h2>
+    <h3 class="date"><small>2023年01月12日</small></h3>
+</section>
+
+<section id="相關課程" class="title-slide slide level2">
+<h2>相關課程</h2>
+<div class="container">
+<div class="col">
+<ul>
+<li>國立臺灣師範大學英語系（語言學組）</li>
+<li>研究所課程
+<ul>
+<li>程式語言用於語言學分析(<a
+href="https://alvinntnu.github.io/NTNU_ENC2055/index.html">ENC2055</a>)</li>
+<li>語料庫語言學(<a
+href="https://alvinntnu.github.io/NTNU_ENC2036/">ENC2036</a>)</li>
+<li>計算語言學(<a
+href="https://alvinntnu.github.io/NTNU_ENC2045/">ENC2045</a>)</li>
+</ul></li>
+</ul>
+</div>
+<div class="col">
+<p><span
+class="note"><img src="images/course-QR.png" width="60%" /></span></p>
+</div>
+</div>
+<div class="footnotes">
+<ol type="1">
+<li>本次簡報中，所分享之教學課程網頁，皆可由以上網址取得連結。</li>
+</ol>
+</div>
+</section>
+
+<section id="文學院文組生與程式設計" class="title-slide slide level2">
+<h2>文學院、文組生與程式設計</h2>
+<div class="container">
+<div class="col">
+<ul>
+<li>研究需求
+<ul>
+<li>量化方法</li>
+<li>資料文本與大數據</li>
+<li>客觀論證</li>
+</ul></li>
+</ul>
+</div>
+<div class="col">
+<ul>
+<li>市場需求
+<ul>
+<li>機器學習蓬勃發展</li>
+<li>對於人工智慧的求知慾</li>
+<li>文組生的危機意識</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="教學經驗分享" class="title-slide slide level2">
+<h2>教學經驗分享</h2>
+<ul>
+<li>教學題材設計</li>
+<li>心得與挑戰分享</li>
+</ul>
+</section>
+
+<section>
+<section id="教學題材設計" class="title-slide slide level2">
+<h2>教學題材設計</h2>
+
+</section>
+<section class="slide level3">
+
+<ul>
+<li>利用R Markdown 建置課程靜態網頁。</li>
+</ul>
+<p><img src="images/rmarkdown.png" width="1226" /></p>
+</section>
+<section class="slide level3">
+
+<p><img src="images/enc2055.png" width="40%" /><img src="images/enc2036.png" width="40%" /><img src="images/enc2045.png" width="40%" /></p>
+</section>
+<section class="slide level3">
+
+<div class="container">
+<div class="col">
+<ul>
+<li>R語言課程，利用<a href="https://bookdown.org/">R Bookdown</a>
+建置課程教材</li>
+</ul>
+<p><img src="images/bookdown-sample.png" width="100%" /></p>
+</div>
+<div class="col">
+<ul>
+<li>Python語言課程，利用<a
+href="https://jupyterbook.org/en/stable/intro.html">Jupyter
+Book</a>建置課程教材。</li>
+</ul>
+<p><img src="images/jpbook-sample.png" width="100%" /></p>
+</div>
+</div>
+</section>
+<section class="slide level3">
+
+<ul>
+<li><strong>常態性</strong>維護課程網頁，不僅可以幫助學生有效地取得課程內容，同時有助於未來應用。</li>
+<li>通常在學習一個程式語言之後，往往在未來真正應用時，還是必須常常回過頭去查看過去的筆記、Documentation等等。</li>
+<li>因此，課程網頁不僅是<strong>教材</strong>，也是<strong>參考資源</strong>。</li>
+</ul>
+</section>
+<section class="slide level3">
+
+<ul>
+<li>利用網頁標注工具，<a
+href="https://web.hypothes.is/"><strong>Hypothes.is</strong></a>，讓學生能參與課程內容除錯、建議與更新。</li>
+</ul>
+<p><img src="images/hypo-web.png" width="40%" /><img src="images/hypo-annotate.png" width="40%" /><img src="images/hypo-example.png" width="40%" /></p>
+</section>
+<section class="slide level3">
+
+<ul>
+<li>透過由<strong>簡</strong>入<strong>深</strong>的課後<span
+class="note">練習</span>設計，讓學生可仿照課程內容實作，同時，延伸至更複雜的任務。</li>
+</ul>
+<p><img src="images/exercise-r.png" width="40%" /><img src="images/exercise-py.png" width="40%" /></p>
+<div class="footnotes">
+<ol type="1">
+<li>課後練習題的設計，或許是最花時間的，因為必須增強難度，同時，必須給予學生<strong>標準答案</strong>。</li>
+<li>標準答案對文院學生，或許是一種可以降低他們學習<strong>焦慮</strong>的策略？</li>
+</ol>
+</div>
+</section></section>
+<section>
+<section id="教學心得與挑戰" class="title-slide slide level2">
+<h2>教學心得與挑戰</h2>
+
+</section>
+<section id="程式語言教學就像外語教學" class="slide level3">
+<h3>程式語言教學，就像「外語教學」！</h3>
+<p><img src="images/lg-learning.jpg" width="50%" /></p>
+<ul>
+<li
+class="fragment">每一個「涵式」，就像學習一個全新的外語「<strong>詞彙</strong>」!
+語意、功能、語境與用法，對學生都是必要的。</li>
+<li
+class="fragment">程式碼撰寫，如同語言寫作，有既定約定俗成「<strong>格式</strong>」!
+(如：參數名稱命名限制、程式碼Indent格式等等)</li>
+<li
+class="fragment">每一個（程式）語言，都有自己獨特的「<strong>片語</strong>」。</li>
+<li
+class="fragment">如何由「單句」進入「<strong>篇章</strong>」，將是語言完成溝通任務的關鍵。（如：自訂函式與控制結構)。</li>
+<li
+class="fragment">「<strong>廣泛閱讀</strong>」終究是語言進步的不二法門！（如：多多分析他人程式碼撰寫)。</li>
+</ul>
+</section>
+<section id="文院生的線性思考thinking-in-pipelines"
+class="slide level3">
+<h3>文院生的「線性思考(Thinking in Pipelines)」</h3>
+<p><img src="images/production-line.jpg" width="50%" /></p>
+<ul>
+<li
+class="fragment">文學院的學生，大多數的同學根本沒有接觸過程式語言。</li>
+<li class="fragment">他們最大的挑戰是，程式語言當中的「<strong>Zero
+Tolerance of
+Ambiguity</strong>」，這正好與學生們所熟悉的自然語言，形成強大對比。</li>
+<li
+class="fragment">要學習如何將日常語言當中的「自動<strong>腦補</strong>語意」，明確地轉譯成程式碼中的清楚步驟，這是挑戰！</li>
+</ul>
+</section>
+<section id="開個檔案這麼複雜啊" class="slide level3">
+<h3>「開個檔案，這麼複雜啊！？」</h3>
+<div class="container">
+<div class="col">
+<p><img src="images/open-file.jpeg" width="100%" /></p>
+</div>
+<div class="col">
+<p><img src="images/annoyed.jpg" width="100%" /></p>
+</div>
+</div>
+</section>
+<section id="到底要給學生多完整的教材內容" class="slide level3">
+<h3>到底要給學生多「完整」的教材內容？</h3>
+<ul>
+<li
+class="fragment">實作當然會希望給予學生實際操作、撰寫程式碼的經驗，那麼，課堂內容改怎麼提供給學生，「<strong>教</strong>」與「<strong>學</strong>」更有效率呢？</li>
+<li
+class="fragment">什麼檔案都不給學生，請學生直接參考課程網頁內容？</li>
+<li class="fragment">給予學生程式碼檔案？(<code>R</code> 或
+<code>Python</code> 原始碼)</li>
+<li class="fragment">給予學生完整課程內容說明與原始碼?
+(<code>R Markodwn</code> 或 <code>Python Notebook</code> 檔案)</li>
+</ul>
+</section>
+<section id="看似不足為道的每一步可能都是學生的一大步"
+class="slide level3">
+<h3>看似「不足為道」的每一步，可能都是學生的一大步！</h3>
+<ul>
+<li>如何透過<strong>網路社群</strong>尋求協助？(如: Stack Overflow)</li>
+<li>如何透過程式語言官方<strong>Documentation</strong>，找尋自己需要的資料？</li>
+<li>如何<strong>安裝</strong>軟體？</li>
+<li>如何克服<strong>跨平台</strong>問題？(如: Windows, Mac OS)</li>
+<li>如何選擇適合的<strong>Package</strong>，完成任務？</li>
+</ul>
+</section></section>
+<section id="結語" class="title-slide slide level2">
+<h2>結語</h2>
+<ul>
+<li
+class="fragment">程式語言教學，不管在教材設計、教學方法，與外語教學有許多類似的地方。</li>
+<li
+class="fragment">總覺得應該像外語或英語TESOL，有更多與程式語言相關的教學討論與分享。</li>
+<li
+class="fragment">在令人不安的雙語政策下，程式語言教學更是難上加難！</li>
+<li class="fragment">「文學院是可以寫程式的！?」，這是肯定的！</li>
+</ul>
+<!-- - 透過語料庫，最常使用與擷取的兩種[分析資料]{.note}是： -->
+<!--   - 某個特定語言單位/結構在語料庫中**出現**(occurrences)的頻率 -->
+<!--     - 如：morphemes, words, grammatical patterns -->
+<!--   - 某些語言單位/結構在語料庫中**共同出現**(co-occurrences)的頻率 -->
+<!--     - 某個詞素多常與某個詞彙一起出現？ -->
+<!--     - 某個詞彙多常與某個句構一起出現？ -->
+<!--     - 某個詞彙/句構多常與某個文類/文體一起出現？ -->
+<!-- - [這些分佈資料往往都成為語言結論的依歸]{.note}。 -->
+<!-- :::{.footnotes} -->
+<!-- 1. Gries, Stefan Th. 2017. Quantitative Corpus Linguistics with R: A Practical Introduction. Second Edition. New York and London: Routledge. -->
+<!-- 2. Stefanowitsch (2019) defines Corpus Linguistics as "the investigation of linguistic research questions that have been framed in terms of the conditional distribution of linguistic phenomena in a linguistic corpus". -->
+<!-- ::: -->
+</section>
+
+<section id="section" class="title-slide slide level2">
+<h2></h2>
+<span style="font-size: 2.5em">感謝大家!</span> </br> </br> <small><img
+data-src="images/course-QR.png" /></small>
+<hr>
+<p><small>本次簡報中，所分享之教學課程網頁，皆可由以上網址取得連結。</small></p>
+</section>
+    </div>
+  </div>
+
+  <script src="UFO_2023_Sharing_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="UFO_2023_Sharing_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: true,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        height: 800,
+
+        menu: {
+   
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'UFO_2023_Sharing_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: 'UFO_2023_Sharing_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: 'UFO_2023_Sharing_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+<div class='footer'>
+<p>報告於「人文社會科學 x 資訊教育 線上座談分享會」</p>
+<p>alvinchen@ntnu.edu.tw &ensp;|&ensp; <a href='https://alvinchen.myftp.org' target='_blank'> http://web.ntnu.edu.tw/~alvinchen/ </a></a></p>
+</div>
+
+  </body>
+</html>

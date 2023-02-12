@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="dcterms.date" content="2023-02-17" />
+  <title>Corpus-based Distributional Data for Linguistic Generalization:</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="2023-UQueensland-CorpusDistributionalProperties_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="2023-UQueensland-CorpusDistributionalProperties_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="static/revealstyle.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="2023-UQueensland-CorpusDistributionalProperties_files/header-attrs-2.11/header-attrs.js"></script>
+    <link href="2023-UQueensland-CorpusDistributionalProperties_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="2023-UQueensland-CorpusDistributionalProperties_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@100;300;400;500;700;900&display=swap');
+</style>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title"><span style="font-size:0.9em;">Corpus-based
+Distributional Data for Linguistic Generalization:</span></h1>
+  <h1 class="subtitle"><span style="font-size:0.9em;">Frequency and
+more?</span></h1>
+    <h2 class="author"><div class="line-block"><br />
+<span style="font-size:0.6em;line-height:50%;">陳正賢</span><br />
+<span
+style="font-size: 0.6em;font-family:&#39;Times New Roman&#39;, Times, serif;color:&#39;darkgrey;line-height:50%;&#39;">Alvin
+Cheng-Hsien Chen</span><br />
+<br />
+<small>National Taiwan Normal University</small></div></h2>
+    <h3 class="date"><small>Feb. 17, 2023</small></h3>
+</section>
+
+<section id="corpus-based-apporach-to-linguistic-analysis"
+class="title-slide slide level2">
+<h2>Corpus-based Apporach to Linguistic Analysis</h2>
+<ul>
+<li><strong>Frequency counts</strong> have been one of the central
+distributional properties extensively used in corpus linguistic
+analysis.</li>
+<li>These include the frequency counts of single <em>words</em>,
+<em>multiword combinations</em>, or other specific
+<em>constructions/structures</em>.</li>
+</ul>
+</section>
+
+<section>
+<section id="corpus-based-distributional-properties"
+class="title-slide slide level2">
+<h2>Corpus-based Distributional Properties</h2>
+<ul>
+<li><span class="note">Two types of distributional properties are most
+often extracted from corpus data</span>:
+<ul>
+<li>occurrences</li>
+<li>cooccurrences</li>
+</ul></li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>Gries, Stefan Th. 2017. Quantitative Corpus Linguistics with R: A
+Practical Introduction. Second Edition. New York and London:
+Routledge.</li>
+</ol>
+</div>
+</section>
+<section class="slide level3">
+
+<ul>
+<li>The <strong>occurrences</strong> of a particular linguistic unit
+<ul>
+<li>e.g., morphemes, words, grammatical patterns</li>
+</ul></li>
+<li>The <strong>cooccurrences</strong> as the <em>conditional
+distribution</em> of linguistic units/phenomena
+<ul>
+<li>How often does a morpheme cooccur with a particular word？</li>
+<li>How often does a word cooccur with a particular construction？</li>
+<li>How often does a word/construction cooccur with a particular
+register/genre？</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level3">
+
+<ul>
+<li>These occurrences and cooccurrences data often serve as <span
+class="note">empirical support for linguistic hypotheses</span>。</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>Stefanowitsch (2019) defines Corpus Linguistics as “the
+investigation of linguistic research questions that have been framed in
+terms of the conditional distribution of linguistic phenomena in a
+linguistic corpus”.</li>
+</ol>
+</div>
+</section></section>
+<section>
+<section id="in-addition-to-frequency-what-else"
+class="title-slide slide level2">
+<h2>In addition to frequency, what else?</h2>
+<ul>
+<li>Studies have shown that speakers are sensitive to <span
+class="note">more subtle distributional/statistical properties in
+language use.</span></li>
+<li>Frequency counts may only capture one aspect of our native
+intuition: which linguistic structure is more frequently used?</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>Ellis, Nick C, Matthew Brook O’Donnel &amp; Ute Römer. 2014. The
+processing of verb-argument constructions is sensitive to form,
+function, frequency, contingency, and prototypicality. Cognitive
+Linguistics 25(1). 55–98.</li>
+</ol>
+</div>
+</section>
+<section class="slide level3">
+
+<ul>
+<li><strong>Usage-based</strong> studies have highlighted the <span
+class="note">multifaceted nature of our statistical native
+intuition</span>:
+<ul>
+<li>Exclusivity</li>
+<li>Dispersion</li>
+<li>Directionality</li>
+</ul></li>
+<li>We will illustrate these ideas with the examples of two-word
+collocations.</li>
+</ul>
+<div class="footnotes">
+<ol start="2" type="1">
+<li>Gablasova, D., Brezina, V., &amp; McEnery, T. (2017). Collocations
+in corpus-based language learning research: Identifying, comparing, and
+interpreting the evidence. Language Learning, 67, 155–179.</li>
+</ol>
+</div>
+</section></section>
+<section id="a-quick-example" class="title-slide slide level2">
+<h2>A Quick Example</h2>
+<ul>
+<li>Data Source: Corpus of Contemporary American English (COCA)</li>
+<li>Target: Two-word combinations (Contiguous Bigrams)</li>
+<li>Research Question: Representative Collocations in English</li>
+</ul>
+</section>
+
+<section>
+<section id="a-naive-start" class="title-slide slide level2">
+<h2>A Naive Start</h2>
+<ul>
+<li>Create a frequency list of two-word combinations based on the
+COCA.</li>
+</ul>
+</section>
+<section class="slide level3">
+
+<p><img src="images/g0.png" title="Bigram頻率排序表" alt="Bigram頻率排序表" width="1050" height="90%" /></p>
+</section>
+<section class="slide level3">
+
+<p>While the frequency list may reflect our intuition, they may
+contribute little to the research question.</p>
+<!-- ## Frequency vs. Exlusivity -->
+</section></section>
+<section id="what-if-we-include-exclusivity-into-the-analysis"
+class="title-slide slide level2">
+<h2>What if we include <strong>exclusivity</strong> into the
+analysis?</h2>
+<p><img src="images/g1.png" width="1050" /></p>
+<!-- ## Exclusivity vs. Dispersion -->
+</section>
+
+<section id="on-top-of-exclusivity-what-if-we-include-dispersion"
+class="title-slide slide level2">
+<h2>On top of <strong>exclusivity</strong>, what if we include
+<strong>dispersion</strong>?</h2>
+<p><img src="images/g2.png" width="1050" /></p>
+</section>
+
+<section id="on-top-of-exclusivity-what-if-we-include-directionality"
+class="title-slide slide level2">
+<h2>On top of <strong>exclusivity</strong>, what if we include
+<strong>directionality</strong>?</h2>
+<p><img src="images/g3.png" width="1050" /></p>
+<!-- ## Exclusivity, Directionality, Dispersion -->
+</section>
+
+<section
+id="now-lets-try-integrating-all-three-aspects-exclusivity-dispersion-and-directionality."
+class="title-slide slide level2">
+<h2>Now, let’s try integrating all three aspects: exclusivity,
+dispersion, and directionality.</h2>
+<p><img src="images/g4.png" width="1350" /></p>
+</section>
+
+<section id="frequency-and-more" class="title-slide slide level2">
+<h2>Frequency and more？</h2>
+<ul>
+<li>If our research question is: what are the frequently occurring
+two-word combinations in English, we should make use of corpus-based
+distributional properties in all aspects.</li>
+<li>A <strong>representative</strong> combination should probably
+demonstrate considerably high <strong>frequency</strong> and
+<strong>exclusivity</strong>, with wide <strong>dispersion</strong>. _
+The directionality of combination’s lexical association may lead to more
+diverse representative sets of combinations as well.</li>
+</ul>
+</section>
+
+<section>
+<section id="multifaceted-distributional-properties-and-acquisition"
+class="title-slide slide level2">
+<h2>Multifaceted Distributional Properties and Acquisition</h2>
+<ul>
+<li>Our studies also show that language learners are able to gradually
+pick up these <span class="note">multifaceted **statistical
+distributional properties</span><span class="note"></span>.</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>Chen, A. C.-H. (2022).Assessing L2 learner’s multifaceted
+collocation competence: A comparative analysis of Chinese and English L2
+learners’ essays. EUROCALL2022, Reykjavik,16–19 August 2022.</li>
+<li>Chen, A. C.-H. (2021). Acquisition of L2 collocation competence: A
+corpus analysis of exclusivity, directionality, dispersion and novel
+usage. <em>Taiwan Journal of TESOL</em>,18(1),29–61.</li>
+</ol>
+</div>
+</section>
+<section class="slide level3">
+
+<ul>
+<li><p>Sophistication of learners’ two-word combinations in L2 (English
++ Chinese) essays.</p></li>
+<li><p>As L2 proficiency level grows, the <strong>exclusivity</strong>
+of their two-word combinations grows as well.</p></li>
+</ul>
+<p><img src="images/eurocall-exclusivity.png" width="1163" /></p>
+</section>
+<section class="slide level3">
+
+<ul>
+<li>Learners’ two-word combinations also become more and more
+sophisticated when their lexical associations are examined in
+bi-directional order (Forward-directed sophistication is more
+prominent.)</li>
+</ul>
+<p><img src="images/eurocall-direction.png" width="1163" /></p>
+</section>
+<section class="slide level3">
+
+<ul>
+<li>As L2 proficiency level grows, the <strong>dispersion</strong> of
+their two-word combination develops as well; advanced learners
+demonstrate greater capacity of domain-specific combinations.</li>
+</ul>
+<p><img src="images/eurocall-dispersion.png" width="1166" /></p>
+</section></section>
+<section id="challenges-in-corpus-linguistics"
+class="title-slide slide level2">
+<h2>Challenges in Corpus Linguistics</h2>
+<ul>
+<li>We need to pay attention to the multifaceted nature of the
+corpus-based distributional properties as well as the meanings of the
+quantitative distributional metrics in different aspects.</li>
+<li>In particular, common corpus-based analyses (e.g., near-synonyms,
+lexical semantics, keyness analysis) may need to consider dispersion and
+directionality in more comprehensive ways.</li>
+</ul>
+<!-- ## 「句構」的分散式語意表徵 -->
+<!-- - 句構的語意，亦可從**句構**與<span style="color:red; font-weight:bold">其他語言單位</span>之間的共現性，學習其分散式語意表徵(Distributed Semantic Representation)： -->
+<!--   - **句構**與<span style="color:red; font-weight:bold">詞彙</span>間的連結：哪些詞彙經常與特定空間句構共同使用？ -->
+<!--   - <span style="color:red; font-weight:bold">詞彙</span>與<span style="color:red; font-weight:bold">詞彙</span>間的連結：出現在空間句構中的詞彙裡，哪些詞彙語意較為相近？哪些詞彙語意距離較遠？ -->
+<!--   - **句構**與**句構**間的連結：哪些空間句構較為相近？哪些空間句構語意距離較遠？（如：「在 ＋... + 內」、「在 ＋... + 下」、「在 ＋... + 後」） -->
+</section>
+
+<section id="section" class="title-slide slide level2">
+<h2></h2>
+<span style="font-size: 2.5em">Thank you!</span> </br> </br>
+<hr>
+</section>
+    </div>
+  </div>
+
+  <script src="2023-UQueensland-CorpusDistributionalProperties_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="2023-UQueensland-CorpusDistributionalProperties_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: true,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        height: 800,
+
+        menu: {
+   
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '2023-UQueensland-CorpusDistributionalProperties_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '2023-UQueensland-CorpusDistributionalProperties_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: '2023-UQueensland-CorpusDistributionalProperties_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+<div class='footer'>
+<p>Presented at University of Queensland</p>
+<p>alvinchen@ntnu.edu.tw &ensp;|&ensp; <a href='https://alvinchen.myftp.org' target='_blank'> http://web.ntnu.edu.tw/~alvinchen/ </a></a></p>
+</div>
+
+  </body>
+</html>

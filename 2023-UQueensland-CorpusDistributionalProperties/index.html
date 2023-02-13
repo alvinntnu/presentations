@@ -460,16 +460,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 <section>
-    <h1 class="title"><span style="font-size:0.9em;">Corpus-based
+    <h1 class="title"><span style="font-size:1em;">Corpus-based
 Distributional Data for Linguistic Generalization:</span></h1>
-  <h1 class="subtitle"><span style="font-size:0.9em;">Frequency and
+  <h1 class="subtitle"><span style="font-size:1em;">Frequency and
 more?</span></h1>
     <h2 class="author"><div class="line-block"><br />
-<span style="font-size:0.6em;line-height:50%;">陳正賢</span><br />
-<span
-style="font-size: 0.6em;font-family:&#39;Times New Roman&#39;, Times, serif;color:&#39;darkgrey;line-height:50%;&#39;">Alvin
-Cheng-Hsien Chen</span><br />
-<br />
+<small> Alvin Cheng-Hsien Chen </small><br />
 <small>National Taiwan Normal University</small></div></h2>
     <h3 class="date"><small>Feb. 17, 2023</small></h3>
 </section>
@@ -608,34 +604,59 @@ COCA.</li>
 contribute little to the research question.</p>
 <!-- ## Frequency vs. Exlusivity -->
 </section></section>
-<section id="what-if-we-include-exclusivity-into-the-analysis"
-class="title-slide slide level2">
-<h2>What if we include <strong>exclusivity</strong> into the
-analysis?</h2>
+<section>
+<section id="exclusivity" class="title-slide slide level2">
+<h2>Exclusivity</h2>
+<ul>
+<li>High-frequency of the two-word combinations may not necessarily
+reflect the strong lexical associations.</li>
+<li>It is indeed a statistical evaluation. Many statistical metrics can
+be used, e.g., MI and LLR.</li>
+</ul>
+</section>
+<section class="slide level3">
+
+<p>Now what if we add <strong>exclusivity</strong> to the analysis:</p>
 <p><img src="images/g1.png" width="1050" /></p>
 <!-- ## Exclusivity vs. Dispersion -->
+</section></section>
+<section>
+<section id="dispersion" class="title-slide slide level2">
+<h2>Dispersion</h2>
+<ul>
+<li>A linguistic structure can be evenly distributed across the
+documents of the corpus or specific to only a few
+documents/authors/registers etc.</li>
+<li>Many quantitative metrics can be used, e.g., range, inverse document
+frequency, delta P.</li>
+</ul>
 </section>
+<section class="slide level3">
 
-<section id="on-top-of-exclusivity-what-if-we-include-dispersion"
-class="title-slide slide level2">
-<h2>On top of <strong>exclusivity</strong>, what if we include
-<strong>dispersion</strong>?</h2>
+<p>Now if we add <strong>dispersion</strong> to our analysis:</p>
 <p><img src="images/g2.png" width="1050" /></p>
+</section></section>
+<section>
+<section id="directionality" class="title-slide slide level2">
+<h2>Directionality</h2>
+<ul>
+<li>When two words are attracted to each other (i.e., high exclusivity),
+their lexical association may be asymmetrical (e.g., <strong>apply
+for</strong> vs. <strong>at home</strong>)</li>
+<li>Many metrics can be used: delta P, surprisal, transitional
+probability.</li>
+</ul>
 </section>
+<section class="slide level3">
 
-<section id="on-top-of-exclusivity-what-if-we-include-directionality"
-class="title-slide slide level2">
-<h2>On top of <strong>exclusivity</strong>, what if we include
-<strong>directionality</strong>?</h2>
+<p>If we add <strong>directionality</strong> to our analysus:</p>
 <p><img src="images/g3.png" width="1050" /></p>
 <!-- ## Exclusivity, Directionality, Dispersion -->
-</section>
-
-<section
-id="now-lets-try-integrating-all-three-aspects-exclusivity-dispersion-and-directionality."
-class="title-slide slide level2">
-<h2>Now, let’s try integrating all three aspects: exclusivity,
-dispersion, and directionality.</h2>
+</section></section>
+<section id="an-integrated-analysis" class="title-slide slide level2">
+<h2>An Integrated Analysis</h2>
+<p>We can include all three aspects into the analysis: exclusivity,
+dispersion, and directionality.</p>
 <p><img src="images/g4.png" width="1350" /></p>
 </section>
 
@@ -644,12 +665,14 @@ dispersion, and directionality.</h2>
 <ul>
 <li>If our research question is: what are the frequently occurring
 two-word combinations in English, we should make use of corpus-based
-distributional properties in all aspects.</li>
+distributional properties at different dimensions.</li>
 <li>A <strong>representative</strong> combination should probably
 demonstrate considerably high <strong>frequency</strong> and
-<strong>exclusivity</strong>, with wide <strong>dispersion</strong>. _
-The directionality of combination’s lexical association may lead to more
-diverse representative sets of combinations as well.</li>
+<strong>exclusivity</strong>, with wide
+<strong>dispersion</strong>.</li>
+<li>The <strong>directionality</strong> of combination’s lexical
+association may lead to more diverse representative sets of combinations
+as well.</li>
 </ul>
 </section>
 
@@ -658,9 +681,11 @@ diverse representative sets of combinations as well.</li>
 class="title-slide slide level2">
 <h2>Multifaceted Distributional Properties and Acquisition</h2>
 <ul>
-<li>Our studies also show that language learners are able to gradually
-pick up these <span class="note">multifaceted **statistical
-distributional properties</span><span class="note"></span>.</li>
+<li>We have observed a similar development in L2 data as well<span
+class="note"></span><span class="note"></span>.</li>
+<li>L2 learners are able to gradually pick up these <strong>multifaceted
+statistical distributional properties</strong> in their L2 production
+(written essays).</li>
 </ul>
 <div class="footnotes">
 <ol type="1">
@@ -697,21 +722,24 @@ prominent.)</li>
 
 <ul>
 <li>As L2 proficiency level grows, the <strong>dispersion</strong> of
-their two-word combination develops as well; advanced learners
-demonstrate greater capacity of domain-specific combinations.</li>
+their two-word combination develops as well.</li>
+<li>Advanced learners demonstrate greater capacity of domain-specific
+combinations.</li>
 </ul>
 <p><img src="images/eurocall-dispersion.png" width="1166" /></p>
 </section></section>
-<section id="challenges-in-corpus-linguistics"
-class="title-slide slide level2">
-<h2>Challenges in Corpus Linguistics</h2>
+<section id="future-challenges" class="title-slide slide level2">
+<h2>Future Challenges</h2>
 <ul>
 <li>We need to pay attention to the multifaceted nature of the
 corpus-based distributional properties as well as the meanings of the
 quantitative distributional metrics in different aspects.</li>
 <li>In particular, common corpus-based analyses (e.g., near-synonyms,
-lexical semantics, keyness analysis) may need to consider dispersion and
-directionality in more comprehensive ways.</li>
+lexical semantics, keyness analysis) may need to consider
+<strong>dispersion</strong> and <strong>directionality</strong> in more
+comprehensive ways.</li>
+<li>The choice of a proper metric is always a non-trivial issue in
+CL.</li>
 </ul>
 <!-- ## 「句構」的分散式語意表徵 -->
 <!-- - 句構的語意，亦可從**句構**與<span style="color:red; font-weight:bold">其他語言單位</span>之間的共現性，學習其分散式語意表徵(Distributed Semantic Representation)： -->

@@ -130,3 +130,14 @@ div.footnotes {
  }
 
 /* Vim: set ft=css sw=2 sts=2 et: */
+
+
+/* Two-column layout*/
+
+.container{
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+

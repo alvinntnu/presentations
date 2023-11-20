@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="陳正賢(Alvin Cheng-Hsien Chen)" />
+  <title>語料庫語言學： 語言的數據之旅</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="CorpLingOverview_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="CorpLingOverview_files/reveal.js-3.3.0.1/css/theme/white.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="_static/revealstyle.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="CorpLingOverview_files/header-attrs-2.25/header-attrs.js"></script>
+    <link href="CorpLingOverview_files/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+    <link href="CorpLingOverview_files/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="CorpLingOverview_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+    <script src="CorpLingOverview_files/pagedtable-1.1/js/pagedtable.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">語料庫語言學：<br>語言的數據之旅</h1>
+    <h2 class="author"><a href="http://web.ntnu.edu.tw/~alvinchen/"
+style="font-size:0.6em;margin-top:24px;text-transform: none;">陳正賢(Alvin
+Cheng-Hsien Chen)</a></h2>
+    <h3 class="date"><img src='https://www.dropbox.com/scl/fi/31rcrl3capa7xaze7u1of/talkslides-QR-my-homepage-talks.png?rlkey=ylah7pko8k5p6g6ib6gr9hp3x&dl=1' alt='QR' width='30%'></h3>
+</section>
+
+<section>
+<section id="背景介紹" class="title-slide slide level2">
+<h2>背景介紹</h2>
+
+</section>
+<section id="語料庫語言學是什麼呢" class="title-slide slide level3">
+<h3>語料庫語言學是什麼呢？</h3>
+<ul>
+<li>當我們學習一門語言時，我們需要了解該語言的語法、詞彙和用法。</li>
+<li>語料庫語言學是一種基於語言使用實例（即語料庫）作為研究言語使用的研究方法。</li>
+<li>語言學家可以通過分析語料庫中的實際語言使用情況來研究語言的結構和用法。</li>
+<li>研究者也可透過語料庫，挖掘潛在的語言使用趨勢或模式。</li>
+</ul>
+</section>
+
+<section id="什麼是語料庫" class="title-slide slide level3">
+<h3>什麼是語料庫？</h3>
+<ul>
+<li>語料庫就是一個大型的文字資料庫。</li>
+<li>可以人工收集建立，也可以是透個電腦程式自動創建。</li>
+<li>語料庫建置時考量的重點：
+<ul>
+<li>代表性(單一樣本可否代表類型全體？)</li>
+<li>平衡性(樣本種類是否可涵蓋全部類型？)</li>
+<li>真實性(樣本是否為真實語境語言使用？)</li>
+</ul></li>
+</ul>
+</section>
+
+<section id="常見的語料庫" class="title-slide slide level3">
+<h3>常見的語料庫</h3>
+
+</section>
+<section id="國內" class="slide level4">
+<h4>國內</h4>
+<ul>
+<li><a
+href="https://asbc.iis.sinica.edu.tw/">中央研究院平衡語料庫</a></li>
+<li><a href="https://coct.naer.edu.tw/">國教院COCT</a></li>
+<li><a
+href="https://corpus.linguistics.ntu.edu.tw/#/">南島語料庫</a></li>
+<li><a href="https://corpus.hakka.gov.tw/#/">台灣客語語料庫</a></li>
+<li><a
+href="https://spokentaiwanmandarin.nccu.edu.tw/">政治大學國語口語語料庫</a></li>
+<li><a
+href="http://ip194097.ntcu.edu.tw/TG/guliaukhou/">台語文語料庫</a></li>
+<li><a
+href="http://lngproc.ccu.edu.tw/SouthernMinCorpus/">國立中正大學臺灣閩南語口語語料庫</a></li>
+</ul>
+</section>
+<section id="國外" class="slide level4">
+<h4>國外</h4>
+<ul>
+<li><a href="http://www.natcorp.ox.ac.uk/">British National Corpus
+(BNC)</a></li>
+<li><a href="http://corpora.lancs.ac.uk/bnc2014/">BNC2014</a></li>
+<li><a href="https://www.english-corpora.org/coca/">Corpus of
+Contemporary American English (COCA)</a></li>
+<li><a
+href="https://quod.lib.umich.edu/cgi/c/corpus/corpus?c=micase;page=simple">MICASE
+corpus</a></li>
+<li><a
+href="https://www.linguistics.ucsb.edu/research/santa-barbara-corpus">Santa
+Barbara Corpus of Spoken American English</a></li>
+<li><a
+href="http://ccl.pku.edu.cn:8080/ccl_corpus/">北京大学中国语言学研究中心</a></li>
+</ul>
+</section>
+</section>
+<section>
+<section id="我們能從語料庫挖出什麼有意思的東西呢"
+class="title-slide slide level2">
+<h2>我們能從語料庫挖出什麼有意思的東西呢？</h2>
+
+</section>
+<section id="以華語流行音樂歌詞庫為例" class="title-slide slide level3">
+<h3>以華語流行音樂歌詞庫為例</h3>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["artist"],"name":[1],"type":["chr"],"align":["left"]},{"label":["title"],"name":[2],"type":["chr"],"align":["left"]},{"label":["lyricist"],"name":[3],"type":["chr"],"align":["left"]},{"label":["composer"],"name":[4],"type":["chr"],"align":["left"]},{"label":["arranger"],"name":[5],"type":["chr"],"align":["left"]},{"label":["lyric"],"name":[6],"type":["chr"],"align":["left"]},{"label":["gender"],"name":[7],"type":["chr"],"align":["left"]},{"label":["lines"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"林憶蓮","2":"捨不得說再見","3":"作詞：小寒","4":"作曲：黃韻仁","5":"編曲：黃韻仁","6":"你溫柔的指尖　留下眷戀　在我掌心盤旋\\n任何叮嚀語言　每到嘴邊　都早已擱淺\\n你走前一天　回到最常去的地點　看著日出浮現　多不願\\n怕來不及說再見淚已搶先　把傷感加在牽強的笑臉\\n我僅有的都在眼前　我捨不得眨眼　說再見\\n怕專注離別說好不提想念　怕錯過任何一秒的時間\\n我所有的就在眼前　卻快離我好遠　從此你離我好遠　我捨不得眨眼　說再見","7":"female","8":"6"},{"1":"那英","2":"一笑而過","3":"作詞：那英","4":"作曲：劉國明/劉志文","5":"NA","6":"不要把臉藏在月光背後　有誰在意我們的生活\\n坐在安靜角落　該為這一刻找個解脫\\n不要你眼裡偽裝的內疚　該是自己幸福的時候\\n靜靜的想一想　誰會追求刻意的溫柔\\n你傷害了我　還一笑而過　你愛的貪婪　我愛的懦弱\\n眼淚流過　回憶是多餘的　只怪自己愛你所有的錯\\n你傷害了我　還一笑而過　你愛的貪婪　我愛的懦弱\\n眼淚流過　回憶是多餘的　刻骨銘心就這樣的被你一笑而過\\n心碎千百遍　任誰也無法承擔\\n想安慰自己　沒有語言\\n刻骨銘心　就被你一笑而過","7":"female","8":"10"},{"1":"張清芳","2":"舊情綿綿","3":"作詞：葉俊麟","4":"作曲：洪一峰","5":"NA","6":"一言說出就要放乎忘記哩　舊情綿綿暝日恰想也是你\\n明知你是楊花水性　因何偏偏對你鐘情\\n啊　不想你　不想你不想你　怎樣我又擱想起　昔日談戀的港邊\\n青春夢斷你我已經是無望　舊情綿綿心內只想你一人\\n明知你是有刺野花　因何怎樣我不反悔\\n啊　不想你　不想你不想你　怎樣我又每暗夢　彼日談情的樓窗\\n男子立誓甘願看破來避走　舊情綿綿猶原對你情意厚\\n明知你是輕薄無情　因何偏偏為你犧牲\\n啊　不想你　不想你不想你　怎樣若看黃昏到　著來想你目屎流","7":"female","8":"8"}],"options":{"columns":{"min":{},"max":[3]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  </script>
+</div>
+</section>
+
+<section id="詞頻探索" class="title-slide slide level3">
+<h3>詞頻探索</h3>
+
+</section>
+<section id="詞彙頻率" class="slide level4">
+<h4>詞彙頻率</h4>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["doc_id"],"name":[1],"type":["chr"],"align":["left"]},{"label":["別怕"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["漫長"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["黑夜"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["抬頭"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["看看"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["星星"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["此刻"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["連成線"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["也許"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["一場"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"text1","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"4","9":"1","10":"1","11":"1"},{"1":"text2","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0"},{"1":"text3","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"2","9":"0","10":"0","11":"0"},{"1":"text4","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0"},{"1":"text5","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"1","9":"0","10":"10","11":"0"},{"1":"text6","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"1","9":"0","10":"0","11":"0"},{"1":"text7","2":"0","3":"0","4":"4","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0"},{"1":"text8","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0","10":"1","11":"0"},{"1":"text9","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0"},{"1":"text10","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"1","9":"0","10":"0","11":"0"}],"options":{"columns":{"min":{},"max":[3]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  </script>
+</div>
+</section>
+<section id="詞雲圖" class="slide level4">
+<h4>詞雲圖</h4>
+<p><img
+data-src="CorpLingOverview_files/figure-revealjs/unnamed-chunk-5-1.png" /><!-- --></p>
+</section>
+
+<section id="keyword-in-context-concordances"
+class="title-slide slide level3">
+<h3>Keyword-in-Context (Concordances)</h3>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["docname"],"name":[1],"type":["chr"],"align":["left"]},{"label":["from"],"name":[2],"type":["int"],"align":["right"]},{"label":["to"],"name":[3],"type":["int"],"align":["right"]},{"label":["pre"],"name":[4],"type":["chr"],"align":["left"]},{"label":["keyword"],"name":[5],"type":["chr"],"align":["left"]},{"label":["post"],"name":[6],"type":["chr"],"align":["left"]},{"label":["pattern"],"name":[7],"type":["fct"],"align":["left"]}],"data":[{"1":"text2","2":"7","3":"7","4":"在 伊甸 原始 的 愛","5":"沒有","6":"欺騙 簡樸 過每 一天 人們","7":"沒有","_rn_":"1"},{"1":"text7","2":"58","3":"58","4":"奔波 牽掛 費心 一刻 未停","5":"沒有","6":"你 一切 都 化為 零","7":"沒有","_rn_":"2"},{"1":"text7","2":"133","3":"133","4":"的 難題 你 都 其實","5":"沒有","6":"答案 How did I never","7":"沒有","_rn_":"3"},{"1":"text9","2":"208","3":"208","4":"說 我 是 個 商品","5":"沒有","6":"你 我 就 不 可以","7":"沒有","_rn_":"4"},{"1":"text11","2":"358","3":"358","4":"自己 失望 差不多 都 遺忘","5":"沒有","6":"武裝 的 模樣 這 差不多","7":"沒有","_rn_":"5"},{"1":"text11","2":"387","3":"387","4":"的 憂傷 差不多 兩個 禮拜","5":"沒有","6":"吃飯 差不多 我 就 把","7":"沒有","_rn_":"6"},{"1":"text15","2":"1","3":"1","4":"","5":"沒有","6":"心臟 就 沒有 受傷 不抱","7":"沒有","_rn_":"7"},{"1":"text15","2":"4","3":"4","4":"沒有 心臟 就","5":"沒有","6":"受傷 不抱 著 希望 就","7":"沒有","_rn_":"8"},{"1":"text15","2":"34","3":"34","4":"什麼 生命 是 什麼 人若","5":"沒有","6":"愛有 什麼 擁有 著 什麼","7":"沒有","_rn_":"9"},{"1":"text15","2":"96","3":"96","4":"有 你 的 世界 再","5":"沒有","6":"雜念 籠中 的 我 唯一","7":"沒有","_rn_":"10"}],"options":{"columns":{"min":{},"max":[3]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  </script>
+</div>
+</section>
+
+<section id="搭配詞多字詞組" class="title-slide slide level3">
+<h3>搭配詞（多字詞組）</h3>
+
+</section>
+
+<section id="歌曲中常見搭配詞組" class="title-slide slide level3">
+<h3>歌曲中常見搭配詞組</h3>
+<pre><code>          collocation count count_nested length    lambda        z
+1           一步 一步   317            0      2  7.142421 92.79538
+2       忘不了 忘不了   163            0      2  7.938964 72.85953
+3           一天 一天   392            0      2  3.871724 70.27536
+4           一次 一次   262            0      2  4.161528 62.05014
+5           從來 沒有   302            0      2  4.239605 60.75000
+6           一遍 一遍   116            0      2  6.558173 59.85883
+7           整個 世界   214            0      2  4.905384 58.56774
+8           一年 一年   112            0      2  6.454266 58.45154
+9           海角 天邊   101            0      2  7.758391 57.94513
+10          一杯 一杯   111            0      2  6.280492 57.30612
+11          一層 一層    89            0      2  9.413687 56.83481
+12          閉上 雙眼    84            0      2  7.797073 51.30270
+13          恭喜 恭喜    63            0      2  9.349757 50.37369
+14          一聲 一聲   102            0      2  5.470507 50.20502
+15          叮噹 叮噹    68            0      2 10.057311 50.13569
+16          恰恰 恰恰    61            0      2  9.063092 50.10165
+17          出去 走走    63            0      2  8.696643 49.84629
+18          用盡 力氣    62            0      2  7.844331 49.46918
+19          呀呀 呀呀    62            0      2  9.806075 49.22620
+20          永遠 永遠   335            0      2  2.768022 48.29602
+21          緊緊 擁抱   119            0      2  4.896011 48.15019
+22          不要 不要   339            0      2  2.730361 47.95029
+23          不在 身邊   128            0      2  4.668397 47.88164
+24          一口 一口    57            0      2  7.585022 47.47736
+25          喜歡 喜歡   177            0      2  3.738097 47.05302
+26          天上 星星    71            0      2  6.198675 46.37156
+27          每分 每秒    66            0      2 10.584630 46.01729
+28          回到 最初    79            0      2  5.710697 45.81075
+29          伸出 雙手    72            0      2  7.386940 45.66864
+30          回來 回來    97            0      2  4.985966 45.59026
+31          一道 彩虹    60            0      2  6.627982 44.94356
+32          一直 一直   153            0      2  3.833612 44.93473
+33          最後 一次   171            0      2  3.604659 44.79276
+34          停下 腳步    59            0      2  7.179125 44.38268
+35          滴答 滴答    44            0      2  9.562993 43.96095
+36          重新 來過    53            0      2  7.502082 43.95991
+37          一幕 一幕    43            0      2  8.861837 43.93273
+38          年少 輕狂    49            0      2  9.177158 43.90406
+39          一站 一站    43            0      2  8.566546 43.79489
+40          上天 安排    54            0      2  6.890264 43.68412
+41      好想你 好想你    43            0      2  8.223302 43.43042
+42      差不多 差不多    45            0      2  7.740075 43.36601
+43          漫漫 長路    45            0      2  7.673120 43.20865
+44          皇后 大道    43            0      2  9.863822 43.16824
+45      一朵花 一朵花    40            0      2  9.015519 42.73480
+46          回到 從前    96            0      2  4.650807 42.73325
+47          提出 勇氣    68            0      2  7.612801 42.73298
+48        一句 我愛你   106            0      2  4.393743 42.67039
+49          拜拜 拜拜    40            0      2  8.465111 42.46387
+50          命運 安排    73            0      2  5.405214 42.34001
+51          心愛 心愛    90            0      2  4.745065 42.24290
+52          曾經 擁有   131            0      2  3.879709 42.18615
+53          浮浮 沉沉    62            0      2 11.500707 41.85303
+54          愛呀 愛呀    40            0      2 10.039900 41.77866
+55          無法 抗拒    71            0      2  5.683381 41.73150
+56          慢慢 慢慢   118            0      2  4.039003 41.65464
+57          睜開 雙眼    53            0      2  7.619966 41.53956
+58          姑娘 姑娘    66            0      2  5.505608 41.36880
+59          不想 不想   184            0      2  3.178369 41.29929
+60          永遠 不會   258            0      2  2.657440 41.01846
+61          想念 想念    90            0      2  4.573824 40.92741
+62          做好 準備    46            0      2  7.441254 40.71562
+63          快快 快快    42            0      2  7.156508 40.53946
+64          許下 心願    41            0      2  7.561279 40.51475
+65          媽媽 媽媽    61            0      2  5.610795 40.50184
+66          兜兜 轉轉    51            0      2 11.044886 40.12630
+67          不離 不棄    44            0      2 10.552720 40.05919
+68          香港 香港    37            0      2  7.743709 39.95285
+69          高聲 歡呼    35            0      2  8.239477 39.90077
+70          哈囉 哈囉    35            0      2 10.012579 39.87618
+71          我心 裡的    86            0      2  4.600516 39.84478
+72      夜來香 夜來香    39            0      2 10.726190 39.80550
+73          一圈 一圈    35            0      2  8.065668 39.67479
+74          一雙 翅膀    52            0      2  5.959003 39.44094
+75  生日快樂 生日快樂    37            0      2 10.647061 39.34315
+76          叮咚 叮咚    37            0      2 10.716859 39.16903
+77      我愛你 我愛你    92            0      2  4.299915 39.16692
+78          難分 難離    41            0      2 10.820240 39.13076
+79          回家 回家    67            0      2  5.073185 38.96276
+80          爸爸 爸爸    42            0      2  6.665363 38.80525
+81          沒有 辦法   123            0      2  4.171451 38.64903
+82          心愛 的人    64            0      2  5.181442 38.61235
+83          代替 地位    39            0      2  7.812348 38.51573
+84          多年 以後    66            0      2  5.165549 38.33586
+85      沒什麼 大不了    35            0      2  7.931519 38.32993
+86          一路 走來    40            0      2  7.272276 38.29905
+87          真的 真的   162            0      2  3.128080 38.28384
+88          咿呀 咿呀    30            0      2  9.537574 38.17366
+89          不該 不該    57            0      2  5.413071 38.14554
+90          張開 雙手    54            0      2  5.622683 37.97411
+91          我要 我要   124            0      2  3.547830 37.88982
+92          一滴 一滴    38            0      2  6.834210 37.73443
+93      跟我走 跟我走    29            0      2  9.032455 37.72723
+94          晚會 爆炸    35            0      2  9.587881 37.70412
+95  滴滴答答 滴滴答答    30            0      2 10.078461 37.65911
+96          難以 抗拒    40            0      2  6.593218 37.62016
+97          我來 我來    33            0      2  7.509469 37.49614
+98          鏡子 裡的    44            0      2  6.325214 37.48964
+99          一寸 一寸    29            0      2  8.554819 37.39562
+100         何日 再來    36            0      2  7.160128 37.33582</code></pre>
+</section>
+<section id="男人搭配詞" class="slide level4">
+<h4>「男人」搭配詞</h4>
+<pre><code>      collocation count count_nested length   lambda         z
+2189    男人 見識    12            0      2 6.410418 19.969525
+3490    女人 男人    21            0      2 3.623088 16.473018
+3519    男人 女人    21            0      2 3.607474 16.404525
+3542    男人 壞到    10            0      2 8.179858 16.354765
+3677    男人 男人    18            0      2 3.800181 16.027876
+3775    男人 事實    10            0      2 5.064567 15.770568
+4966    承認 男人    12            0      2 3.712119 12.920339
+6087    男人 流淚    11            0      2 3.161712 10.600838
+7057    一個 男人    29            0      2 1.637578  8.743954
+7887    男人 總是    10            0      2 2.199735  7.074064
+9721    男人 世界    10            0      2 1.129870  3.638327
+10560   男人 沒有    10            0      2 0.523445  1.686091</code></pre>
+</section>
+<section id="女人搭配詞" class="slide level4">
+<h4>「女人」搭配詞</h4>
+<pre><code>        collocation count count_nested length    lambda         z
+473       小心 女人    40            0      2 4.6842418 28.440074
+631       女人 女人    46            0      2 4.0839122 26.883573
+840       可愛 女人    41            0      2 4.0665549 25.342790
+1663      女人 小心    27            0      2 4.2824829 21.746949
+1898      女人 花花    15            0      2 5.9792362 20.971885
+2707      每夜 女人    16            0      2 4.7435514 18.496932
+2749  越陷越深 女人    11            0      2 6.7379181 18.390776
+2918      女人 搖曳    13            0      2 5.1584439 17.911688
+2938      一個 女人    70            0      2 2.1920995 17.862715
+3382      女人 的心    18            0      2 3.9935439 16.776873
+3490      女人 男人    21            0      2 3.6230881 16.473018
+3519      男人 女人    21            0      2 3.6074739 16.404525
+3665      女人 竟然    15            0      2 4.1859931 16.058544
+3685      女人 獨有    10            0      2 5.2494468 16.015600
+4205      紅塵 女人    13            0      2 4.0885410 14.673714
+4393      女人 隨風    13            0      2 3.9645069 14.259627
+5718      女人 不該    12            0      2 3.2509029 11.347956
+6136      女人 容易    12            0      2 3.0044061 10.505688
+6598      女人 溫柔    18            0      2 2.2586888  9.617952
+6664      只是 女人    20            0      2 2.1245706  9.519890
+7201      愛的 女人    15            0      2 2.1607843  8.434186
+7427      每個 女人    12            0      2 2.2701533  7.964028
+7618      美麗 女人    16            0      2 1.8817403  7.580327
+7913      女人 感情    11            0      2 2.0853376  7.023083
+8059      女人 到底    10            0      2 2.1041094  6.773450
+9091      女人 需要    10            0      2 1.5028452  4.843472
+9936      女人 不要    11            0      2 0.9530233  3.215078
+10606     女人 一個    12            0      2 0.4306704  1.514661</code></pre>
+</section>
+<section class="slide level4">
+
+<p><img
+data-src="CorpLingOverview_files/figure-revealjs/unnamed-chunk-12-1.png" /><!-- --></p>
+</section>
+<section class="slide level4">
+
+<p><img
+data-src="CorpLingOverview_files/figure-revealjs/unnamed-chunk-13-1.png" /><!-- --></p>
+</section>
+
+<section id="關鍵詞" class="title-slide slide level3">
+<h3>關鍵詞</h3>
+<p><img
+data-src="CorpLingOverview_files/figure-revealjs/unnamed-chunk-14-1.png" /><!-- --></p>
+</section>
+
+<section id="文本相似性比較" class="title-slide slide level3">
+<h3>文本相似性比較</h3>
+<p><img src="CorpLingOverview_files/figure-revealjs/unnamed-chunk-15-1.png" width="100%" /></p>
+</section>
+</section>
+<section>
+<section id="語料庫與自然語言處理技術結合"
+class="title-slide slide level2">
+<h2>語料庫與自然語言處理技術結合</h2>
+
+</section>
+<section id="文本分析與探勘" class="title-slide slide level3">
+<h3>文本分析與探勘</h3>
+<p>文本分析是一種研究或處理文本數據（包括書面文字、語音轉錄、社交媒體發文等）的方法，從文本中挖掘取<strong>信息</strong>、識別<strong>模式</strong>、了解主題和<strong>趨勢</strong>，以便更深入地理解文本所涉及的內容。</p>
+</section>
+<section class="slide level4">
+
+<ol type="1">
+<li><p><strong>文本檢索</strong>：針對研究者的搜尋文字，有效找尋資料庫中，包含特定詞語或主題的文本段落，使研究人員能夠快速擷取和分析相關文件中的資訊。</p></li>
+<li><p><strong>關鍵詞分析</strong>：透過語料庫中，單詞或詞組在不同類型文件中出現頻率，尋找特定類型文件中的關鍵詞。</p></li>
+</ol>
+</section>
+<section class="slide level4">
+
+<ol start="3" type="1">
+<li><p><strong>情感分析</strong>：自動化分析文本中的情感趨勢，以有效從大數據資料中，擷取輿情趨勢。</p></li>
+<li><p><strong>主題建模</strong>：以自動化方式，辨識大量文本中的主題，常用於探索大數據文本資料中的語言使用的趨勢和特徵。</p></li>
+<li><p><strong>文本分類</strong>：將文本根據其內容分類到不同的類別中。</p></li>
+</ol>
+</section>
+
+<section id="主題建模" class="title-slide slide level3">
+<h3>主題建模</h3>
+<p><img src="images/songs_tm.png" width="90%" /></p>
+</section>
+
+<section id="情感輿情分析" class="title-slide slide level3">
+<h3>情感（輿情）分析</h3>
+<p><img src="images/sa-sample1.jpeg" width="45%" /><img src="images/sa-sample2.png" width="45%" /></p>
+</section>
+<section class="slide level4">
+
+<ol type="1">
+<li>情感分析(Sentiment
+Analysis)是近幾年計算語言學相當熱門的主題，在許多領域等可以看見情感分析的應用。</li>
+<li>情感(Sentiment)是我們語言互動溝通中，除了事件傳達外，另一項很重要的任務。</li>
+<li>透過大量的語言資料，我們可以透過計算文本分析(Computational Text
+Analytic)的方式，分析在某個<strong>特定場域(genre)</strong>裡，對於特定「主題」、「人物」、「產品」、「物件」等之普遍情感偏好，結果可以<strong>二分(Binary)</strong>的方式呈現（如：正向/負向）或以<strong>數值(Continuous)</strong>呈現（如：正向分數0.8)。</li>
+<li>情感亦可針對不同情緒進一步細分為「開心」、「難過」、「憤怒」等。</li>
+</ol>
+</section>
+</section>
+<section>
+<section id="如何開始一個語料庫分析呢" class="title-slide slide level2">
+<h2>如何開始一個語料庫分析呢？</h2>
+
+</section>
+<section id="以華語流行音樂為例" class="title-slide slide level3">
+<h3>以「華語流行音樂」為例</h3>
+
+</section>
+
+<section id="一個典型資料分析流程" class="title-slide slide level3">
+<h3>一個典型資料分析流程</h3>
+<!-- - 研究問題 (Research Questions) -->
+<!-- - 資料搜集 (Data Collection) -->
+<!-- - 資料前處理 (Data Preprocessing) -->
+<!-- - 探索資料 (Exploratory Data A) -->
+<!-- - 分析資料 -->
+<!-- - 詮釋資料 -->
+<p><img src="images/data-analysis-pipeline.png" width="90%" /></p>
+</section>
+
+<section id="要問什麼問題呢" class="title-slide slide level3">
+<h3>要問什麼問題呢？</h3>
+<ul>
+<li>在華語流行歌曲中，歌詞對於<strong>「男人」和「女人」</strong>這兩個概念，普遍情感態度為何？有無差異？</li>
+<li>這些情感連結，不同<strong>歌手</strong>的歌曲是否也有所差異？</li>
+<li>透過這個簡單的例子，我們也帶著大家認識，典型的資料科學分析研究，所需的步驟、流程以及需要注意的細節。</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="資料搜集" class="title-slide slide level2">
+<h2>資料搜集</h2>
+<ul>
+<li>資料科學第一步，就是資料搜集的能力。</li>
+<li>使用既有的語料庫，或是自行搜集。</li>
+<li>網路爬蟲通常是初學者的第一步。</li>
+<li>我們從<a
+href="https://mojim.com/">MOJIM歌詞網</a>爬取華語男女歌手，流行歌曲歌詞以及其他歌曲相關資訊（歌手、歌名、作詞、作曲等）。</li>
+</ul>
+</section>
+<section class="slide level4">
+
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["artist"],"name":[1],"type":["chr"],"align":["left"]},{"label":["title"],"name":[2],"type":["chr"],"align":["left"]},{"label":["lyricist"],"name":[3],"type":["chr"],"align":["left"]},{"label":["composer"],"name":[4],"type":["chr"],"align":["left"]},{"label":["arranger"],"name":[5],"type":["chr"],"align":["left"]},{"label":["lyric"],"name":[6],"type":["chr"],"align":["left"]},{"label":["gender"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"庾澄慶","2":"愛到底","3":"作詞：許常德","4":"作曲：庾澄慶","5":"NA","6":"我曾懷疑 你在不在我的懷裡 為何幸福 你會哭泣\\n不忍相愛 結果是你失去自己 曾有一度 讓你離去\\n風風雨雨 愛又讓我們在一起 我知道 你受了委屈\\n不能否認 你我原本太多不同 就像日夜擦身而過\\n用一生去尋剎那的夢\\n我已決心愛到底 決心不回去 就算一步 就踏進地獄\\n今生我決不負你 不負你一句 就算你會離去 我 我愛你\\n我曾懷疑 你在不在我的懷裡 為何幸福 你會哭泣\\n不忍相愛 結果是你失去自己 曾有一度 讓你離去\\n風風雨雨 愛又讓我們在一起 我知道 你受了委屈\\n不能否認 你我原本太多不同 就像日夜擦身而過\\n用一生去尋剎那的夢\\n我已決心愛到底 決心不回去 就算一步 就踏進地獄\\n今生我決不負你 不負你一句 就算你會離去 我 我愛你\\n我已決心愛到底 決心不回去 就算一步 就踏進地獄\\n今生我決不負你 不負你一句 就算你會離去 我 我愛你","7":"male"},{"1":"梁詠琪","2":"愛上你開始","3":"作詞：林夕","4":"作曲：王菀之","5":"編曲：The Invisible Men","6":"皮鞋是我寶　美麗全為我好\\n努力原為了使我自豪 oh...\\n每日幹得想打賭\\n贏盡世間宣佈　我是最好\\n而我習慣了想爭先\\n容或很膚淺　然而像一支箭\\n行慣快不易作出改變\\n忘記怎麼直到某一天\\n從愛上你開始　多少大志　都似沒意思\\n懷疑下半輩子　我做事　都變心不在焉\\n從愛上你開始　真的樂意　忘記新衫舊事\\n唯獨你　深得我鍾意\\n夢原是冠軍　抱負還是野心\\n這日還是要跟你做人\\n這日放棄著高跟然後學會親吻　快樂更真\\n而我習慣了想爭先\\n容或很膚淺　然而像一支箭\\n行慣快不易作出改變\\n而你彷似一道雷電會閃\\n從愛上你開始　多少大志　都似沒意思\\n懷疑下半輩子　我做事　都變心不在焉\\n從愛上你開始　真的樂意　忘記新衫舊事\\n明白到真正愛字　明白到真可愛女子\\n從愛上你開始　多少大志　都似沒意思\\n懷疑下半輩子　我做事　至少可給你知\\n而我哪知羞恥　不識大志　為要一生相依\\n凡事要　你先感到鍾意","7":"female"},{"1":"鄧麗君","2":"愛人","3":"作詞：荒木とよひさ","4":"作曲：三木たかし","5":"NA","6":"あなたが好きだから それでいいのよ\\nたとえ一緒に 街を 歩けなくても\\nこの部屋にいつも 帰ってくれたら\\nわたしは待つ身の 女でいいの\\n尽くして 泣きぬれて そして愛されて\\n時がふたりを 離さぬように\\n見つめて 寄りそって そして抱きしめて\\nこのまま あなたの胸で暮らしたい\\nめぐり逢い少しだけ 遅いだけなの\\n何も言わずいてね わかっているわ\\n心だけせめて 残してくれたら\\nわたしは見送る 女でいいの\\n尽くして 泣きぬれて そして愛されて\\n明日がふたりを こわさぬように\\n離れて 恋しくて そして会いたくて\\nこのまま あなたの胸で眠りたい\\n尽くして 泣きぬれて そして愛されて\\n明日がふたりを こわさぬように\\n離れて 恋しくて そして会いたくて\\nこのまま あなたの胸で暮らしたい","7":"female"},{"1":"張國榮","2":"難以再說對不起","3":"作詞：鄭國江","4":"作曲：David Foster/Peter Cetera","5":"編曲：徐日勤","6":"妳對我說妳太愛我愛得累　期待假期　逃避去遠地\\n愛侶那會覺愛得累　若妳會原是我的罪\\n擁著妳　難以再說對不起　但可否不去\\n挨過種種苦與悲　真的感激妳　莫道遠離\\n唯想一生一世都一起　一生不會說別離　. . . Woo\\n我太愛妳與妳見少日　也擔不起　離別況滋味\\n妳要怪我請降罪　但要妳毋復到遠方避\\n擁著妳　難以再說對不起　但心聲當會知\\n讓抱擁用心相交通不需要措詞　明日樂趣願透支\\n挨過種種苦與悲　真的感激妳　莫道遠離\\n唯想一生一世都一起　惟想一生一世都一起\\n身邊沒有妳我寧願意死\\n寂寞空虛我擔不起　分分鐘想妳　莫道遠離\\n太喜歡妳　將一生的快樂獻給妳","7":"male"},{"1":"張惠妹","2":"一夜情","3":"作詞：陶喆","4":"作曲：陶喆","5":"編曲：陶喆","6":"今天晚上你在做什麼　我怎麼樣都睡不著　你可以陪我嗎\\nCome on, baby　靠近來　放你投入我胸懷\\n點起熱情的燭光　享受玫瑰的芳香\\n讓我輕輕幫你把那包袱脫下來　用著身體的節拍\\n就在今夜可以什麼都不想\\n不要管他明天會怎麼樣　我們只有這一夜\\n快把簾子拉起來　手提電話不要開　珍惜每一分一秒\\n雖然早有了Alibi　不要忘了放上請勿打擾在門外\\n良心的鎖扣起來　沒有任何人能阻擋tonight\\n你我真正是誰一點不重要　只要我們放的開 That's right\\nEverything's gonna be right　不要再也想不開\\n當我擁抱你的時候　一切就會很好\\n把所有的憂慮都忘記 I'll be there\\nEverything's gonna be fine　讓愛今晚慢慢來\\n當你親吻我的時候　(我的)心跳就會快跑\\n只要能跟你同在一起 I'll be there Yes, I will\\n慢慢再拉緊領帶　心裡藏了是無奈\\n什麼話都不必說　不需要作什麼交代\\n不要忘了抹去領子上的紅唇印\\n把這秘密鎖起來　你會偷偷珍惜我們的night\\n其實你我是誰真的已不重要　只要我們放的開 That's right","7":"female"},{"1":"光良","2":"日落","3":"作詞：光良／張國祥","4":"作曲：光良","5":"NA","6":"恍如電影的昨天\\n記憶中不曾停歇\\n浮現 青澀的從前\\n一張張的臉 輕狂的歲月\\n回憶劃過那瞬間\\n閃電式轟轟烈烈\\n怎麼 哭紅了雙眼\\n一遍又一遍 那麼的直接\\n別說 傷得太重\\n愛情沒有誰欠誰更多\\n今天以後\\n留下的傷痛 更寂寞\\n每個失去的昨天\\n一眨眼就是永別\\n揮手 勇敢的再見\\n每一個溫柔 每一次眼淚\\n別說 傷得太重\\n愛情沒有誰欠誰更多\\n今天以後\\n留下的傷痛 更寂寞\\n錯過 遺憾太多\\n留不住愛最後的日落\\n明天以後\\n勇敢的放手 是解脫\\n是 解脫","7":"male"},{"1":"衛蘭","2":"Love Me Accapella","3":"NA","4":"NA","5":"NA","6":"Love Me Accapella\\n(你很愛我)\\nLyrics：側田\\nMusic：雷頌德\\n(A)　wish you'd bring me candies\\nwhen i feel lonely dream that\\nyou were my huand-to-be in 365\\nall i ask is one name it\\nafter me\\nwish you'd write my name on your favourite paim tree look in\\nmy eyes, love is all you can see night and day i dream that\\nthings are the way before will you love me more\\n(B)　where, when and why did you make me cry\\nloneliness has become another part of life tears running\\nstrong and angels have gone don't how to carry on\\n(C)　baby i need you now\\ni need your arms to hold me tight tonight please turn the\\nlights down low and feel my body glow whisper and flow\\nbaby i need you now\\ni need your strength to hold me down tonight the world is out\\nof sight cause you are all that i've been searching for the way\\nyou make me feel adored\\n感謝\\nMicroka\\n修正歌詞","7":"female"},{"1":"劉增瞳","2":"想念你的愛(&amp; 箱子君)","3":"作詞：箱子君 作詞：箱子君","4":"作曲：箱子君 作曲：箱子君","5":"編曲：王柏鴻 編曲：王柏鴻","6":"男：哦心動就在這一秒鐘\\n不用逃避跟我一起瘋\\n握緊雙手放鬆漫遊\\n在這一個屬於我的宇宙\\n我想你一定會感動\\n所有事情都只為你瘋\\n你是唯一我的 baby\\n我只想你擁有美好記憶\\n或許你的愛現在還放不開\\n愛猶豫為誰而開\\n愛你的一顆心不會再更改\\n我想你的愛我會慢慢等待\\n愛期盼你能夠回來\\n愛如果能夠重來守護這份愛\\n女：我想念你的愛能不能夠重來\\n給個機會再把握這份愛\\n或許是我活該沒珍惜是我敗\\n如果可以就再重新再愛\\n我想念你的愛能不能夠重來\\n給個機會再把握這份愛\\n或許是我活該沒珍惜是我敗\\n如果可以就再重新再愛\\n合：我想你一定會感動\\n所有事情都只為你瘋\\n你是唯一我的 baby\\n我只想你擁有美好記憶\\n男：我想你的愛我會慢慢等待\\n愛期盼你能夠回來\\n愛如果能夠重來守護這份愛\\n女：我想念你的愛能不能夠重來\\n給個機會再把握這份愛\\n或許是我活該沒珍惜是我敗\\n如果可以就再重新再愛\\n我想念你的愛能不能夠重來\\n給個機會再把握這份愛\\n或許是我活該沒珍惜是我敗\\n如果可以就再重新再愛\\n我想你的愛\\n我會慢慢的等待\\n或許是我活該\\n沒珍惜是我敗\\n如果可以就再重新再愛\\n我想你的愛\\n我會慢慢的等待\\n或許是我活該\\n沒珍惜是我敗\\n如果可以就再重新再愛\\n僅存的依賴","7":"female"},{"1":"羅志祥","2":"愛瘋頭","3":"作詞：李宗恩","4":"作曲：Thomas G son","5":"NA","6":"你想逛逛月球\\n101 夠不夠\\n我背你上頂樓\\n赴湯蹈火 我為你做\\n每天頂級面膜\\n給你香檳漱口\\n上流般的生活\\n赴湯蹈火 我為你做\\n海派的天空讓你盡情揮霍\\n為你愛瘋頭到走火入魔 喔噢\\n海派的生活讓你盡情享受\\n為你愛瘋頭快流浪街頭\\n海派 海派 哎呀呀呀\\n你想看煙火\\n我拉炮拉到耳聾\\n３Ｄ現場效果\\n赴湯蹈火 我為你做\\n海派的天空讓你盡情揮霍\\n為你愛瘋頭到走火入魔 喔噢\\n海派的生活讓你盡情享受\\n為你愛瘋頭快流浪街頭\\n海派 海派呀呀呀呀～～\\n海派 海派 海派呀呀呀呀～～\\nyeah～yeah～\\n你要相信 我的用心\\n海派的天空 讓你盡情揮霍\\n為你愛瘋狂到走火入魔 喔噢\\n海派的生活 讓你盡情享受\\n為你愛瘋頭快流浪街頭\\n海派 海派\\n哎呀呀呀呀呀呀呀\\nhey hey hey hey hey hey~~~","7":"male"},{"1":"莫文蔚","2":"My Funny Valentine","3":"作詞：Lorenz Hart、Richard Rodgers","4":"作曲：Lorenz Hart、Richard Rodgers","5":"編曲：Bugge Wesseltoft","6":"Be hold the way our fine feathered friend\\nHis virtue doth parade\\nThou knowest not my dim witted friend\\nThe picture Thou hast made\\nThy vacant brow and Thy tousled hair\\nConceal Thy good intent\\nThou noble upright, truthful, sincere\\nAnd slightly dopey gent\\nYou're my funny Valentine\\nSweet comic Valentine\\nYou make me smile with my heart\\nYour looks are laughable\\nUnphotographable\\nYet you're my favorite work of art\\nIs your figure less than Greek\\nIs your mouth a little weak\\nWhen you open it to speak\\nAre you smart?\\nBut don't change a hair for me\\nNot if you care for me\\nStay little Valentine stay\\nEach day is Valentine's day!","7":"female"}],"options":{"columns":{"min":[4],"max":[3]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  </script>
+</div>
+</section></section>
+<section>
+<section id="資料前處理" class="title-slide slide level2">
+<h2>資料前處理</h2>
+
+</section>
+<section id="常見的文字處理" class="title-slide slide level3">
+<h3>常見的文字處理</h3>
+<ul>
+<li>常見的文字資料前處理包括：
+<ul>
+<li>文字<strong>正規化</strong>(Normalization)</li>
+<li>文字<strong>切段</strong>(Tokenization)</li>
+<li>文字<strong>標記</strong>(Enrichment/Annotation)</li>
+</ul></li>
+<li>資料往往有許多雜訊，分析第一步通常必須<strong>清理</strong>資料(Data
+Wrangling)，將與研究主題不相關的字符刪除，以利後續資料分析。</li>
+</ul>
+</section>
+<section id="section" class="slide level4">
+<h4></h4>
+<ul>
+<li>在這次例子裡，我們去除原始歌詞文字中以下字符(Characters)：
+<ul>
+<li>多餘空白格以及換行符號</li>
+<li>標點符號以及特殊符號</li>
+<li>英文字符和阿拉伯數字</li>
+</ul></li>
+</ul>
+</section>
+<section id="section-1" class="slide level4">
+<h4></h4>
+<div class="container">
+<div class="col">
+<pre><code>＊才知道　那都是真的　愛是真實存在
+晴的天　雨的夜　平常的語言
+＃怎麼我　寧願不要懂　你溫暖的寬容
+讓愛來　讓愛走　讓你　讓心都受痛
+△我想哭　但是哭不出來(哭不出來)
+等到思念像海　淹沒我而愛已不再
+你絕望的離開　沒有淚流下來
+★我哭了　愛再不會回來(愛不再回來)
+我會這麼等待　捨不得已春去秋來
+在你的愛之外　我在那裡存在
+Repeat ＊,＃,△,★
+喔....　我愛就愛　錯就錯
+為你愛　為愛等待　嗚....
+Repeat (△),(★)
+在你的愛之外　我該不該等待
+感謝
+Johan
+修正歌詞</code></pre>
+</div>
+<div class="col">
+<pre><code>才知道那都是真的愛是真實存在
+晴的天雨的夜平常的語言
+怎麼我寧願不要懂你溫暖的寬容
+讓愛來讓愛走讓你讓心都受痛
+我想哭但是哭不出來哭不出來
+等到思念像海淹沒我而愛已不再
+你絕望的離開沒有淚流下來
+我哭了愛再不會回來愛不再回來
+我會這麼等待捨不得已春去秋來
+在你的愛之外我在那裡存在
+喔我愛就愛錯就錯
+為你愛為愛等待嗚
+在你的愛之外我該不該等待
+感謝
+修正歌詞</code></pre>
+</div>
+</div>
+</section>
+
+<section id="斷詞中文資料前處理" class="title-slide slide level3">
+<h3>斷詞(中文資料前處理)</h3>
+<ul>
+<li><p>由於中文資料沒有詞與詞之間的訊息，通常在前端清理完之後，下個步驟便是「斷詞(Word
+Segmentation)」。</p></li>
+<li><p>在<span
+class="note">斷詞</span>的歌詞版本中，我們在詞與詞之間，以空白格作為分隔符號（Delimiter）。</p></li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>這次實作中，我們利用中央研究院CKIP團隊所開發的<a
+href="https://github.com/ckiplab/ckip-transformers">CKIP
+Transformer</a>進行此資料集的斷詞。</li>
+</ol>
+</div>
+</section>
+<section id="section-2" class="slide level4">
+<h4></h4>
+<div class="container">
+<div class="col">
+<pre><code>才知道那都是真的愛是真實存在
+晴的天雨的夜平常的語言
+怎麼我寧願不要懂你溫暖的寬容
+讓愛來讓愛走讓你讓心都受痛
+我想哭但是哭不出來哭不出來
+等到思念像海淹沒我而愛已不再
+你絕望的離開沒有淚流下來
+我哭了愛再不會回來愛不再回來
+我會這麼等待捨不得已春去秋來
+在你的愛之外我在那裡存在
+喔我愛就愛錯就錯
+為你愛為愛等待嗚
+在你的愛之外我該不該等待
+感謝
+修正歌詞</code></pre>
+</div>
+<div class="col">
+<pre><code>才 知道 那 都 是 真 的 愛 是 真實 存在 
+ 晴 的 天 雨 的 夜 平常 的 語言 
+ 怎麼 我 寧願 不要 懂 你 溫暖 的 寬容 
+ 讓 愛 來 讓 愛 走 讓 你 讓 心 都 受痛 
+ 我 想 哭 但是 哭 不 出來 哭 不 出來 
+ 等到 思念 像 海 淹沒 我 而 愛 已 不再 
+ 你 絕望 的 離開 沒有 淚 流下來 
+ 我 哭 了 愛 再 不會 回來 愛 不再 回來 
+ 我 會 這麼 等待 捨不得 已 春 去 秋 來 
+ 在 你 的 愛 之外 我 在 那裡 存在 
+ 喔 我 愛 就 愛 錯 就 錯 
+ 為 你 愛 為 愛 等待 嗚 
+ 在 你 的 愛 之外 我 該不該 等待 
+ 感謝 
+ 修正 歌詞</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="如何定義男人與女人概念之情感呢"
+class="title-slide slide level2">
+<h2>如何定義「男人」與「女人」概念之情感呢？</h2>
+<ul>
+<li>我們可以利用搭配詞的概念，找出特定歌手的歌曲中，「男人/女人」經常連結的詞彙有哪些？</li>
+<li>接著，我們分析那些高連結的詞彙，情感有無特殊導向？</li>
+</ul>
+</section>
+<section id="深度學習之詞向量" class="slide level4">
+<h4>深度學習之「詞向量」</h4>
+<ul>
+<li>「詞向量(Word
+Embeddings)」是這幾年在大型語言模型、深度學習、以及人工智慧中，相當熱門的概念！</li>
+<li>詞向量是一種用<strong>數字</strong>表示單詞的方法，讓電腦能夠理解和處理語言。</li>
+<li>詞向量可以透過詞彙在文本中的分佈，以深度學習的方式<strong>自動學習</strong>。</li>
+<li>背後機器學習的基礎假設是：「兩個詞彙所使用的<strong>語境</strong>越相似，則兩者<strong>語意</strong>距離越相近。」</li>
+</ul>
+</section>
+<section id="詞向量有什麼好處" class="slide level4">
+<h4>詞向量有什麼好處？</h4>
+<ul>
+<li>它把單詞轉換成了數值向量形式，這樣電腦可以用它來進行各種<strong>運算</strong>。</li>
+<li><strong>語意相似性</strong>就可以量化了！這意味著在詞向量空間中，語意相近詞彙，數值也是相似的。</li>
+<li>簡言之，透過<span
+class="note">大型語料庫</span>以及深度學習方法，詞向量可以讓我們看出詞彙間語意相近程度。</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>此範例是根據<a
+href="https://asbc.iis.sinica.edu.tw/">中央研究院漢語平衡語料庫</a>，建置中文詞向量模型。</li>
+</ol>
+</div>
+</section>
+<section class="slide level4">
+
+<p><img src="images/word_embed_demo.png" width="672" /></p>
+<!-- #### 怎麼得到詞向量呢？ -->
+<!-- - 詞向量訓練有許多不同演算法，除了我們先前提到，最常見的`Word2Vec`方法(`Continuous Bag-of-Words`, `Skip-Gram`)以外，還有後續許多改善的演算法。 -->
+<!--   - [`fasttext`](https://fasttext.cc/) (Facebook) -->
+<!--   - [`GloVe`](https://nlp.stanford.edu/projects/glove/) (Stanford NLP Group) -->
+<!-- - 訓練工具也有許多Python Packages可以幫助我們完成詞向量訓練： -->
+<!--   - `gensim`: Simplest and straightforward implementation of `word2vec`. -->
+<!--   - Training based on deep learning packages (e.g., `tensorflow` + `keras`, `PyTorch`) -->
+<!--   - `spacy` (It comes with the pre-trained embeddings models, using GloVe.) -->
+<!-- #### 簡言之 -->
+<!-- - 你只要有一個語料庫，你就可以利用這個工具，學習每一個詞的向量表徵。 -->
+<!-- - 接著，你就可以計算詞與詞之間的語意相關性。 -->
+</section>
+<section id="section-3" class="slide level4">
+<h4></h4>
+<ul>
+<li>我們就利用詞向量這種方法，找出在歌詞庫中，與「男人」和「女人」概念相近的詞彙，在進一步分析這些詞彙的情感特質。</li>
+</ul>
+</section></section>
+<section>
+<section id="探索資料分析" class="title-slide slide level2">
+<h2>探索資料分析</h2>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["artist"],"name":[1],"type":["chr"],"align":["left"]},{"label":["title"],"name":[2],"type":["chr"],"align":["left"]},{"label":["lyric"],"name":[3],"type":["chr"],"align":["left"]},{"label":["lyric_wordseg"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"蔡依林","2":"和世界做鄰居","3":"夢想　捉著天使的翅膀　飛越　所有戰亂的地方\\n我們　相識相知相惜　想守這一場　有你認真的陪伴　笑容更燦爛\\n夢想　打造一個小城堡　只為有些快樂的希望　相信從這裡開始\\n攜手走向四面八方　有你在我的身旁　這世界不會孤單\\n＊我可以　瘋狂大膽的飛行　尋找生命的奇蹟\\n我可以　用心擁抱　用力的呼吸\\n我可以　追逐青春的夢想　不管多遠的距離　和世界做鄰居　我可以\\n年輕　就是歌聲很嘹亮　純真　就是笑得很健康\\n當你覺得很受傷　想找個小小避風港　我就在你的身旁　關心從來不打烊\\nRepeat ＊,＊","4":"夢想 捉 著 天使 的 翅膀 飛越 所有 戰亂 的 地方 \\n 我們 相識 相知 相惜 想 守 這 一 場 有 你 認真 的 陪伴 笑容 更 燦爛 \\n 夢想 打造 一 個 小 城堡 只 為 有 些 快樂 的 希望 相信 從 這裡 開始 \\n 攜手 走向 四面八方 有 你 在 我 的 身旁 這 世界 不會 孤單 \\n 我 可以 瘋狂 大膽 的 飛行 尋找 生命 的 奇蹟 \\n 我 可以 用心 擁抱 用力 的 呼吸 \\n 我 可以 追逐 青春 的 夢想 不管 多 遠 的 距離 和 世界 做 鄰居 我 可以 \\n 年輕 就 是 歌聲 很 嘹亮 純真 就是 笑 得 很 健康 \\n 當 你 覺得 很 受傷 想 找 個 小小 避風港 我 就 在 你 的 身旁 關心 從來 不 打烊 \\n"},{"1":"韋禮安","2":"高麗菜+重來","3":"生薑 我最討厭生薑 可是每次炒菜 都一定都要放\\n蟑螂 我最討厭蟑螂 可是每次炒菜 都出現在廚房\\n唉~歌詞想不出來 唉~隨便唱我就爽快\\n高麗菜炒一炒端上來 是我把鹽放得太快 但我吃不出來\\n高麗菜炒一炒端上來 其實我沒有炒過菜 歌詞只是我亂掰\\n(OS. 那~這首歌高麗菜呢,\\n也可以有一個不一樣的樣貌 叫作 “重來”\\n來吧!)\\n照亮 這城市的陽光 在地平線遠方 讓夜不再漫長\\n受傷 它是什麼形狀 被埋藏在何方 讓痛化為了想像\\n愛 如果一切重來 愛 如果失去了傷害\\n再重來 還有什麼精彩 還有什麼值得期待 已過去的未來\\n再重來 難道不會失敗 若失去跌倒的痛快 前進的方向還存不存在\\n再重來 還有什麼精彩 還有什麼值得期待 已過去的未來\\n再重來 難道不會失敗 若失去跌倒的痛快 前進的方向還存不存在\\n感謝\\n鳥迷\\n提供歌詞\\n感謝\\nDadai\\n修正歌詞","4":"生薑 我 最 討厭 生薑 可是 每 次 炒 菜 都 一定 都 要 放 \\n 蟑螂 我 最 討厭 蟑螂 可是 每 次 炒 菜 都 出現 在 廚房 \\n 唉 歌詞 想 不 出來 唉 隨便 唱 我 就 爽快 \\n 高麗菜 炒 一 炒 端上來 是 我 把 鹽 放 得 太 快 但 我 吃 不 出來 \\n 高麗菜 炒 一 炒 端上來 其實 我 沒有 炒 過 菜 歌詞 只是 我 亂掰 \\n 那 這 首 歌 高麗菜 呢 \\n 也 可以 有 一 個 不 一樣 的 樣貌 叫作 重來 \\n 來 吧 \\n 照亮 這 城市 的 陽光 在 地平線 遠方 讓 夜 不再 漫長 \\n 受傷 它 是 什麼 形狀 被 埋藏 在 何方 讓 痛 化為 了 想像 \\n 愛 如果 一切 重來 愛 如果 失去 了 傷害 \\n 再 重來 還 有 什麼 精彩 還 有 什麼 值得 期待 已 過去 的 未來 \\n 再 重來 難道 不會 失敗 若 失去 跌倒 的 痛快 前進 的 方向 還 存不存在 \\n 再 重來 還 有 什麼 精彩 還 有 什麼 值得 期待 已 過去 的 未來 \\n 再 重來 難道 不會 失敗 若 失去 跌倒 的 痛快 前進 的 方向 還 存不存在 \\n 感謝 \\n 鳥迷 \\n 提供 歌詞 \\n 感謝 \\n 修正 歌詞"},{"1":"蕭敬騰","2":"Fever","3":"Never know how much I love you\\nNever know how much I care\\nWhen you put your arms around me\\nI get a fever that's so hard to bear\\nYou give me fever - when you kiss me\\nFever when you hold me tight\\nFever in the morning\\nFever all through the night.\\nSun lights up the daytime\\nMoon lights up the night\\nI light up when you call my name\\nAnd you know I'm gonna treat you right\\nYou give me fever - when you kiss me\\nFever when you hold me tight\\nFever in the morning\\nFever all through the night\\nEverybody's got the fever\\nThat is something you all know\\nFever isn't such a new thing\\nFever started long ago\\nYeah\\nRomeo loved Juliet\\nJuliet she felt the same\\nWhen he put his arms around her\\nHe said “Julie, baby, you're my flame”\\nThou givest fever - when we kisseth\\nFever with the flaming youth\\nFever I'm afire\\nFever yea I burn for sooth'\\nCaptain Smith and Pocahontas\\nHad a very mad affair\\nWhen her daddy tried to kill him\\nShe said “Daddy, oh, don't you dare”\\nHe gives me fever with his kisses\\nFever when he holds me tight\\nFever, Oh I'm his missus,\\nDaddy, won't you treat him right\\nNow you've listened to my story\\nHere's the point that I have made\\nChicks were born to give you fever\\nBe it Fahrenheit or centigrade\\nThey give you fever - when you kiss them\\nFever if you live and learn\\nFever till you sizzle\\nWhat a lovely way to burn *4","4":"\\n"},{"1":"張雨生","2":"以為你都知道","3":"以為你都知道　兩顆心在相互關照\\n難道是我把一切想像得那麼好\\n以為你都知道　你對我有多麼重要\\n不能相信你已經從我夢裡逃跑\\n要我如何是好　以為你都知道\\n和我一樣忘不了\\n用感覺在擁抱\\n這是第一次　我聽不到自己的心跳\\n這是第一次　我想要留住你往日的笑\\n以為你都知道","4":"以為 你 都 知道 兩 顆 心 在 相互 關照 \\n 難道 是 我 把 一切 想像 得 那麼 好 \\n 以為 你 都 知道 你 對 我 有 多麼 重要 \\n 不能 相信 你 已經 從 我 夢 裡 逃跑 \\n 要 我 如何是好 以為 你 都 知道 \\n 和 我 一樣 忘不了 \\n 用 感覺 在 擁抱 \\n 這 是 第一 次 我 聽 不 到 自己 的 心跳 \\n 這 是 第一 次 我 想要 留住 你 往日 的 笑 \\n 以為 你 都 知道"},{"1":"周杰倫","2":"最後的戰役","3":"最後的戰役\\n機槍掃射聲中我們尋找遮蔽的戰壕\\n兒時沙雕的城堡毀壞了重新蓋就好\\n可是你那件染血佈滿彈孔的軍外套\\n卻就連禱告手都舉不好\\n在硝煙中想起冰棒汽水的味道\\n和那些無所事事一整個夏天的年少\\n我放下槍回憶去年一起畢業的學校\\n而眼淚一直都忘記要掉\\n嘲笑的聲音在風中不斷被練習\\n這樹林間充滿了敵意\\n部隊棄守陣地你堅持要我也離去\\n我怎麼能放棄\\n我留著陪你\\n強忍著淚滴\\n有些事真的來不及回不去\\n你臉在抽搐\\n就快沒力氣\\n家鄉事不准我再提\\n我留著陪你\\n最後的距離\\n是你的側臉倒在我的懷裡\\n你慢慢睡去\\n我搖不醒你\\n淚水在戰壕裡決了堤\\n在硝煙中想起冰棒汽水的味道\\n和那些無所事事一整個夏天的年少\\n我放下槍回憶去年一起畢業的學校\\n而眼淚一直都忘記要掉\\n嘲笑的聲音在風中不斷被練習\\n這樹林間充滿了敵意\\n部隊棄守陣地你堅持要我也離去\\n我怎麼能放棄\\n我留著陪你\\n強忍著淚滴\\n有些事真的來不及回不去\\n你臉在抽搐\\n就快沒力氣\\n家鄉事不准我再提\\n我留著陪你\\n最後的距離\\n是你的側臉倒在我的懷裡\\n你慢慢睡去\\n我搖不醒你\\n淚水在戰壕裡謝謝你\\n感謝\\n周舟\\n提供歌詞","4":"最後 的 戰役 \\n 機槍 掃射聲 中 我們 尋找 遮蔽 的 戰壕 \\n 兒時 沙雕 的 城堡 毀壞 了 重新 蓋 就 好 \\n 可是 你 那 件 染 血 佈滿 彈孔 的 軍 外套 \\n 卻 就 連 禱告 手 都 舉 不 好 \\n 在 硝煙 中 想起 冰棒 汽水 的 味道 \\n 和 那些 無所事事 一 整 個 夏天 的 年少 \\n 我 放下 槍 回憶 去年 一起 畢業 的 學校 \\n 而 眼淚 一直 都 忘記 要 掉 \\n 嘲笑 的 聲音 在 風 中 不斷 被 練習 \\n 這 樹林 間 充滿 了 敵意 \\n 部隊 棄守 陣地 你 堅持 要 我 也 離去 \\n 我 怎麼 能 放棄 \\n 我 留 著 陪 你 \\n 強忍 著 淚 滴 \\n 有 些 事 真的 來不及 回 不 去 \\n 你 臉 在 抽搐 \\n 就 快 沒 力氣 \\n 家鄉 事 不准 我 再 提 \\n 我 留 著 陪 你 \\n 最後 的 距離 \\n 是 你 的 側 臉 倒 在 我 的 懷裡 \\n 你 慢慢 睡去 \\n 我 搖 不 醒 你 \\n 淚水 在 戰壕 裡 決 了 堤 \\n 在 硝煙 中 想起 冰棒 汽水 的 味道 \\n 和 那些 無所事事 一 整 個 夏天 的 年少 \\n 我 放下 槍 回憶 去年 一起 畢業 的 學校 \\n 而 眼淚 一直 都 忘記 要 掉 \\n 嘲笑 的 聲音 在 風 中 不斷 被 練習 \\n 這 樹林 間 充滿 了 敵意 \\n 部隊 棄守 陣地 你 堅持 要 我 也 離去 \\n 我 怎麼 能 放棄 \\n 我 留 著 陪 你 \\n 強忍 著 淚 滴 \\n 有 些 事 真的 來不及 回 不 去 \\n 你 臉 在 抽搐 \\n 就 快 沒 力氣 \\n 家鄉 事 不准 我 再 提 \\n 我 留 著 陪 你 \\n 最後 的 距離 \\n 是 你 的 側 臉 倒 在 我 的 懷裡 \\n 你 慢慢 睡去 \\n 我 搖 不 醒 你 \\n 淚水 在 戰壕 裡 謝謝 你 \\n 感謝 \\n 周舟 \\n 提供 歌詞"},{"1":"盧廣仲","2":"After Dinner","3":"我們收好餐盤碟子 結束一天的辛苦\\n晚餐之後的那個小時 我們喜歡去散步 喜歡和你一起散步\\n新陳代謝之後分手 我們是最健康的朋友\\n有心事請告訴我 我也想要跟你說\\n但我只能夠自行吸收 和晚餐一起吸收\\n每天的 Before Dinner 要吃什麼 誰能夠告訴我\\n不用沉魚落雁的晚餐 只要給我能源 在太陽消失以後\\n每天的 Before Dinner 要吃什麼 誰能夠告訴我\\n喜歡眉清目秀的晚餐 然後給我能源 在悲傷消失以後\\nAfter Dinner 要做什麼 只能看著天空\\n生活就像晚餐只能獨自享受\\n拜託 陪我 在晚餐以後","4":"我們 收好 餐盤 碟子 結束 一 天 的 辛苦 \\n 晚餐 之後 的 那 個 小時 我們 喜歡 去 散步 喜歡 和 你 一起 散步 \\n 新陳代謝 之後 分手 我們 是 最 健康 的 朋友 \\n 有 心事 請 告訴 我 我 也 想要 跟 你 說 \\n 但 我 只 能夠 自行 吸收 和 晚餐 一起 吸收 \\n 每 天 的 要 吃 什麼 誰 能夠 告訴 我 \\n 不用 沉魚落雁 的 晚餐 只要 給 我 能源 在 太陽 消失 以後 \\n 每 天 的 要 吃 什麼 誰 能夠 告訴 我 \\n 喜歡 眉清目秀 的 晚餐 然後 給 我 能源 在 悲傷 消失 以後 \\n 要 做 什麼 只 能 看 著 天空 \\n 生活 就 像 晚餐 只 能 獨自 享受 \\n 拜託 陪 我 在 晚餐 以後"},{"1":"徐佳瑩","2":"你敢不敢","3":"你的電話 我還是接了\\n你約見面 我還是去了\\n你傳的晚安 我照常回了\\n這樣夠嗎 夠嗎\\n讓自己忙碌 證明還活著\\n讓朋友陪我 都不好意思了\\n我說不愛你 你也就相信了\\n這樣好嗎 好嗎\\n你敢不敢\\n承認我愛上你的壞\\n你敢不敢\\n說恨我 像愛我一樣 發自內心的堅決\\n你敢不敢 愛一個人 如此卑微\\n你的電話 我還是接了\\n你約見面 我還是去了\\n你傳的晚安 我照常回了\\n這樣夠嗎 夠嗎\\n讓自己忙碌 證明還活著\\n讓朋友陪我 都不好意思了\\n我說不愛你 你也就相信了\\n這樣好嗎 好嗎\\n你敢不敢\\n承認我愛上你的壞\\n你敢不敢\\n說恨我 像愛我一樣 發自內心的堅決\\n你敢不敢 愛一個人 如此卑微\\n你敢不敢\\n無視我止不住的眼淚\\n你敢不敢\\n說這段 感情的不堪 全都是我的不對\\n你敢不敢 愛錯了人 卻不想面對","4":"你 的 電話 我 還是 接 了 \\n 你 約 見面 我 還是 去 了 \\n 你 傳 的 晚安 我 照常 回 了 \\n 這樣 夠 嗎 夠 嗎 \\n 讓 自己 忙碌 證明 還 活 著 \\n 讓 朋友 陪 我 都 不好意思 了 \\n 我 說 不 愛 你 你 也 就 相信 了 \\n 這樣 好 嗎 好 嗎 \\n 你 敢 不 敢 \\n 承認 我 愛上 你 的 壞 \\n 你 敢 不 敢 \\n 說 恨 我 像 愛 我 一樣 發自 內心 的 堅決 \\n 你 敢 不 敢 愛 一 個 人 如此 卑微 \\n 你 的 電話 我 還是 接 了 \\n 你 約 見面 我 還是 去 了 \\n 你 傳 的 晚安 我 照常 回 了 \\n 這樣 夠 嗎 夠 嗎 \\n 讓 自己 忙碌 證明 還 活 著 \\n 讓 朋友 陪 我 都 不好意思 了 \\n 我 說 不 愛 你 你 也 就 相信 了 \\n 這樣 好 嗎 好 嗎 \\n 你 敢 不 敢 \\n 承認 我 愛上 你 的 壞 \\n 你 敢 不 敢 \\n 說 恨 我 像 愛 我 一樣 發自 內心 的 堅決 \\n 你 敢 不 敢 愛 一 個 人 如此 卑微 \\n 你 敢 不 敢 \\n 無視 我 止 不住 的 眼淚 \\n 你 敢 不 敢 \\n 說 這 段 感情 的 不堪 全 都 是 我 的 不 對 \\n 你 敢 不 敢 愛錯 了 人 卻 不 想 面對"},{"1":"蔡依林","2":"OH OH","3":"Oh Oh 怎麼沒有回家 Oh Oh 電話加了密碼\\n謊話說得實在太瞎 別怪我故意要把祕密揭發\\nOh Oh 把誰染了頭髮 Oh Oh 彩繪妳的指甲\\n到底是誰那麼的殺 Oh Oh 滿天愛的火花\\n突然間 開始研究嘻哈 紅著臉 吃什麼都加辣\\n行為突然分了岔 問妳還是不回答\\n我不會 怪妳不說真話 別以為 朋友都是傻瓜\\n眼神常常在發傻 盡是愛的火花\\n別害怕 不說也罷 愛既然發芽 拜託加油別搞砸\\nOh Oh 怎麼沒有回家 Oh Oh 電話加了密碼\\n謊話說得實在太瞎 別怪我故意要把祕密揭發\\nOh Oh 把誰染了頭髮 Oh Oh 彩繪妳的指甲\\n到底是誰那麼的殺 Oh Oh 滿天愛的火花\\n平常妳 總是一派瀟灑 談到愛 千萬別太牽掛\\n手裡老握著電話 居然會羞答答\\n沒問題 繼續裝聾作啞 不說話 不學人家八卦\\n陪妳做大說謊家 到妳嫁出去\\n別害怕 不說也罷 愛既然發芽 拜託加油別搞砸\\nOh Oh 怎麼沒有回家 Oh Oh 電話加了密碼\\n謊話說得實在太瞎 別怪我故意要把祕密揭發\\nOh Oh 把誰染了頭髮 Oh Oh 彩繪妳的指甲\\n到底是誰那麼的殺 Oh Oh 滿天愛的火花\\n妳祕密被發現 祕密被發現 You are so lousy 早就被發現\\nOh Oh 怎麼沒有回家 Oh Oh 電話加了密碼\\n謊話說得實在太瞎 別怪我故意要把祕密揭發\\nOh Oh 把誰染了頭髮 Oh Oh 彩繪妳的指甲\\n到底是誰那麼的殺 Oh Oh 滿天愛的火花\\nOh Oh 怎麼沒有回家 Oh Oh 電話加了密碼\\n謊話說得實在太瞎 別怪我故意要把祕密揭發\\nOh Oh 把誰染了頭髮 Oh Oh 彩繪妳的指甲\\n到底是誰那麼的殺 Oh Oh 滿天愛的火花","4":"怎麼 沒有 回家 電話 加 了 密碼 \\n 謊話 說 得 實在 太 瞎 別 怪 我 故意 要 把 祕密 揭發 \\n 把 誰 染 了 頭髮 彩繪 妳 的 指甲 \\n 到底 是 誰 那麼 的 殺 滿 天 愛 的 火花 \\n 突然間 開始 研究 嘻哈 紅著臉 吃 什麼 都 加 辣 \\n 行為 突然 分 了 岔 問 妳 還是 不 回答 \\n 我 不會 怪 妳 不 說 真話 別 以為 朋友 都 是 傻瓜 \\n 眼神 常常 在 發傻 盡 是 愛 的 火花 \\n 別 害怕 不 說 也罷 愛 既然 發芽 拜託 加油 別 搞砸 \\n 怎麼 沒有 回家 電話 加 了 密碼 \\n 謊話 說 得 實在 太 瞎 別 怪 我 故意 要 把 祕密 揭發 \\n 把 誰 染 了 頭髮 彩繪 妳 的 指甲 \\n 到底 是 誰 那麼 的 殺 滿 天 愛 的 火花 \\n 平常 妳 總是 一 派 瀟灑 談到 愛 千萬 別 太 牽掛 \\n 手 裡 老 握 著 電話 居然 會 羞答答 \\n 沒 問題 繼續 裝聾作啞 不 說話 不 學 人家 八卦 \\n 陪 妳 做 大 說謊家 到 妳 嫁出去 \\n 別 害怕 不 說 也罷 愛 既然 發芽 拜託 加油 別 搞砸 \\n 怎麼 沒有 回家 電話 加 了 密碼 \\n 謊話 說 得 實在 太 瞎 別 怪 我 故意 要 把 祕密 揭發 \\n 把 誰 染 了 頭髮 彩繪 妳 的 指甲 \\n 到底 是 誰 那麼 的 殺 滿 天 愛 的 火花 \\n 妳 祕密 被 發現 祕密 被 發現 早 就 被 發現 \\n 怎麼 沒有 回家 電話 加 了 密碼 \\n 謊話 說 得 實在 太 瞎 別 怪 我 故意 要 把 祕密 揭發 \\n 把 誰 染 了 頭髮 彩繪 妳 的 指甲 \\n 到底 是 誰 那麼 的 殺 滿 天 愛 的 火花 \\n 怎麼 沒有 回家 電話 加 了 密碼 \\n 謊話 說 得 實在 太 瞎 別 怪 我 故意 要 把 祕密 揭發 \\n 把 誰 染 了 頭髮 彩繪 妳 的 指甲 \\n 到底 是 誰 那麼 的 殺 滿 天 愛 的 火花"},{"1":"孫燕姿","2":"開始懂了","3":"我竟然沒有調頭　最殘忍那一刻\\n靜靜看你走　一點都不像我\\n原來人會變得溫柔　是透徹的懂了\\n愛情是流動的　不由人的　何必激動著要理由\\n相信你只是怕傷害我　不是騙我　很愛過誰會捨得\\n把我的夢搖醒了　宣佈幸福不會來了\\n用心酸微笑去原諒了　也翻越了　有昨天還是好的\\n但明天是自己的　開始懂了　快樂是選擇","4":"我 竟然 沒有 調頭 最 殘忍 那 一 刻 \\n 靜靜 看 你 走 一點 都 不 像 我 \\n 原來 人 會 變 得 溫柔 是 透徹 的 懂 了 \\n 愛情 是 流動 的 不 由 人 的 何必 激動 著 要 理由 \\n 相信 你 只是 怕 傷害 我 不 是 騙 我 很 愛 過 誰 會 捨得 \\n 把 我 的 夢 搖醒 了 宣佈 幸福 不會 來 了 \\n 用 心酸 微笑 去 原諒 了 也 翻越 了 有 昨天 還是 好 的 \\n 但 明天 是 自己 的 開始 懂 了 快樂 是 選擇"},{"1":"徐佳瑩","2":"想自由","3":"每個人都缺乏什麼　我們才會瞬間就不快樂\\n單純很難　包袱很多　已經很勇敢　還是難過\\n許多事情都有選擇　只是往往事後我才懂得\\n情緒很煩　說話很衝　人和人的溝通　有時候沒有用\\n或許只有妳　懂得我　所以妳沒逃脫\\n一邊在淚流　一邊緊抱我　小聲的說　多麼愛我\\n只有妳　懂得我　就像被困住的野獸　在摩天大樓　渴求　自由\\n一路嗅著追著美夢　爬上屋頂意外跌得好重\\n不覺得痛　是覺得空　城市的幻影　有千百種\\n就算愛也會變冷的　可是現在抱的妳是暖的\\n我不曉得　我不捨得　為將來的難測　就放棄這一刻","4":"每 個 人 都 缺乏 什麼 我們 才 會 瞬間 就 不 快樂 \\n 單純 很 難 包袱 很多 已經 很 勇敢 還是 難過 \\n 許多 事情 都 有 選擇 只是 往往 事 後 我 才 懂得 \\n 情緒 很 煩 說話 很 衝 人 和 人 的 溝通 有時候 沒有用 \\n 或許 只有 妳 懂得 我 所以 妳 沒 逃脫 \\n 一邊 在 淚 流 一邊 緊 抱 我 小聲 的 說 多麼 愛 我 \\n 只有 妳 懂得 我 就 像 被 困住 的 野獸 在 摩天大樓 渴求 自由 \\n 一路 嗅 著 追 著 美夢 爬上 屋頂 意外 跌 得 好 重 \\n 不 覺得 痛 是 覺得 空 城市 的 幻影 有 千百 種 \\n 就算 愛 也 會 變 冷 的 可是 現在 抱 的 妳 是 暖 的 \\n 我 不 曉得 我 不 捨得 為 將來 的 難 測 就 放棄 這 一 刻"}],"options":{"columns":{"min":[4],"max":[3]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  </script>
+</div>
+<ul>
+<li>這次的實作資料，收集<span
+class="note">17位華語男女歌手</span>歌曲之歌詞作為分析文本，總共有2409首歌曲。</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>這些歌手的選擇沒有什麼邏輯(可能只是反映我年紀吧<svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm33.8 161.7l80-48c11.6-6.9 24 7.7 15.4 18L343.6 180l33.6 40.3c8.7 10.4-3.9 24.8-15.4 18l-80-48c-7.7-4.7-7.7-15.9 0-20.6zm-163-30c-8.6-10.3 3.8-24.9 15.4-18l80 48c7.8 4.7 7.8 15.9 0 20.6l-80 48c-11.5 6.8-24-7.6-15.4-18l33.6-40.3-33.6-40.3zM398.9 306C390 377 329.4 432 256 432h-16c-73.4 0-134-55-142.9-126-1.2-9.5 6.3-18 15.9-18h270c9.6 0 17.1 8.4 15.9 18z"></path></svg>)，如果考量研究嚴謹度，應該納入所有男女歌手，比較合適。</li>
+</ol>
+</div>
+</section>
+<section class="slide level4">
+
+<ul>
+<li>每位歌手蒐集之歌曲數目分佈如下：</li>
+</ul>
+<p><img src="CorpLingOverview_files/figure-revealjs/unnamed-chunk-34-1.png" width="95%" /></p>
+</section></section>
+<section>
+<section id="資料分析流程" class="title-slide slide level2">
+<h2>資料分析流程</h2>
+
+</section>
+<section id="透過詞向量找尋男人女人的鄰近詞"
+class="title-slide slide level3">
+<h3>透過詞向量，找尋「男人」「女人」的鄰近詞</h3>
+<div class="figure">
+<img src="images/sinica_tsne.png" alt="詞向量降維平面圖" width="700" />
+<p class="caption">
+詞向量降維平面圖
+</p>
+</div>
+</section>
+
+<section id="步驟" class="title-slide slide level3">
+<h3>步驟</h3>
+<ul>
+<li>我們將整個資料庫，依據不同歌手分成17個子資料庫，不同歌手歌曲作為子語料庫，針對每一位歌手獨立訓練一個「歌手詞向量」模型。</li>
+<li>從每一位歌手訓練出來的<strong>詞向量模型</strong>，尋找分別與「男人」和「女人」相近的<strong>200</strong>個詞彙，作為後續的情態分析。</li>
+<li>每位歌手找出400個與「男人」和「女人」語意相近詞彙(「男人」和「女人」各200個詞)，共
+<span class="math inline">\(17 \times 400 = 6800\)</span> 的詞彙。</li>
+</ul>
+</section>
+
+<section id="分析相近詞的情感分佈" class="title-slide slide level3">
+<h3>分析相近詞的情感分佈</h3>
+<ul>
+<li>與「男人」相近的詞彙中，多少詞彙是正面的？是快樂？悲傷的？憤怒的？</li>
+<li>與「女人」相近的詞彙中，多少詞彙是正面的？是快樂？悲傷的？憤怒的？</li>
+</ul>
+</section>
+
+<section id="查字典情感字典" class="title-slide slide level3">
+<h3>查字典！情感字典！</h3>
+<ul>
+<li>目前中文的情感字典，能夠公開使用的不多，在這個小研究中，我們使用的是<span
+class="note">NRC Emotion Dictionary</span></li>
+<li>NRC是一個以英文為主的情感字典，作者透過自動化翻譯將字典擴增至全球一百多種語言。</li>
+<li>我們使用NRC提供之中文版本，透過人工修正翻譯正確性。</li>
+</ul>
+<div class="footnotes">
+<ol type="1">
+<li>Saif Mohammad and Peter Turney (2013). Crowdsourcing a Word-Emotion
+Association Lexicon. Computational Intelligence, 29 (3), 436-465,
+2013.</li>
+</ol>
+</div>
+</section>
+
+<section id="字典詞彙分佈" class="title-slide slide level3">
+<h3>字典詞彙分佈</h3>
+<p><img src="images/nrc_dist.png" width="672" /></p>
+</section>
+</section>
+<section>
+<section id="全部歌手分析正反情感" class="title-slide slide level2">
+<h2>全部歌手分析：正反情感</h2>
+<ul>
+<li>我們可以依據一般的二分情感字典，以<strong>正向</strong>與<strong>負向</strong>兩端，來初步分析歌詞庫中，所有「男人」與「女人」相近詞。</li>
+</ul>
+</section>
+<section id="男人相近詞探索" class="slide level4">
+<h4>「男人」相近詞探索</h4>
+<p><img src="CorpLingOverview_files/figure-revealjs/unnamed-chunk-42-1.png" height="100%" /></p>
+</section>
+<section id="女人相近詞探索" class="title-slide slide level3">
+<h3>「女人」相近詞探索</h3>
+<p><img src="CorpLingOverview_files/figure-revealjs/unnamed-chunk-43-1.png" height="100%" /></p>
+</section>
+
+<section id="統計分析正負向" class="title-slide slide level3">
+<h3>統計分析(正負向)</h3>
+<p><img src="images/p.png" width="672" height="100%" /></p>
+</section>
+</section>
+<section>
+<section id="細部八大情感分析" class="title-slide slide level2">
+<h2>細部八大情感分析</h2>
+<ul>
+<li>我們將<strong>每位歌手</strong>詞向量模型所找出之「男人」與「女人」相近詞，依據情感字典，找出夾帶「特殊情感」之詞彙，接著，計算分析每一個歌手這些相近詞在八大情感的分數。
+<!-- - 針對每一種情感字典中的特殊情感，我們計算Emotion Density數值：$\frac{該情感詞彙個數}{200}*1000$，此為一個normalized數值，代表平均每1000個「`MALE`/`FEMALE`」概念相近詞中，與某情感相關詞彙之個數。 --></li>
+</ul>
+</section>
+<section id="歌手概念情感" class="title-slide slide level3">
+<h3>歌手、概念、情感</h3>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ARTIST"],"name":[1],"type":["chr"],"align":["left"]},{"label":["TARGET"],"name":[2],"type":["chr"],"align":["left"]},{"label":["emotion"],"name":[3],"type":["chr"],"align":["left"]},{"label":["DENSITY"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"光良","2":"FEMALE","3":"Anger","4":"115"},{"1":"光良","2":"FEMALE","3":"Surprise","4":"40"},{"1":"光良","2":"MALE","3":"Joy","4":"155"},{"1":"光良","2":"MALE","3":"Sadness","4":"55"},{"1":"吳青峰","2":"FEMALE","3":"Trust","4":"75"},{"1":"吳青峰","2":"FEMALE","3":"Anticipation","4":"155"},{"1":"吳青峰","2":"MALE","3":"Anticipation","4":"75"},{"1":"吳青峰","2":"MALE","3":"Surprise","4":"5"},{"1":"周杰倫","2":"FEMALE","3":"Trust","4":"60"},{"1":"周杰倫","2":"FEMALE","3":"Surprise","4":"60"}],"options":{"columns":{"min":{},"max":[3]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  </script>
+</div>
+<p><span class="note"></span></p>
+<div class="footnotes">
+<ol type="1">
+<li>Density數值越高，表示「男人/女人」與該特定情感連結性越高。</li>
+</ol>
+</div>
+</section>
+
+<section id="男人在不同歌手中的情感分佈"
+class="title-slide slide level3">
+<h3>「男人」在不同歌手中的情感分佈</h3>
+<div class="container">
+<div class="col">
+<p><img src="images/hm_men.png" width="672" /> <span
+class="note"></span><span class="note"></span></p>
+</div>
+<div class="col">
+<div class="footnotes">
+<ol type="1">
+<li>「男人」在不同歌手之歌曲中，顯示JOY和FEAR是最常見的情感連結；SURPRISE則最少見。</li>
+<li>不同歌手也有不同情感趨勢，如：魏如萱、蕭敬騰之JOY，張雨生的FEAR，吳青峰的FEAR和ANGER</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+
+<section id="女人在不同歌手中的情感分佈"
+class="title-slide slide level3">
+<h3>「女人」在不同歌手中的情感分佈</h3>
+<div class="container">
+<div class="col">
+<p><img src="hm_women.png" width="672" /> <span
+class="note"></span><span class="note"></span></p>
+</div>
+<div class="col">
+<div class="footnotes">
+<ol type="1">
+<li>「女人」在不同歌手之歌曲中，顯示JOY、ANITCIPATION、FEAR是最常見的情感連結；DISGUST則最少見。</li>
+<li>不同歌手也有不同情感趨勢，如：王心凌的JOY，張雨生的JOY、ANTICIPATION，吳青峰的JOY、FEAR。</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+
+<section id="男人女人比較分析" class="title-slide slide level3">
+<h3>「男人」「女人」比較分析</h3>
+<div class="container">
+<div class="col">
+<p><img src="images/p_emo.png" width="672" /></p>
+</div>
+<div class="col">
+<ul>
+<li>初步研究結果顯示，<code>MALE</code>和<code>FEMALE</code>概念相近詞，在不同情感分佈上，有顯著差異。</li>
+</ul>
+<!-- ( $\chi$ = 261.47; *df* = 7; *p* < .01) -->
+<ul>
+<li>我們目前資料呈現兩個明顯的連結：
+<ul>
+<li><code>MALE</code>與DISGUST/ANGER/SADNESS</li>
+<li><code>FEMALE</code>與SURPRISE/ANTICIPATION/TRUST</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="後續文字分析" class="title-slide slide level2">
+<h2>後續文字分析</h2>
+
+</section>
+<section id="女人與surpisetrustanticipation"
+class="title-slide slide level3">
+<h3>女人與Surpise/Trust/Anticipation</h3>
+<p><img src="images/female-wc.png" width="90%" /></p>
+</section>
+
+<section id="男人與angerdisgustsadness"
+class="title-slide slide level3">
+<h3>男人與Anger/Disgust/Sadness</h3>
+<p><img src="images/male-wc.png" width="90%" /></p>
+</section>
+</section>
+<section>
+<section id="結語" class="title-slide slide level2">
+<h2>結語</h2>
+
+</section>
+<section id="語料庫分析與資訊科學" class="title-slide slide level3">
+<h3>語料庫分析與資訊科學</h3>
+<ul>
+<li>議題發想</li>
+<li>資料收集(Corpus, Web-Crawling)</li>
+<li>資料前置處理 (Text Pre-processing, Data Wrangling)</li>
+<li>資料分析 (Statistics, Data Analysis)</li>
+<li>結果詮釋 (Data Visualization, Reproducible Reports)</li>
+</ul>
+</section>
+
+<section id="語言學的未來" class="title-slide slide level3">
+<h3>語言學的未來？</h3>
+<ul>
+<li>充實自己的跨域能力（統計、程式與數位）</li>
+<li>培養一顆數位的頭腦</li>
+<li>跳脫人文領域的舒適圈</li>
+</ul>
+</section>
+
+<section id="路是自己走出來的勇敢去學吧"
+class="title-slide slide level3">
+<h3>路是自己走出來的！勇敢去學吧！</h3>
+<p><img src="images/ds-roadmap-detailed.png" width="496" height="100%" />
+<span class="note"></span></p>
+<div class="footnotes">
+<ol type="1">
+<li>Source: <a
+href="https://github.com/therealsreehari/Learn-Data-Science-For-Free">Learn
+Data Science for Free</a></li>
+</ol>
+</div>
+</section>
+
+<section id="section-4" class="title-slide slide level3">
+<h3></h3>
+<p><span style="font-size: 2.5em">感謝聆聽!</span></p>
+</section>
+</section>
+    </div>
+  </div>
+
+  <script src="CorpLingOverview_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="CorpLingOverview_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: true,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        menu: {
+   
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          theme: 'blackboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'CorpLingOverview_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: 'CorpLingOverview_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: 'CorpLingOverview_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: 'CorpLingOverview_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+<div class='footer'>
+<p>國立台灣師範大學沃格語言學研究社，台北，2023年11月20日</p>
+<p>alvinchen@ntnu.edu.tw &ensp;|&ensp; <a href='https://alvinchen.myftp.org' target='_blank'> alvinchen.myftp.org </a></a></p>
+</div>
+
+  </body>
+</html>

@@ -51,7 +51,7 @@ body {
   height: 10vh; /*reletive to the % of the viewport*/
   position: fixed;
   bottom: 0;
-  line-height: 60%;
+  line-height: 50%;
   width: 100%;
   background: transparent;
   text-align: center;
@@ -59,7 +59,7 @@ body {
 
 .footer p {
   color: darkgrey;
-  font-size: 1.5em;
+  font-size: 1.2em;
   text-align: center;
   vertical-align: text-top;
 }
